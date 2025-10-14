@@ -1,0 +1,82 @@
+/**
+ * Symphony CSS Framework
+ * Documentation Styles
+ * For use in documentation pages only
+ */
+
+@layer utilities {
+  /* ============================================
+     SYMPHONY DOCUMENTATION STYLES
+     For use in documentation pages only
+     ============================================ */
+  
+  /* Documentation Header with Gradient */
+  .doc-header {
+    background: linear-gradient(135deg, var(--symphony-primary), #0066FF);
+    color: var(--symphony-text-title);
+    padding: var(--symphony-spacing-16) 0;
+  }
+  
+  /* Sticky Navigation Bar */
+  .doc-nav {
+    position: sticky;
+    top: 0;
+    background: var(--symphony-surface);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding: var(--symphony-spacing-4) 0;
+    z-index: 100;
+    backdrop-filter: blur(10px);
+  }
+  
+  /* Section Scroll Offset for Sticky Nav */
+  .doc-section {
+    scroll-margin-top: 100px;
+  }
+  
+  /* Code Preview Container - CONTRAST FIXED */
+  .code-preview {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: var(--symphony-radius-lg);
+    padding: var(--symphony-spacing-6);
+    margin: var(--symphony-spacing-4) 0;
+    color: var(--symphony-text-body);
+  }
+  
+  /* Example Demonstration Box - CONTRAST FIXED */
+  .example-box {
+    background: var(--symphony-surface);
+    color: var(--symphony-text-body);
+    border: 2px dashed rgba(0, 85, 254, 0.5);
+    border-radius: var(--symphony-radius-base);
+    padding: var(--symphony-spacing-6);
+    margin: var(--symphony-spacing-4) 0;
+  }
+  
+  /* Code Snippets */
+  .code-preview code {
+    color: var(--symphony-text-title);
+    font-family: 'Monaco', 'Courier New', monospace;
+  }
+  
+  /* Documentation Navigation Links */
+  .doc-nav a {
+    color: var(--symphony-text-body);
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+  
+  .doc-nav a:hover {
+    color: var(--symphony-primary);
+  }
+  
+  /* Section Headings */
+  .doc-section h2,
+  .doc-section h3 {
+    color: var(--symphony-text-title);
+  }
+  
+  .doc-section p {
+    color: var(--symphony-text-body);
+  }
+}

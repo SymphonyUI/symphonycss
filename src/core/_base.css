@@ -1,7 +1,7 @@
 /**
  * Symphony CSS Framework v0.1
  * Base Layer - Semantic HTML element styles
- * Minimal classes, maximum semantics (PicoCSS approach)
+ * Minimal classes, maximum semantics - Semantic-first approach
  */
 
 @layer base {
@@ -16,7 +16,7 @@
     font-size: var(--symphony-font-size-base);
     font-weight: 400;
     line-height: var(--symphony-line-height-normal);
-    color: var(--symphony-text);
+    color: var(--symphony-text-body);
     background-color: var(--symphony-background);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -28,7 +28,7 @@
     font-weight: 600; /* Inter Display Semibold */
     line-height: var(--symphony-heading-line-height);
     margin-bottom: var(--symphony-heading-margin-bottom);
-    color: var(--symphony-text);
+    color: var(--symphony-text-title);
   }
 
   h1 {
@@ -63,11 +63,12 @@
   p {
     margin-bottom: var(--symphony-paragraph-margin-bottom);
     line-height: var(--symphony-paragraph-line-height);
+    color: var(--symphony-text-body);
   }
 
   /* Links */
   a {
-    color: var(--symphony-link-color);
+    color: var(--symphony-primary);
     text-decoration: var(--symphony-link-decoration);
     text-decoration-thickness: var(--symphony-link-decoration-thickness);
     text-underline-offset: var(--symphony-link-underline-offset);
@@ -75,7 +76,21 @@
   }
 
   a:hover {
-    color: var(--symphony-link-hover-color);
+    color: var(--symphony-secondary);
+  }
+  
+  /* Ensure Documentation Elements Have Contrast */
+  .example-box,
+  .code-preview,
+  .doc-section,
+  .feature-card {
+    color: var(--symphony-text-body);
+  }
+  
+  .example-box h3,
+  .code-preview h3,
+  .feature-card h3 {
+    color: var(--symphony-text-title);
   }
 
   a:focus-visible {

@@ -5,10 +5,11 @@
   "main": "dist/symphony.css",
   "style": "dist/symphony.css",
   "scripts": {
-    "build": "npm run build:concat && npm run build:minify",
-    "build:concat": "cat src/symphony.css > dist/symphony.css",
-    "build:minify": "npx lightningcss --minify --bundle --targets '>= 0.25%' src/symphony.css -o dist/symphony.min.css",
-    "watch": "npm run build -- --watch",
+    "build": "npm run build:bundle",
+    "build:bundle": "cat src/core/_fonts.css src/core/_reset.css src/core/_variables.css src/core/_tokens.css src/core/_base.css src/layout/_container.css src/layout/_grid.css src/layout/_flexbox.css src/components/_typography.css src/components/_buttons.css src/components/_forms.css src/components/_cards.css src/utilities/_spacing.css src/utilities/_helpers.css > dist/symphony.css",
+    "build:minify": "npx lightningcss --minify --targets '>= 0.25%' dist/symphony.css -o dist/symphony.min.css 2>&1 | grep -v 'webkit' || true",
+    "build:prod": "npm run build:bundle && npm run build:minify",
+    "watch": "npm run build:bundle",
     "dev": "npm run watch"
   },
   "keywords": [

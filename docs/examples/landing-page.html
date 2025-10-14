@@ -3,142 +3,111 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Landing Page Example - Symphony CSS</title>
-  <link rel="stylesheet" href="../../dist/symphony.css">
-  <style>
-    .hero {
-      background: linear-gradient(135deg, var(--symphony-primary), var(--symphony-secondary));
-      color: white;
-      min-height: 80vh;
-      display: flex;
-      align-items: center;
-    }
-    
-    .feature-icon {
-      width: 64px;
-      height: 64px;
-      background: var(--symphony-primary);
-      border-radius: var(--symphony-radius-lg);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 2rem;
-      color: white;
-      margin-bottom: var(--symphony-spacing-4);
-    }
-  </style>
+  <title>Symphony CSS - Landing Page Example</title>
+  <link rel="stylesheet" href="../../dist/symphony.css?v=0.1.7">
+  <link rel="stylesheet" href="../css/symphony-landing.css?v=0.1.7">
 </head>
 <body>
-  
-  <!-- Navigation -->
-  <nav class="symphony-bg-surface symphony-border-b symphony-sticky" style="top: 0; z-index: 100;">
-    <div class="symphony-container">
-      <div class="symphony-flex symphony-flex--justify-between symphony-flex--align-center symphony-py-4">
-        <div class="symphony-text--xl symphony-text--bold">Symphony</div>
-        <div class="symphony-flex symphony-flex--gap-6">
-          <a href="#features">Features</a>
-          <a href="#pricing">Pricing</a>
-          <a href="#contact">Contact</a>
-          <button class="symphony-button symphony-button--primary">Get Started</button>
-        </div>
+  <!-- Responsive Navbar -->
+  <nav class="navbar">
+    <div class="navbar-container">
+      <!-- Logo -->
+      <a href="/" class="navbar-logo">
+        <span>🎵</span>
+        <span>Symphony</span>
+      </a>
+      
+      <!-- Desktop Navigation Links -->
+      <ul class="navbar-links">
+        <li><a href="#features">Features</a></li>
+        <li><a href="#pricing">Pricing</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      
+      <!-- Desktop CTA Button -->
+      <div class="navbar-cta">
+        <button class="symphony-button symphony-button--primary symphony-button--pill">Get Started</button>
       </div>
+      
+      <!-- Hamburger Menu Icon (Mobile Only) -->
+      <button class="navbar-hamburger" aria-label="Toggle menu">
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+      </button>
     </div>
   </nav>
+  
+  <!-- Mobile Menu Slide-in Panel -->
+  <div class="navbar-mobile-menu">
+    <ul class="mobile-menu-links">
+      <li><a href="#features">Features</a></li>
+      <li><a href="#pricing">Pricing</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    
+    <div class="mobile-menu-cta">
+      <a href="#get-started">Get Started</a>
+    </div>
+  </div>
+  
+  <!-- Backdrop Overlay (Mobile Only) -->
+  <div class="navbar-backdrop"></div>
 
   <!-- Hero Section -->
   <section class="hero">
-    <div class="symphony-container">
-      <div class="symphony-grid symphony-grid--cols-1 symphony-grid--md-cols-2 symphony-flex--align-center symphony-grid--gap-lg">
-        <div>
-          <h1 class="symphony-display--lg" style="color: white; margin-bottom: var(--symphony-spacing-6);">
-            Build Beautiful Websites Faster
-          </h1>
-          <p class="symphony-lead" style="color: rgba(255,255,255,0.9); margin-bottom: var(--symphony-spacing-8);">
-            Symphony CSS is a modern, semantic-first CSS framework that helps you create stunning web experiences with minimal effort.
-          </p>
-          <div class="symphony-flex symphony-flex--gap-4">
-            <button class="symphony-button symphony-button--primary symphony-button--lg" style="background: white; color: var(--symphony-primary);">
-              Get Started
-            </button>
-            <button class="symphony-button symphony-button--outline symphony-button--lg" style="border-color: white; color: white;">
-              View Docs
-            </button>
-          </div>
-        </div>
-        <div>
-          <!-- Placeholder for hero image -->
-          <div class="symphony-card symphony-card--elevated" style="background: rgba(255,255,255,0.1); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.2);">
-            <div class="symphony-card__body" style="padding: var(--symphony-spacing-12);">
-              <div class="symphony-text--center" style="color: white;">
-                <div style="font-size: 4rem; margin-bottom: var(--symphony-spacing-4);">🎵</div>
-                <h3 style="color: white;">Symphony CSS</h3>
-                <p style="color: rgba(255,255,255,0.8);">Modern CSS Framework</p>
-              </div>
-            </div>
-          </div>
-        </div>
+    <div class="hero-content">
+      <h1>Build Beautiful Websites Faster</h1>
+      <p>Symphony CSS is a modern, semantic-first CSS framework that helps you create stunning web experiences with minimal effort.</p>
+      <div class="hero-buttons">
+        <button class="symphony-button symphony-button--primary">Get Started</button>
+        <button class="symphony-button symphony-button--outline">View Docs</button>
       </div>
     </div>
   </section>
 
   <!-- Features Section -->
-  <section id="features" class="symphony-section symphony-section--lg">
-    <div class="symphony-container">
-      <div class="symphony-text--center symphony-mb-16">
-        <h2 class="symphony-display--md">Powerful Features</h2>
-        <p class="symphony-lead">Everything you need to build modern web applications</p>
-      </div>
+  <section id="features" class="features-section">
+    <div class="features-container">
+      <h2 class="section-title">Powerful Features</h2>
+      <p class="section-subtitle">Everything you need to build modern web applications</p>
       
-      <div class="symphony-grid symphony-grid--cols-1 symphony-grid--md-cols-2 symphony-grid--lg-cols-3 symphony-grid--gap-lg">
-        
-        <div class="symphony-card symphony-card--elevated">
-          <div class="symphony-card__body">
-            <div class="feature-icon">🎯</div>
-            <h3 class="symphony-card__title">Cascade Layers</h3>
-            <p>Predictable specificity control with modern CSS cascade layers for maintainable stylesheets.</p>
-          </div>
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon">🎯</div>
+          <h3>Semantic First</h3>
+          <p>Write clean HTML with minimal classes. Symphony styles your semantic markup automatically.</p>
         </div>
         
-        <div class="symphony-card symphony-card--elevated">
-          <div class="symphony-card__body">
-            <div class="feature-icon">🎨</div>
-            <h3 class="symphony-card__title">Custom Properties</h3>
-            <p>Typed, animatable CSS variables with @property for dynamic theming and animations.</p>
-          </div>
+        <div class="feature-card">
+          <div class="feature-icon">⚡</div>
+          <h3>Lightning Fast</h3>
+          <p>Lightweight and optimized. Less than 15KB minified for blazing fast load times.</p>
         </div>
         
-        <div class="symphony-card symphony-card--elevated">
-          <div class="symphony-card__body">
-            <div class="feature-icon">📦</div>
-            <h3 class="symphony-card__title">Modular</h3>
-            <p>Import only what you need. Keep your bundle size small and performance high.</p>
-          </div>
+        <div class="feature-card">
+          <div class="feature-icon">📱</div>
+          <h3>Fully Responsive</h3>
+          <p>Mobile-first design with modern CSS Grid and Flexbox for perfect layouts.</p>
         </div>
         
-        <div class="symphony-card symphony-card--elevated">
-          <div class="symphony-card__body">
-            <div class="feature-icon">🌐</div>
-            <h3 class="symphony-card__title">Framework Agnostic</h3>
-            <p>Works seamlessly with React, Vue, Svelte, or vanilla HTML. Your choice.</p>
-          </div>
+        <div class="feature-card">
+          <div class="feature-icon">🎨</div>
+          <h3>Dark Theme</h3>
+          <p>Beautiful dark theme by default with carefully crafted color palette.</p>
         </div>
         
-        <div class="symphony-card symphony-card--elevated">
-          <div class="symphony-card__body">
-            <div class="feature-icon">🌙</div>
-            <h3 class="symphony-card__title">Dark Mode</h3>
-            <p>Built-in dark mode support that respects user preferences automatically.</p>
-          </div>
+        <div class="feature-card">
+          <div class="feature-icon">🔧</div>
+          <h3>Modular</h3>
+          <p>Import only what you need. Modular architecture for maximum flexibility.</p>
         </div>
         
-        <div class="symphony-card symphony-card--elevated">
-          <div class="symphony-card__body">
-            <div class="feature-icon">♿</div>
-            <h3 class="symphony-card__title">Accessible</h3>
-            <p>WCAG compliant components with proper focus states and semantic markup.</p>
-          </div>
+        <div class="feature-card">
+          <div class="feature-icon">⚙️</div>
+          <h3>Framework Agnostic</h3>
+          <p>Works with React, Vue, Svelte, or vanilla HTML. Use it anywhere.</p>
         </div>
-        
       </div>
     </div>
   </section>
@@ -166,179 +135,240 @@
   </section>
 
   <!-- Pricing Section -->
-  <section id="pricing" class="symphony-section symphony-section--lg">
-    <div class="symphony-container">
-      <div class="symphony-text--center symphony-mb-16">
-        <h2 class="symphony-display--md">Simple Pricing</h2>
-        <p class="symphony-lead">Choose the plan that works for you</p>
-      </div>
+  <section id="pricing" class="pricing-section">
+    <div class="pricing-container">
+      <h2 class="section-title">Simple Pricing</h2>
+      <p class="section-subtitle">Choose the plan that works for you</p>
       
-      <div class="symphony-grid symphony-grid--cols-1 symphony-grid--md-cols-3 symphony-grid--gap-lg">
-        
-        <div class="symphony-card symphony-card--outlined">
-          <div class="symphony-card__body">
-            <h3 class="symphony-card__title">Free</h3>
-            <div class="symphony-my-6">
-              <span class="symphony-display--md">$0</span>
-              <span class="symphony-text--muted">/month</span>
-            </div>
-            <ul class="symphony-mb-6">
-              <li class="symphony-mb-3">✓ All core features</li>
-              <li class="symphony-mb-3">✓ Community support</li>
-              <li class="symphony-mb-3">✓ MIT License</li>
-              <li class="symphony-mb-3">✓ Regular updates</li>
-            </ul>
-            <button class="symphony-button symphony-button--outline symphony-button--block">Get Started</button>
+      <div class="pricing-grid">
+        <!-- Free Plan -->
+        <div class="pricing-card">
+          <h3 class="pricing-title">Free</h3>
+          <div class="pricing-price">$0</div>
+          <p class="pricing-period">/month</p>
+          <ul class="pricing-features">
+            <li>All core features</li>
+            <li>Community support</li>
+            <li>MIT License</li>
+            <li>Regular updates</li>
+          </ul>
+          <div class="pricing-cta">
+            <button class="symphony-button symphony-button--outline symphony-button--rounded">Get Started</button>
           </div>
         </div>
         
-        <div class="symphony-card symphony-card--elevated" style="transform: scale(1.05); border: 2px solid var(--symphony-primary);">
-          <div class="symphony-card__body">
-            <div class="symphony-bg-primary symphony-text--center symphony-py-2 symphony-rounded" style="color: white; margin-bottom: var(--symphony-spacing-4);">
-              Popular
-            </div>
-            <h3 class="symphony-card__title">Pro</h3>
-            <div class="symphony-my-6">
-              <span class="symphony-display--md">$29</span>
-              <span class="symphony-text--muted">/month</span>
-            </div>
-            <ul class="symphony-mb-6">
-              <li class="symphony-mb-3">✓ Everything in Free</li>
-              <li class="symphony-mb-3">✓ Premium components</li>
-              <li class="symphony-mb-3">✓ Priority support</li>
-              <li class="symphony-mb-3">✓ Advanced templates</li>
-            </ul>
-            <button class="symphony-button symphony-button--primary symphony-button--block">Start Free Trial</button>
+        <!-- Pro Plan (Featured) -->
+        <div class="pricing-card featured">
+          <span class="pricing-badge">Popular</span>
+          <h3 class="pricing-title">Pro</h3>
+          <div class="pricing-price">$29</div>
+          <p class="pricing-period">/month</p>
+          <ul class="pricing-features">
+            <li>Everything in Free</li>
+            <li>Premium components</li>
+            <li>Priority support</li>
+            <li>Advanced templates</li>
+          </ul>
+          <div class="pricing-cta">
+            <button class="symphony-button symphony-button--pill">Start Free Trial</button>
           </div>
         </div>
         
-        <div class="symphony-card symphony-card--outlined">
-          <div class="symphony-card__body">
-            <h3 class="symphony-card__title">Enterprise</h3>
-            <div class="symphony-my-6">
-              <span class="symphony-display--md">Custom</span>
-            </div>
-            <ul class="symphony-mb-6">
-              <li class="symphony-mb-3">✓ Everything in Pro</li>
-              <li class="symphony-mb-3">✓ Custom components</li>
-              <li class="symphony-mb-3">✓ Dedicated support</li>
-              <li class="symphony-mb-3">✓ SLA guarantee</li>
-            </ul>
-            <button class="symphony-button symphony-button--outline symphony-button--block">Contact Sales</button>
+        <!-- Enterprise Plan -->
+        <div class="pricing-card">
+          <h3 class="pricing-title">Enterprise</h3>
+          <div class="pricing-price">Custom</div>
+          <p class="pricing-period">contact us</p>
+          <ul class="pricing-features">
+            <li>Everything in Pro</li>
+            <li>Custom components</li>
+            <li>Dedicated support</li>
+            <li>SLA guarantee</li>
+          </ul>
+          <div class="pricing-cta">
+            <button class="symphony-button symphony-button--outline symphony-button--rounded">Contact Sales</button>
           </div>
         </div>
-        
       </div>
     </div>
   </section>
 
   <!-- Contact Section -->
-  <section id="contact" class="symphony-section symphony-bg-surface">
-    <div class="symphony-container">
-      <div class="symphony-grid symphony-grid--cols-1 symphony-grid--md-cols-2 symphony-grid--gap-lg">
-        <div>
-          <h2 class="symphony-display--md">Get in Touch</h2>
-          <p class="symphony-lead symphony-mb-8">Have questions? We'd love to hear from you.</p>
+  <section id="contact" class="contact-section">
+    <div class="contact-container">
+      <h2 class="section-title">Get in Touch</h2>
+      <p class="section-subtitle">Have questions? We'd love to hear from you.</p>
+      
+      <div class="contact-grid">
+        <!-- Contact Info -->
+        <div class="contact-info">
+          <h3>Contact Us</h3>
+          <p>We're here to help and answer any question you might have.</p>
           
-          <div class="symphony-flex symphony-flex--col symphony-flex--gap-6">
-            <div class="symphony-flex symphony-flex--gap-4">
-              <div class="symphony-text--2xl">📧</div>
+          <div class="contact-links">
+            <a href="mailto:hello@symphony-css.com" class="contact-link">
+              <span class="contact-icon">✉</span>
               <div>
-                <h4>Email</h4>
-                <p class="symphony-text--muted">hello@symphony-css.com</p>
+                <strong>Email</strong><br>
+                hello@symphony-css.com
               </div>
-            </div>
-            <div class="symphony-flex symphony-flex--gap-4">
-              <div class="symphony-text--2xl">💬</div>
+            </a>
+            
+            <a href="#" class="contact-link">
+              <span class="contact-icon">💬</span>
               <div>
-                <h4>Discord</h4>
-                <p class="symphony-text--muted">Join our community</p>
+                <strong>Discord</strong><br>
+                Join our community
               </div>
-            </div>
-            <div class="symphony-flex symphony-flex--gap-4">
-              <div class="symphony-text--2xl">🐙</div>
+            </a>
+            
+            <a href="https://github.com/SymphonyUI/symphony-css" class="contact-link">
+              <span class="contact-icon">🐙</span>
               <div>
-                <h4>GitHub</h4>
-                <p class="symphony-text--muted">github.com/symphony-css</p>
+                <strong>GitHub</strong><br>
+                github.com/SymphonyUI/symphony-css
               </div>
-            </div>
+            </a>
           </div>
         </div>
         
-        <div class="symphony-card">
-          <div class="symphony-card__body">
-            <form>
-              <div class="symphony-form-group">
-                <label for="name">Name</label>
-                <input type="text" id="name" class="symphony-input" placeholder="Your name">
-              </div>
-              
-              <div class="symphony-form-group">
-                <label for="email">Email</label>
-                <input type="email" id="email" class="symphony-input" placeholder="your@email.com">
-              </div>
-              
-              <div class="symphony-form-group">
-                <label for="message">Message</label>
-                <textarea id="message" class="symphony-textarea" placeholder="Your message"></textarea>
-              </div>
-              
-              <button type="submit" class="symphony-button symphony-button--primary symphony-button--block">
-                Send Message
-              </button>
-            </form>
+        <!-- Contact Form -->
+        <form class="contact-form">
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" placeholder="Your name" required>
           </div>
-        </div>
+          
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" placeholder="your@email.com" required>
+          </div>
+          
+          <div class="form-group">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" placeholder="Your message" required></textarea>
+          </div>
+          
+          <button type="submit" class="symphony-button symphony-button--pill" style="width: 100%;">Send Message</button>
+        </form>
       </div>
     </div>
   </section>
 
   <!-- Footer -->
-  <footer class="symphony-bg-surface symphony-border-t symphony-py-12">
-    <div class="symphony-container">
-      <div class="symphony-grid symphony-grid--cols-1 symphony-grid--md-cols-4 symphony-grid--gap-lg symphony-mb-8">
-        <div>
-          <h4 class="symphony-mb-4">Symphony CSS</h4>
-          <p class="symphony-text--muted symphony-text--sm">
-            A modern CSS framework for the modern web.
-          </p>
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-grid">
+        <!-- Brand Column -->
+        <div class="footer-brand">
+          <h3>Symphony CSS</h3>
+          <p>A modern CSS framework for the modern web.</p>
         </div>
         
-        <div>
-          <h5 class="symphony-mb-4">Product</h5>
-          <ul style="list-style: none; padding: 0;">
-            <li class="symphony-mb-2"><a href="#" class="symphony-text--muted">Features</a></li>
-            <li class="symphony-mb-2"><a href="#" class="symphony-text--muted">Pricing</a></li>
-            <li class="symphony-mb-2"><a href="#" class="symphony-text--muted">Documentation</a></li>
-            <li class="symphony-mb-2"><a href="#" class="symphony-text--muted">Examples</a></li>
+        <!-- Product Column -->
+        <div class="footer-section">
+          <h4>Product</h4>
+          <ul class="footer-links">
+            <li><a href="#features">Features</a></li>
+            <li><a href="#pricing">Pricing</a></li>
+            <li><a href="/docs">Documentation</a></li>
+            <li><a href="/docs/examples">Examples</a></li>
           </ul>
         </div>
         
-        <div>
-          <h5 class="symphony-mb-4">Company</h5>
-          <ul style="list-style: none; padding: 0;">
-            <li class="symphony-mb-2"><a href="#" class="symphony-text--muted">About</a></li>
-            <li class="symphony-mb-2"><a href="#" class="symphony-text--muted">Blog</a></li>
-            <li class="symphony-mb-2"><a href="#" class="symphony-text--muted">Careers</a></li>
-            <li class="symphony-mb-2"><a href="#" class="symphony-text--muted">Contact</a></li>
+        <!-- Company Column -->
+        <div class="footer-section">
+          <h4>Company</h4>
+          <ul class="footer-links">
+            <li><a href="#about">About</a></li>
+            <li><a href="https://github.com/SymphonyUI/symphony-css/blob/main/CONTRIBUTING.md">Blog</a></li>
+            <li><a href="https://github.com/SymphonyUI/symphony-css/graphs/contributors">Careers</a></li>
+            <li><a href="#contact">Contact</a></li>
           </ul>
         </div>
         
-        <div>
-          <h5 class="symphony-mb-4">Legal</h5>
-          <ul style="list-style: none; padding: 0;">
-            <li class="symphony-mb-2"><a href="#" class="symphony-text--muted">Privacy</a></li>
-            <li class="symphony-mb-2"><a href="#" class="symphony-text--muted">Terms</a></li>
-            <li class="symphony-mb-2"><a href="#" class="symphony-text--muted">License</a></li>
+        <!-- Legal Column -->
+        <div class="footer-section">
+          <h4>Legal</h4>
+          <ul class="footer-links">
+            <li><a href="#privacy">Privacy</a></li>
+            <li><a href="#terms">Terms</a></li>
+            <li><a href="https://github.com/SymphonyUI/symphony-css/blob/main/LICENSE">License</a></li>
           </ul>
         </div>
       </div>
       
-      <div class="symphony-border-t symphony-pt-8 symphony-text--center symphony-text--muted symphony-text--sm">
-        <p>&copy; 2024 Symphony CSS. All rights reserved. Built with ❤️ for the modern web.</p>
+      <!-- Footer Bottom / Copyright -->
+      <div class="footer-bottom">
+        <p>© 2025 Symphony CSS. All rights reserved. Built with <span style="color: #0055FE;">♥</span> for the modern web.</p>
       </div>
     </div>
   </footer>
+
+  <script>
+  // Responsive Navbar with Hamburger Menu - Vanilla JavaScript
+  (function() {
+    'use strict';
+    
+    // Get Elements
+    const hamburger = document.querySelector('.navbar-hamburger');
+    const mobileMenu = document.querySelector('.navbar-mobile-menu');
+    const backdrop = document.querySelector('.navbar-backdrop');
+    const mobileLinks = document.querySelectorAll('.mobile-menu-links a');
+    
+    // Toggle Mobile Menu
+    function toggleMenu() {
+      hamburger.classList.toggle('active');
+      mobileMenu.classList.toggle('active');
+      backdrop.classList.toggle('active');
+      
+      // Prevent body scroll when menu is open
+      if (mobileMenu.classList.contains('active')) {
+        document.body.style.overflow = 'hidden';
+      } else {
+        document.body.style.overflow = '';
+      }
+    }
+    
+    // Close Menu
+    function closeMenu() {
+      hamburger.classList.remove('active');
+      mobileMenu.classList.remove('active');
+      backdrop.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+    
+    // Event Listeners
+    if (hamburger) {
+      hamburger.addEventListener('click', toggleMenu);
+    }
+    
+    if (backdrop) {
+      backdrop.addEventListener('click', closeMenu);
+    }
+    
+    // Close menu when clicking on a link
+    mobileLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        closeMenu();
+      });
+    });
+    
+    // Close menu on ESC key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && mobileMenu.classList.contains('active')) {
+        closeMenu();
+      }
+    });
+    
+    // Close menu on window resize to desktop size
+    window.addEventListener('resize', () => {
+      if (window.innerWidth > 768 && mobileMenu.classList.contains('active')) {
+        closeMenu();
+      }
+    });
+  })();
+  </script>
 
 </body>
 </html>

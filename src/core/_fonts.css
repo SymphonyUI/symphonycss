@@ -1,16 +1,27 @@
 /**
  * Symphony CSS Framework v0.1
  * Google Fonts Integration
- * Mona Sans for body text, Inter Display for headings
+ * Inter Tight (Semibold 600) for headings
+ * Mona Sans (Regular 400) for body text, links, and buttons
  */
 
 /* Google Fonts Import */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter+Tight:wght@600;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Mona+Sans:wght@400;500;600&display=swap');
 
 @layer base {
   :root {
+    /* Body text, links, buttons - Mona Sans Regular */
     --symphony-font-sans: 'Mona Sans', system-ui, -apple-system, sans-serif;
-    --symphony-font-headings: 'Inter', system-ui, -apple-system, sans-serif;
+    
+    /* Headings - Inter Tight Semibold */
+    --symphony-font-headings: 'Inter Tight', system-ui, -apple-system, sans-serif;
+  }
+  
+  /* Ensure buttons use Mona Sans */
+  button,
+  .symphony-button {
+    font-family: var(--symphony-font-sans);
+    font-weight: 400;
   }
 }

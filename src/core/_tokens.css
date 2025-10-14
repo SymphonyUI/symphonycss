@@ -6,6 +6,35 @@
 
 @layer base {
   :root {
+    /* ============================================
+       DARK THEME COLOR SYSTEM
+       Exact hex values as specified
+       ============================================ */
+    
+    /* Background & Surfaces */
+    --symphony-background: #020410;       /* Main page background */
+    --symphony-surface: #0A0F1E;          /* Cards, boxes, elevated elements */
+    --symphony-surface-hover: #131824;    /* Hover state for interactive surfaces */
+    
+    /* Text Colors - High Contrast */
+    --symphony-text-title: #FFFFFF;       /* Headings - pure white */
+    --symphony-text-body: #CBD2D9;        /* Body text - gray-300 */
+    --symphony-text-muted: #8B92A0;       /* Muted/secondary text */
+    
+    /* Primary Brand Color */
+    --symphony-primary: #0055FE;          /* Primary blue */
+    --symphony-secondary: #0066FF;        /* Secondary/gradient blue */
+    
+    /* Borders & Dividers */
+    --symphony-border: rgba(255, 255, 255, 0.1);
+    --symphony-border-focus: rgba(0, 85, 254, 0.5);
+    
+    /* Neutral Palette for UI Elements */
+    --symphony-neutral-50: rgba(255, 255, 255, 0.02);
+    --symphony-neutral-100: rgba(255, 255, 255, 0.05);
+    --symphony-neutral-200: rgba(255, 255, 255, 0.1);
+    --symphony-neutral-300: rgba(255, 255, 255, 0.15);
+    
     /* Button Tokens - EXACT specifications */
     --symphony-button-padding-y: 0.75rem;          /* 12px */
     --symphony-button-padding-x: 2rem;             /* 32px */

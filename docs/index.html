@@ -3,45 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Symphony CSS v0.1 - Model Anthology</title>
-  <link rel="stylesheet" href="../dist/symphony.css">
-  <style>
-    /* Documentation specific styles */
-    .doc-header {
-      background: linear-gradient(135deg, var(--symphony-primary), var(--symphony-secondary));
-      color: white;
-      padding: var(--symphony-spacing-16) 0;
-    }
-    
-    .doc-nav {
-      position: sticky;
-      top: 0;
-      background: var(--symphony-surface);
-      border-bottom: 1px solid var(--symphony-border);
-      padding: var(--symphony-spacing-4) 0;
-      z-index: 100;
-    }
-    
-    .doc-section {
-      scroll-margin-top: 100px;
-    }
-    
-    .code-preview {
-      background: var(--symphony-neutral-100);
-      border: 1px solid var(--symphony-border);
-      border-radius: var(--symphony-radius-lg);
-      padding: var(--symphony-spacing-6);
-      margin: var(--symphony-spacing-4) 0;
-    }
-    
-    .example-box {
-      background: white;
-      border: 2px dashed var(--symphony-border);
-      border-radius: var(--symphony-radius-base);
-      padding: var(--symphony-spacing-6);
-      margin: var(--symphony-spacing-4) 0;
-    }
-  </style>
+  <title>Symphony CSS Documentation</title>
+  <link rel="stylesheet" href="../dist/symphony.css?v=0.1.6">
+  <link rel="stylesheet" href="css/symphony-docs.css">
 </head>
 <body>
   <!-- Header -->
@@ -275,7 +239,12 @@
       <h3 class="symphony-mt-8">Card with Image</h3>
       <div class="example-box">
         <div class="symphony-card" style="max-width: 400px;">
-          <img src="https://via.placeholder.com/400x200" alt="Placeholder" class="symphony-card__image symphony-card__image--top">
+          <svg width="400" height="200" xmlns="http://www.w3.org/2000/svg" class="symphony-card__image symphony-card__image--top">
+            <rect width="400" height="200" fill="#0A0F1E"/>
+            <text x="50%" y="50%" text-anchor="middle" dy=".3em" fill="#CBD2D9" font-family="Mona Sans, system-ui, sans-serif" font-size="18">
+              Symphony CSS Example
+            </text>
+          </svg>
           <div class="symphony-card__body">
             <h3 class="symphony-card__title">Image Card</h3>
             <p>Cards can include images at the top for visual appeal.</p>
@@ -392,7 +361,6 @@
     <div class="symphony-container">
       <div class="symphony-text--center symphony-text--muted">
         <p>Symphony CSS v0.1 - Model Anthology</p>
-        <p class="symphony-text--sm symphony-mt-2">Built with modern CSS features for the modern web</p>
       </div>
     </div>
   </footer>

@@ -1,6 +1,6 @@
 # Symphony CSS v0.1 - Model Anthology
 
-A modular, semantic-first CSS framework built with modern CSS features for the modern web.
+A modular, semantic-first CSS framework with modern CSS features.
 
 ## ✨ Features
 
