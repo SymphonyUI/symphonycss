@@ -1,0 +1,257 @@
+/**
+ * Symphony CSS Framework v0.1
+ * Base Layer - Semantic HTML element styles
+ * Minimal classes, maximum semantics (PicoCSS approach)
+ */
+
+@layer base {
+  /* Root and Body */
+  html {
+    font-size: 16px;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: var(--symphony-font-sans);
+    font-size: var(--symphony-font-size-base);
+    font-weight: 400;
+    line-height: var(--symphony-line-height-normal);
+    color: var(--symphony-text);
+    background-color: var(--symphony-background);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Typography - Semantic HTML elements */
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--symphony-font-headings);
+    font-weight: 600; /* Inter Display Semibold */
+    line-height: var(--symphony-heading-line-height);
+    margin-bottom: var(--symphony-heading-margin-bottom);
+    color: var(--symphony-text);
+  }
+
+  h1 {
+    font-size: var(--symphony-font-size-h1);
+    letter-spacing: var(--symphony-letter-spacing-h1);
+    text-wrap: balance;
+  }
+
+  h2 {
+    font-size: var(--symphony-font-size-h2);
+    letter-spacing: var(--symphony-letter-spacing-default);
+    text-wrap: balance;
+  }
+
+  h3 {
+    font-size: var(--symphony-font-size-h3);
+    text-wrap: balance;
+  }
+
+  h4 {
+    font-size: var(--symphony-font-size-h4);
+  }
+
+  h5 {
+    font-size: var(--symphony-font-size-h5);
+  }
+
+  h6 {
+    font-size: var(--symphony-font-size-h6);
+  }
+
+  p {
+    margin-bottom: var(--symphony-paragraph-margin-bottom);
+    line-height: var(--symphony-paragraph-line-height);
+  }
+
+  /* Links */
+  a {
+    color: var(--symphony-link-color);
+    text-decoration: var(--symphony-link-decoration);
+    text-decoration-thickness: var(--symphony-link-decoration-thickness);
+    text-underline-offset: var(--symphony-link-underline-offset);
+    transition: var(--symphony-transition-base);
+  }
+
+  a:hover {
+    color: var(--symphony-link-hover-color);
+  }
+
+  a:focus-visible {
+    outline: var(--symphony-focus-ring-width) solid var(--symphony-focus-ring-color);
+    outline-offset: var(--symphony-focus-ring-offset);
+    border-radius: var(--symphony-radius-sm);
+  }
+
+  /* Lists */
+  ul, ol {
+    margin-bottom: var(--symphony-spacing-4);
+    padding-left: var(--symphony-spacing-6);
+  }
+
+  li {
+    margin-bottom: var(--symphony-spacing-2);
+  }
+
+  /* Inline text elements */
+  strong, b {
+    font-weight: var(--symphony-font-weight-bold);
+  }
+
+  em, i {
+    font-style: italic;
+  }
+
+  small {
+    font-size: var(--symphony-font-size-sm);
+  }
+
+  mark {
+    background-color: hsl(var(--symphony-warning-hue), var(--symphony-warning-sat), 85%);
+    color: var(--symphony-text);
+    padding: 0.125em 0.25em;
+    border-radius: var(--symphony-radius-sm);
+  }
+
+  code {
+    font-family: var(--symphony-font-mono);
+    font-size: 0.875em;
+    background-color: var(--symphony-neutral-100);
+    color: var(--symphony-danger);
+    padding: 0.125em 0.375em;
+    border-radius: var(--symphony-radius-sm);
+  }
+
+  pre {
+    font-family: var(--symphony-font-mono);
+    font-size: var(--symphony-font-size-sm);
+    background-color: var(--symphony-neutral-100);
+    color: var(--symphony-text);
+    padding: var(--symphony-spacing-4);
+    border-radius: var(--symphony-radius-base);
+    overflow-x: auto;
+    margin-bottom: var(--symphony-spacing-4);
+  }
+
+  pre code {
+    background-color: transparent;
+    color: inherit;
+    padding: 0;
+  }
+
+  /* Blockquote */
+  blockquote {
+    border-left: 4px solid var(--symphony-primary);
+    padding-left: var(--symphony-spacing-4);
+    margin: var(--symphony-spacing-6) 0;
+    font-style: italic;
+    color: var(--symphony-text-muted);
+  }
+
+  /* Horizontal Rule */
+  hr {
+    border: none;
+    border-top: 1px solid var(--symphony-border);
+    margin: var(--symphony-spacing-8) 0;
+  }
+
+  /* Tables */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: var(--symphony-spacing-6);
+  }
+
+  thead {
+    border-bottom: 2px solid var(--symphony-border);
+  }
+
+  th {
+    font-weight: var(--symphony-font-weight-semibold);
+    text-align: left;
+    padding: var(--symphony-spacing-3) var(--symphony-spacing-4);
+  }
+
+  td {
+    padding: var(--symphony-spacing-3) var(--symphony-spacing-4);
+    border-bottom: 1px solid var(--symphony-border);
+  }
+
+  tbody tr:hover {
+    background-color: var(--symphony-neutral-50);
+  }
+
+  /* Media Elements */
+  img, picture, video, canvas, svg {
+    display: block;
+    max-width: 100%;
+    height: auto;
+  }
+
+  figure {
+    margin: var(--symphony-spacing-6) 0;
+  }
+
+  figcaption {
+    font-size: var(--symphony-font-size-sm);
+    color: var(--symphony-text-muted);
+    margin-top: var(--symphony-spacing-2);
+    text-align: center;
+  }
+
+  /* Form Elements - Semantic styling */
+  fieldset {
+    border: 1px solid var(--symphony-border);
+    border-radius: var(--symphony-radius-base);
+    padding: var(--symphony-spacing-6);
+    margin-bottom: var(--symphony-spacing-6);
+  }
+
+  legend {
+    font-weight: var(--symphony-font-weight-semibold);
+    padding: 0 var(--symphony-spacing-2);
+  }
+
+  label {
+    display: block;
+    font-weight: var(--symphony-font-weight-medium);
+    margin-bottom: var(--symphony-spacing-2);
+    color: var(--symphony-text);
+  }
+
+  /* Focus states for interactive elements */
+  button:focus-visible,
+  input:focus-visible,
+  textarea:focus-visible,
+  select:focus-visible {
+    outline: var(--symphony-focus-ring-width) solid var(--symphony-focus-ring-color);
+    outline-offset: var(--symphony-focus-ring-offset);
+  }
+
+  /* Selection */
+  ::selection {
+    background-color: hsl(var(--symphony-primary-hue), var(--symphony-primary-sat), var(--symphony-primary-light), 0.3);
+    color: var(--symphony-text);
+  }
+
+  /* Scrollbar styling (Webkit) */
+  ::-webkit-scrollbar {
+    width: 12px;
+    height: 12px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: var(--symphony-neutral-100);
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: var(--symphony-neutral-400);
+    border-radius: var(--symphony-radius-full);
+    border: 3px solid var(--symphony-neutral-100);
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--symphony-neutral-500);
+  }
+}

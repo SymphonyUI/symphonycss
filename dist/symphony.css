@@ -1,0 +1,79 @@
+/**
+ * Symphony CSS Framework v0.1 - Model Anthology
+ * A modular, semantic-first CSS framework with modern CSS features
+ * 
+ * Features:
+ * - CSS Cascade Layers for predictable specificity
+ * - CSS Custom Properties (@property) for typed, animatable variables
+ * - Framework-agnostic (React, Vue, Svelte compatible)
+ * - BEM naming convention for components
+ * - Semantic-first approach with minimal classes
+ * 
+ * Architecture:
+ * @layer reset, base, layout, components, utilities;
+ * 
+ * @author Symphony CSS Team
+ * @license MIT
+ * @version 0.1.0
+ */
+
+/* Define cascade layer order */
+@layer reset, base, layout, components, utilities;
+
+/* ============================================
+   CORE - Foundation styles
+   ============================================ */
+
+/* Fonts - Google Fonts integration (must be first) */
+@import '../src/core/_fonts.css';
+
+/* Reset - Modern CSS reset for consistency */
+@import '../src/core/_reset.css';
+
+/* Variables - CSS Custom Properties with @property */
+@import '../src/core/_variables.css';
+
+/* Tokens - Semantic design token mappings */
+@import '../src/core/_tokens.css';
+
+/* Base - Semantic HTML element styles */
+@import '../src/core/_base.css';
+
+/* ============================================
+   LAYOUT - Layout systems
+   ============================================ */
+
+/* Container - Responsive container system */
+@import '../src/layout/_container.css';
+
+/* Grid - Modern CSS Grid layout */
+@import '../src/layout/_grid.css';
+
+/* Flexbox - Flexible box layout utilities */
+@import '../src/layout/_flexbox.css';
+
+/* ============================================
+   COMPONENTS - UI components
+   ============================================ */
+
+/* Typography - Text styling and utilities */
+@import '../src/components/_typography.css';
+
+/* Buttons - Button component styles */
+@import '../src/components/_buttons.css';
+
+/* Forms - Form input and control styles */
+@import '../src/components/_forms.css';
+
+/* Cards - Card component styles */
+@import '../src/components/_cards.css';
+
+/* ============================================
+   UTILITIES - Utility classes
+   ============================================ */
+
+/* Spacing - Margin and padding utilities */
+@import '../src/utilities/_spacing.css';
+
+/* Helpers - Common utility classes */
+@import '../src/utilities/_helpers.css';

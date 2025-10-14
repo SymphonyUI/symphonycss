@@ -1,0 +1,188 @@
+/**
+ * Symphony CSS Framework v0.1
+ * Spacing Utilities - Margin and padding utilities
+ * Systematic spacing scale with directional control
+ */
+
+@layer utilities {
+  /* Margin utilities */
+  .symphony-m-0 { margin: var(--symphony-spacing-0); }
+  .symphony-m-1 { margin: var(--symphony-spacing-1); }
+  .symphony-m-2 { margin: var(--symphony-spacing-2); }
+  .symphony-m-3 { margin: var(--symphony-spacing-3); }
+  .symphony-m-4 { margin: var(--symphony-spacing-4); }
+  .symphony-m-5 { margin: var(--symphony-spacing-5); }
+  .symphony-m-6 { margin: var(--symphony-spacing-6); }
+  .symphony-m-8 { margin: var(--symphony-spacing-8); }
+  .symphony-m-10 { margin: var(--symphony-spacing-10); }
+  .symphony-m-12 { margin: var(--symphony-spacing-12); }
+  .symphony-m-16 { margin: var(--symphony-spacing-16); }
+  .symphony-m-20 { margin: var(--symphony-spacing-20); }
+  .symphony-m-24 { margin: var(--symphony-spacing-24); }
+  .symphony-m-auto { margin: auto; }
+
+  /* Margin X-axis */
+  .symphony-mx-0 { margin-left: var(--symphony-spacing-0); margin-right: var(--symphony-spacing-0); }
+  .symphony-mx-1 { margin-left: var(--symphony-spacing-1); margin-right: var(--symphony-spacing-1); }
+  .symphony-mx-2 { margin-left: var(--symphony-spacing-2); margin-right: var(--symphony-spacing-2); }
+  .symphony-mx-3 { margin-left: var(--symphony-spacing-3); margin-right: var(--symphony-spacing-3); }
+  .symphony-mx-4 { margin-left: var(--symphony-spacing-4); margin-right: var(--symphony-spacing-4); }
+  .symphony-mx-5 { margin-left: var(--symphony-spacing-5); margin-right: var(--symphony-spacing-5); }
+  .symphony-mx-6 { margin-left: var(--symphony-spacing-6); margin-right: var(--symphony-spacing-6); }
+  .symphony-mx-8 { margin-left: var(--symphony-spacing-8); margin-right: var(--symphony-spacing-8); }
+  .symphony-mx-auto { margin-left: auto; margin-right: auto; }
+
+  /* Margin Y-axis */
+  .symphony-my-0 { margin-top: var(--symphony-spacing-0); margin-bottom: var(--symphony-spacing-0); }
+  .symphony-my-1 { margin-top: var(--symphony-spacing-1); margin-bottom: var(--symphony-spacing-1); }
+  .symphony-my-2 { margin-top: var(--symphony-spacing-2); margin-bottom: var(--symphony-spacing-2); }
+  .symphony-my-3 { margin-top: var(--symphony-spacing-3); margin-bottom: var(--symphony-spacing-3); }
+  .symphony-my-4 { margin-top: var(--symphony-spacing-4); margin-bottom: var(--symphony-spacing-4); }
+  .symphony-my-5 { margin-top: var(--symphony-spacing-5); margin-bottom: var(--symphony-spacing-5); }
+  .symphony-my-6 { margin-top: var(--symphony-spacing-6); margin-bottom: var(--symphony-spacing-6); }
+  .symphony-my-8 { margin-top: var(--symphony-spacing-8); margin-bottom: var(--symphony-spacing-8); }
+  .symphony-my-auto { margin-top: auto; margin-bottom: auto; }
+
+  /* Margin Top */
+  .symphony-mt-0 { margin-top: var(--symphony-spacing-0); }
+  .symphony-mt-1 { margin-top: var(--symphony-spacing-1); }
+  .symphony-mt-2 { margin-top: var(--symphony-spacing-2); }
+  .symphony-mt-3 { margin-top: var(--symphony-spacing-3); }
+  .symphony-mt-4 { margin-top: var(--symphony-spacing-4); }
+  .symphony-mt-5 { margin-top: var(--symphony-spacing-5); }
+  .symphony-mt-6 { margin-top: var(--symphony-spacing-6); }
+  .symphony-mt-8 { margin-top: var(--symphony-spacing-8); }
+  .symphony-mt-10 { margin-top: var(--symphony-spacing-10); }
+  .symphony-mt-12 { margin-top: var(--symphony-spacing-12); }
+  .symphony-mt-16 { margin-top: var(--symphony-spacing-16); }
+  .symphony-mt-auto { margin-top: auto; }
+
+  /* Margin Right */
+  .symphony-mr-0 { margin-right: var(--symphony-spacing-0); }
+  .symphony-mr-1 { margin-right: var(--symphony-spacing-1); }
+  .symphony-mr-2 { margin-right: var(--symphony-spacing-2); }
+  .symphony-mr-3 { margin-right: var(--symphony-spacing-3); }
+  .symphony-mr-4 { margin-right: var(--symphony-spacing-4); }
+  .symphony-mr-5 { margin-right: var(--symphony-spacing-5); }
+  .symphony-mr-6 { margin-right: var(--symphony-spacing-6); }
+  .symphony-mr-8 { margin-right: var(--symphony-spacing-8); }
+  .symphony-mr-auto { margin-right: auto; }
+
+  /* Margin Bottom */
+  .symphony-mb-0 { margin-bottom: var(--symphony-spacing-0); }
+  .symphony-mb-1 { margin-bottom: var(--symphony-spacing-1); }
+  .symphony-mb-2 { margin-bottom: var(--symphony-spacing-2); }
+  .symphony-mb-3 { margin-bottom: var(--symphony-spacing-3); }
+  .symphony-mb-4 { margin-bottom: var(--symphony-spacing-4); }
+  .symphony-mb-5 { margin-bottom: var(--symphony-spacing-5); }
+  .symphony-mb-6 { margin-bottom: var(--symphony-spacing-6); }
+  .symphony-mb-8 { margin-bottom: var(--symphony-spacing-8); }
+  .symphony-mb-10 { margin-bottom: var(--symphony-spacing-10); }
+  .symphony-mb-12 { margin-bottom: var(--symphony-spacing-12); }
+  .symphony-mb-16 { margin-bottom: var(--symphony-spacing-16); }
+  .symphony-mb-auto { margin-bottom: auto; }
+
+  /* Margin Left */
+  .symphony-ml-0 { margin-left: var(--symphony-spacing-0); }
+  .symphony-ml-1 { margin-left: var(--symphony-spacing-1); }
+  .symphony-ml-2 { margin-left: var(--symphony-spacing-2); }
+  .symphony-ml-3 { margin-left: var(--symphony-spacing-3); }
+  .symphony-ml-4 { margin-left: var(--symphony-spacing-4); }
+  .symphony-ml-5 { margin-left: var(--symphony-spacing-5); }
+  .symphony-ml-6 { margin-left: var(--symphony-spacing-6); }
+  .symphony-ml-8 { margin-left: var(--symphony-spacing-8); }
+  .symphony-ml-auto { margin-left: auto; }
+
+  /* Padding utilities */
+  .symphony-p-0 { padding: var(--symphony-spacing-0); }
+  .symphony-p-1 { padding: var(--symphony-spacing-1); }
+  .symphony-p-2 { padding: var(--symphony-spacing-2); }
+  .symphony-p-3 { padding: var(--symphony-spacing-3); }
+  .symphony-p-4 { padding: var(--symphony-spacing-4); }
+  .symphony-p-5 { padding: var(--symphony-spacing-5); }
+  .symphony-p-6 { padding: var(--symphony-spacing-6); }
+  .symphony-p-8 { padding: var(--symphony-spacing-8); }
+  .symphony-p-10 { padding: var(--symphony-spacing-10); }
+  .symphony-p-12 { padding: var(--symphony-spacing-12); }
+  .symphony-p-16 { padding: var(--symphony-spacing-16); }
+  .symphony-p-20 { padding: var(--symphony-spacing-20); }
+  .symphony-p-24 { padding: var(--symphony-spacing-24); }
+
+  /* Padding X-axis */
+  .symphony-px-0 { padding-left: var(--symphony-spacing-0); padding-right: var(--symphony-spacing-0); }
+  .symphony-px-1 { padding-left: var(--symphony-spacing-1); padding-right: var(--symphony-spacing-1); }
+  .symphony-px-2 { padding-left: var(--symphony-spacing-2); padding-right: var(--symphony-spacing-2); }
+  .symphony-px-3 { padding-left: var(--symphony-spacing-3); padding-right: var(--symphony-spacing-3); }
+  .symphony-px-4 { padding-left: var(--symphony-spacing-4); padding-right: var(--symphony-spacing-4); }
+  .symphony-px-5 { padding-left: var(--symphony-spacing-5); padding-right: var(--symphony-spacing-5); }
+  .symphony-px-6 { padding-left: var(--symphony-spacing-6); padding-right: var(--symphony-spacing-6); }
+  .symphony-px-8 { padding-left: var(--symphony-spacing-8); padding-right: var(--symphony-spacing-8); }
+
+  /* Padding Y-axis */
+  .symphony-py-0 { padding-top: var(--symphony-spacing-0); padding-bottom: var(--symphony-spacing-0); }
+  .symphony-py-1 { padding-top: var(--symphony-spacing-1); padding-bottom: var(--symphony-spacing-1); }
+  .symphony-py-2 { padding-top: var(--symphony-spacing-2); padding-bottom: var(--symphony-spacing-2); }
+  .symphony-py-3 { padding-top: var(--symphony-spacing-3); padding-bottom: var(--symphony-spacing-3); }
+  .symphony-py-4 { padding-top: var(--symphony-spacing-4); padding-bottom: var(--symphony-spacing-4); }
+  .symphony-py-5 { padding-top: var(--symphony-spacing-5); padding-bottom: var(--symphony-spacing-5); }
+  .symphony-py-6 { padding-top: var(--symphony-spacing-6); padding-bottom: var(--symphony-spacing-6); }
+  .symphony-py-8 { padding-top: var(--symphony-spacing-8); padding-bottom: var(--symphony-spacing-8); }
+
+  /* Padding Top */
+  .symphony-pt-0 { padding-top: var(--symphony-spacing-0); }
+  .symphony-pt-1 { padding-top: var(--symphony-spacing-1); }
+  .symphony-pt-2 { padding-top: var(--symphony-spacing-2); }
+  .symphony-pt-3 { padding-top: var(--symphony-spacing-3); }
+  .symphony-pt-4 { padding-top: var(--symphony-spacing-4); }
+  .symphony-pt-5 { padding-top: var(--symphony-spacing-5); }
+  .symphony-pt-6 { padding-top: var(--symphony-spacing-6); }
+  .symphony-pt-8 { padding-top: var(--symphony-spacing-8); }
+  .symphony-pt-10 { padding-top: var(--symphony-spacing-10); }
+  .symphony-pt-12 { padding-top: var(--symphony-spacing-12); }
+  .symphony-pt-16 { padding-top: var(--symphony-spacing-16); }
+
+  /* Padding Right */
+  .symphony-pr-0 { padding-right: var(--symphony-spacing-0); }
+  .symphony-pr-1 { padding-right: var(--symphony-spacing-1); }
+  .symphony-pr-2 { padding-right: var(--symphony-spacing-2); }
+  .symphony-pr-3 { padding-right: var(--symphony-spacing-3); }
+  .symphony-pr-4 { padding-right: var(--symphony-spacing-4); }
+  .symphony-pr-5 { padding-right: var(--symphony-spacing-5); }
+  .symphony-pr-6 { padding-right: var(--symphony-spacing-6); }
+  .symphony-pr-8 { padding-right: var(--symphony-spacing-8); }
+
+  /* Padding Bottom */
+  .symphony-pb-0 { padding-bottom: var(--symphony-spacing-0); }
+  .symphony-pb-1 { padding-bottom: var(--symphony-spacing-1); }
+  .symphony-pb-2 { padding-bottom: var(--symphony-spacing-2); }
+  .symphony-pb-3 { padding-bottom: var(--symphony-spacing-3); }
+  .symphony-pb-4 { padding-bottom: var(--symphony-spacing-4); }
+  .symphony-pb-5 { padding-bottom: var(--symphony-spacing-5); }
+  .symphony-pb-6 { padding-bottom: var(--symphony-spacing-6); }
+  .symphony-pb-8 { padding-bottom: var(--symphony-spacing-8); }
+  .symphony-pb-10 { padding-bottom: var(--symphony-spacing-10); }
+  .symphony-pb-12 { padding-bottom: var(--symphony-spacing-12); }
+  .symphony-pb-16 { padding-bottom: var(--symphony-spacing-16); }
+
+  /* Padding Left */
+  .symphony-pl-0 { padding-left: var(--symphony-spacing-0); }
+  .symphony-pl-1 { padding-left: var(--symphony-spacing-1); }
+  .symphony-pl-2 { padding-left: var(--symphony-spacing-2); }
+  .symphony-pl-3 { padding-left: var(--symphony-spacing-3); }
+  .symphony-pl-4 { padding-left: var(--symphony-spacing-4); }
+  .symphony-pl-5 { padding-left: var(--symphony-spacing-5); }
+  .symphony-pl-6 { padding-left: var(--symphony-spacing-6); }
+  .symphony-pl-8 { padding-left: var(--symphony-spacing-8); }
+
+  /* Gap utilities (for flex and grid) */
+  .symphony-gap-0 { gap: var(--symphony-spacing-0); }
+  .symphony-gap-1 { gap: var(--symphony-spacing-1); }
+  .symphony-gap-2 { gap: var(--symphony-spacing-2); }
+  .symphony-gap-3 { gap: var(--symphony-spacing-3); }
+  .symphony-gap-4 { gap: var(--symphony-spacing-4); }
+  .symphony-gap-5 { gap: var(--symphony-spacing-5); }
+  .symphony-gap-6 { gap: var(--symphony-spacing-6); }
+  .symphony-gap-8 { gap: var(--symphony-spacing-8); }
+  .symphony-gap-10 { gap: var(--symphony-spacing-10); }
+  .symphony-gap-12 { gap: var(--symphony-spacing-12); }
+}

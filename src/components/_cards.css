@@ -1,0 +1,210 @@
+/**
+ * Symphony CSS Framework v0.1
+ * Cards - Card component styles
+ * Flexible card containers with variants
+ */
+
+@layer components {
+  /* Base card with container query support */
+  .symphony-card {
+    display: flex;
+    flex-direction: column;
+    background-color: var(--symphony-card-background);
+    border: var(--symphony-card-border);
+    border-radius: var(--symphony-card-border-radius);
+    box-shadow: var(--symphony-card-shadow);
+    overflow: hidden;
+    container-type: inline-size;
+    container-name: card;
+  }
+  
+  /* Container query example - responsive card padding */
+  @container card (min-width: 400px) {
+    .symphony-card__body {
+      padding: var(--symphony-spacing-8);
+    }
+  }
+
+  /* Card sections */
+  .symphony-card__header {
+    padding: var(--symphony-card-padding);
+    border-bottom: 1px solid var(--symphony-border);
+  }
+
+  .symphony-card__body {
+    padding: var(--symphony-card-padding);
+    flex: 1;
+  }
+
+  .symphony-card__footer {
+    padding: var(--symphony-card-padding);
+    border-top: 1px solid var(--symphony-border);
+    background-color: var(--symphony-neutral-50);
+  }
+
+  /* Card title and subtitle */
+  .symphony-card__title {
+    font-size: var(--symphony-font-size-xl);
+    font-weight: var(--symphony-font-weight-semibold);
+    margin: 0;
+    color: var(--symphony-text);
+  }
+
+  .symphony-card__subtitle {
+    font-size: var(--symphony-font-size-sm);
+    color: var(--symphony-text-muted);
+    margin-top: var(--symphony-spacing-1);
+  }
+
+  /* Card image */
+  .symphony-card__image {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+  }
+
+  .symphony-card__image--top {
+    border-top-left-radius: var(--symphony-card-border-radius);
+    border-top-right-radius: var(--symphony-card-border-radius);
+  }
+
+  /* Card variants */
+  .symphony-card--elevated {
+    box-shadow: var(--symphony-shadow-lg);
+    border: none;
+  }
+
+  .symphony-card--elevated:hover {
+    box-shadow: var(--symphony-shadow-xl);
+    transform: translateY(-2px);
+    transition: var(--symphony-transition-base);
+  }
+
+  .symphony-card--outlined {
+    box-shadow: none;
+    border: 2px solid var(--symphony-border);
+  }
+
+  .symphony-card--flat {
+    box-shadow: none;
+    border: none;
+  }
+
+  /* Card with hover effect */
+  .symphony-card--interactive {
+    cursor: pointer;
+    transition: var(--symphony-transition-base);
+  }
+
+  .symphony-card--interactive:hover {
+    box-shadow: var(--symphony-shadow-lg);
+    transform: translateY(-2px);
+  }
+
+  .symphony-card--interactive:active {
+    transform: translateY(0);
+  }
+
+  /* Card sizes */
+  .symphony-card--sm .symphony-card__header,
+  .symphony-card--sm .symphony-card__body,
+  .symphony-card--sm .symphony-card__footer {
+    padding: var(--symphony-spacing-4);
+  }
+
+  .symphony-card--lg .symphony-card__header,
+  .symphony-card--lg .symphony-card__body,
+  .symphony-card--lg .symphony-card__footer {
+    padding: var(--symphony-spacing-8);
+  }
+
+  /* Horizontal card */
+  .symphony-card--horizontal {
+    flex-direction: row;
+  }
+
+  .symphony-card--horizontal .symphony-card__image {
+    width: 200px;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  @media (max-width: 768px) {
+    .symphony-card--horizontal {
+      flex-direction: column;
+    }
+
+    .symphony-card--horizontal .symphony-card__image {
+      width: 100%;
+      height: auto;
+    }
+  }
+
+  /* Card group */
+  .symphony-card-group {
+    display: grid;
+    gap: var(--symphony-spacing-6);
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr));
+  }
+
+  .symphony-card-group--cols-2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .symphony-card-group--cols-3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .symphony-card-group--cols-4 {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  @media (max-width: 1024px) {
+    .symphony-card-group--cols-3,
+    .symphony-card-group--cols-4 {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (max-width: 640px) {
+    .symphony-card-group--cols-2,
+    .symphony-card-group--cols-3,
+    .symphony-card-group--cols-4 {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  /* Card overlay */
+  .symphony-card--overlay {
+    position: relative;
+    color: white;
+  }
+
+  .symphony-card--overlay::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.7));
+    z-index: 1;
+  }
+
+  .symphony-card--overlay .symphony-card__body {
+    position: relative;
+    z-index: 2;
+    margin-top: auto;
+  }
+
+  .symphony-card--overlay .symphony-card__image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+  }
+}

@@ -1,0 +1,245 @@
+/**
+ * Symphony CSS Framework v0.1
+ * Buttons - Button component styles
+ * Semantic button styling with variants and sizes
+ */
+
+@layer components {
+  /* Base button styles */
+  .symphony-button,
+  button:not([class*="symphony-"]),
+  input[type="submit"],
+  input[type="button"] {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--symphony-spacing-2);
+    padding: var(--symphony-button-padding-y) var(--symphony-button-padding-x);
+    font-size: var(--symphony-button-font-size);
+    font-family: var(--symphony-font-sans);
+    font-weight: var(--symphony-button-font-weight);
+    letter-spacing: var(--symphony-button-letter-spacing);
+    line-height: 1;
+    text-align: center;
+    text-decoration: none;
+    white-space: nowrap;
+    border: 1px solid transparent;
+    border-radius: var(--symphony-button-radius-pill); /* Default pill shape */
+    cursor: pointer;
+    transition: var(--symphony-button-transition);
+    user-select: none;
+  }
+  
+  /* Border radius variants */
+  .symphony-button--rounded {
+    border-radius: var(--symphony-button-radius-rounded);
+  }
+  
+  .symphony-button--pill {
+    border-radius: var(--symphony-button-radius-pill);
+  }
+
+  .symphony-button:focus-visible {
+    outline: var(--symphony-focus-ring-width) solid var(--symphony-focus-ring-color);
+    outline-offset: var(--symphony-focus-ring-offset);
+  }
+
+  /* Button variants */
+  .symphony-button--primary {
+    background-color: var(--symphony-primary);
+    color: white;
+    border-color: var(--symphony-primary);
+  }
+
+  .symphony-button--primary:hover:not(:disabled) {
+    background-color: var(--symphony-primary-hover);
+    border-color: var(--symphony-primary-hover);
+  }
+
+  .symphony-button--primary:active:not(:disabled) {
+    background-color: var(--symphony-primary-active);
+    border-color: var(--symphony-primary-active);
+  }
+
+  .symphony-button--secondary {
+    background-color: var(--symphony-secondary);
+    color: white;
+    border-color: var(--symphony-secondary);
+  }
+
+  .symphony-button--secondary:hover:not(:disabled) {
+    background-color: var(--symphony-secondary-hover);
+    border-color: var(--symphony-secondary-hover);
+  }
+
+  .symphony-button--success {
+    background-color: var(--symphony-success);
+    color: white;
+    border-color: var(--symphony-success);
+  }
+
+  .symphony-button--success:hover:not(:disabled) {
+    background-color: hsl(var(--symphony-success-hue), var(--symphony-success-sat), calc(var(--symphony-success-light) - 5%));
+  }
+
+  .symphony-button--warning {
+    background-color: var(--symphony-warning);
+    color: white;
+    border-color: var(--symphony-warning);
+  }
+
+  .symphony-button--warning:hover:not(:disabled) {
+    background-color: hsl(var(--symphony-warning-hue), var(--symphony-warning-sat), calc(var(--symphony-warning-light) - 5%));
+  }
+
+  .symphony-button--danger {
+    background-color: var(--symphony-danger);
+    color: white;
+    border-color: var(--symphony-danger);
+  }
+
+  .symphony-button--danger:hover:not(:disabled) {
+    background-color: hsl(var(--symphony-danger-hue), var(--symphony-danger-sat), calc(var(--symphony-danger-light) - 5%));
+  }
+
+  /* Outline variant */
+  .symphony-button--outline {
+    background-color: transparent;
+    color: var(--symphony-primary);
+    border-color: var(--symphony-primary);
+  }
+
+  .symphony-button--outline:hover:not(:disabled) {
+    background-color: var(--symphony-primary);
+    color: white;
+  }
+
+  .symphony-button--outline-secondary {
+    background-color: transparent;
+    color: var(--symphony-secondary);
+    border-color: var(--symphony-secondary);
+  }
+
+  .symphony-button--outline-secondary:hover:not(:disabled) {
+    background-color: var(--symphony-secondary);
+    color: white;
+  }
+
+  /* Ghost variant */
+  .symphony-button--ghost {
+    background-color: transparent;
+    color: var(--symphony-text);
+    border-color: transparent;
+  }
+
+  .symphony-button--ghost:hover:not(:disabled) {
+    background-color: var(--symphony-neutral-100);
+  }
+
+  /* Link variant */
+  .symphony-button--link {
+    background-color: transparent;
+    color: var(--symphony-primary);
+    border-color: transparent;
+    text-decoration: underline;
+    padding: 0;
+  }
+
+  .symphony-button--link:hover:not(:disabled) {
+    color: var(--symphony-primary-hover);
+  }
+
+  /* Button sizes */
+  .symphony-button--sm {
+    padding: var(--symphony-button-sm-padding-y) var(--symphony-button-sm-padding-x);
+    font-size: var(--symphony-button-sm-font-size);
+  }
+
+  .symphony-button--lg {
+    padding: var(--symphony-button-lg-padding-y) var(--symphony-button-lg-padding-x);
+    font-size: var(--symphony-button-lg-font-size);
+  }
+
+  /* Button states */
+  .symphony-button:disabled,
+  .symphony-button--disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+
+  .symphony-button--loading {
+    position: relative;
+    color: transparent;
+    pointer-events: none;
+  }
+
+  .symphony-button--loading::after {
+    content: '';
+    position: absolute;
+    width: 1em;
+    height: 1em;
+    top: 50%;
+    left: 50%;
+    margin-left: -0.5em;
+    margin-top: -0.5em;
+    border: 2px solid currentColor;
+    border-radius: 50%;
+    border-right-color: transparent;
+    animation: symphony-spin 0.6s linear infinite;
+  }
+
+  @keyframes symphony-spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  /* Button width */
+  .symphony-button--block {
+    display: flex;
+    width: 100%;
+  }
+
+  /* Button group */
+  .symphony-button-group {
+    display: inline-flex;
+    gap: 0;
+  }
+
+  .symphony-button-group .symphony-button {
+    border-radius: 0;
+  }
+
+  .symphony-button-group .symphony-button:first-child {
+    border-top-left-radius: var(--symphony-button-border-radius);
+    border-bottom-left-radius: var(--symphony-button-border-radius);
+  }
+
+  .symphony-button-group .symphony-button:last-child {
+    border-top-right-radius: var(--symphony-button-border-radius);
+    border-bottom-right-radius: var(--symphony-button-border-radius);
+  }
+
+  .symphony-button-group .symphony-button:not(:last-child) {
+    border-right-width: 0;
+  }
+
+  .symphony-button-group .symphony-button:hover:not(:disabled) {
+    z-index: 1;
+  }
+
+  /* Icon button */
+  .symphony-button--icon {
+    padding: var(--symphony-spacing-3);
+    aspect-ratio: 1;
+  }
+
+  .symphony-button--icon.symphony-button--sm {
+    padding: var(--symphony-spacing-2);
+  }
+
+  .symphony-button--icon.symphony-button--lg {
+    padding: var(--symphony-spacing-4);
+  }
+}

@@ -1,0 +1,74 @@
+/**
+ * Symphony CSS Framework v0.1
+ * Design Tokens - Semantic token mappings
+ * Maps low-level variables to semantic component tokens
+ */
+
+@layer base {
+  :root {
+    /* Button Tokens - EXACT specifications */
+    --symphony-button-padding-y: 0.75rem;          /* 12px */
+    --symphony-button-padding-x: 2rem;             /* 32px */
+    --symphony-button-font-size: 0.875rem;         /* 14px */
+    --symphony-button-font-weight: 400;            /* Regular */
+    --symphony-button-letter-spacing: 0;           /* 0% */
+    --symphony-button-radius-rounded: 0.625rem;    /* 10px */
+    --symphony-button-radius-pill: 3.125rem;       /* 50px */
+    --symphony-button-transition: var(--symphony-transition-base);
+
+    --symphony-button-sm-padding-y: var(--symphony-spacing-2);
+    --symphony-button-sm-padding-x: var(--symphony-spacing-4);
+    --symphony-button-sm-font-size: var(--symphony-font-size-sm);
+
+    --symphony-button-lg-padding-y: var(--symphony-spacing-4);
+    --symphony-button-lg-padding-x: var(--symphony-spacing-8);
+    --symphony-button-lg-font-size: var(--symphony-font-size-lg);
+
+    /* Form Tokens */
+    --symphony-input-padding-y: var(--symphony-spacing-3);
+    --symphony-input-padding-x: var(--symphony-spacing-4);
+    --symphony-input-font-size: var(--symphony-font-size-base);
+    --symphony-input-border-width: 1px;
+    --symphony-input-border-color: var(--symphony-border);
+    --symphony-input-border-radius: var(--symphony-radius-base);
+    --symphony-input-background: var(--symphony-surface);
+    --symphony-input-focus-border: var(--symphony-primary);
+    --symphony-input-focus-ring: 0 0 0 3px hsl(var(--symphony-primary-hue), var(--symphony-primary-sat), var(--symphony-primary-light), 0.1);
+
+    /* Card Tokens */
+    --symphony-card-padding: var(--symphony-spacing-6);
+    --symphony-card-background: var(--symphony-surface);
+    --symphony-card-border: 1px solid var(--symphony-border);
+    --symphony-card-border-radius: var(--symphony-radius-lg);
+    --symphony-card-shadow: var(--symphony-shadow-base);
+
+    /* Typography Tokens */
+    --symphony-heading-font-weight: var(--symphony-font-weight-bold);
+    --symphony-heading-line-height: var(--symphony-line-height-tight);
+    --symphony-heading-margin-bottom: var(--symphony-spacing-4);
+
+    --symphony-paragraph-margin-bottom: var(--symphony-spacing-4);
+    --symphony-paragraph-line-height: var(--symphony-line-height-normal);
+
+    /* Link Tokens */
+    --symphony-link-color: var(--symphony-primary);
+    --symphony-link-hover-color: var(--symphony-primary-hover);
+    --symphony-link-decoration: underline;
+    --symphony-link-decoration-thickness: 1px;
+    --symphony-link-underline-offset: 2px;
+
+    /* Layout Tokens */
+    --symphony-container-padding: var(--symphony-spacing-4);
+    --symphony-section-padding-y: var(--symphony-spacing-16);
+    --symphony-section-padding-x: var(--symphony-spacing-4);
+
+    /* Grid Tokens */
+    --symphony-grid-gap: var(--symphony-spacing-6);
+    --symphony-grid-columns: 12;
+
+    /* Focus Tokens */
+    --symphony-focus-ring-width: 3px;
+    --symphony-focus-ring-color: hsl(var(--symphony-primary-hue), var(--symphony-primary-sat), var(--symphony-primary-light), 0.5);
+    --symphony-focus-ring-offset: 2px;
+  }
+}

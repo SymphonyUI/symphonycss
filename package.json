@@ -1,0 +1,47 @@
+{
+  "name": "symphony-css",
+  "version": "0.1.0",
+  "description": "Symphony v0.1 Model Anthology - A modular, semantic-first CSS framework with modern CSS features",
+  "main": "dist/symphony.css",
+  "style": "dist/symphony.css",
+  "scripts": {
+    "build": "npm run build:concat && npm run build:minify",
+    "build:concat": "cat src/symphony.css > dist/symphony.css",
+    "build:minify": "npx lightningcss --minify --bundle --targets '>= 0.25%' src/symphony.css -o dist/symphony.min.css",
+    "watch": "npm run build -- --watch",
+    "dev": "npm run watch"
+  },
+  "keywords": [
+    "css",
+    "framework",
+    "semantic",
+    "lightweight",
+    "modular",
+    "dark-theme",
+    "grid-system",
+    "typography",
+    "cascade-layers",
+    "custom-properties",
+    "bem",
+    "responsive"
+  ],
+  "author": "SymphonyUI",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SymphonyUI/symphony-css.git"
+  },
+  "bugs": {
+    "url": "https://github.com/SymphonyUI/symphony-css/issues"
+  },
+  "homepage": "https://github.com/SymphonyUI/symphony-css#readme",
+  "files": [
+    "dist/",
+    "src/",
+    "README.md",
+    "LICENSE"
+  ],
+  "devDependencies": {
+    "lightningcss-cli": "^1.24.0"
+  }
+}

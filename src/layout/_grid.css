@@ -1,0 +1,72 @@
+/**
+ * Symphony CSS Framework v0.1
+ * Grid System - 12 columns × 78px + 11 gutters × 24px = 1200px
+ * Mathematical precision grid with fixed column widths at desktop
+ */
+
+@layer layout {
+  /* Symphony Grid System - Exact 1200px at desktop */
+  .symphony-grid {
+    display: grid;
+    max-width: 1200px;
+    margin: 0 auto;
+    grid-template-columns: repeat(12, 78px);
+    gap: 24px;
+  }
+  
+  /* Column spans - BEM naming convention */
+  .symphony-grid__col--1  { grid-column: span 1; }
+  .symphony-grid__col--2  { grid-column: span 2; }
+  .symphony-grid__col--3  { grid-column: span 3; }
+  .symphony-grid__col--4  { grid-column: span 4; }
+  .symphony-grid__col--5  { grid-column: span 5; }
+  .symphony-grid__col--6  { grid-column: span 6; }
+  .symphony-grid__col--7  { grid-column: span 7; }
+  .symphony-grid__col--8  { grid-column: span 8; }
+  .symphony-grid__col--9  { grid-column: span 9; }
+  .symphony-grid__col--10 { grid-column: span 10; }
+  .symphony-grid__col--11 { grid-column: span 11; }
+  .symphony-grid__col--12 { grid-column: span 12; }
+  
+  /* Responsive: fluid below 1200px */
+  @media (max-width: 1200px) {
+    .symphony-grid {
+      grid-template-columns: repeat(12, 1fr);
+      padding: 0 24px;
+    }
+  }
+  
+  /* Tablet: adjust column spans */
+  @media (max-width: 1024px) {
+    .symphony-grid__col--lg-3 { grid-column: span 3; }
+    .symphony-grid__col--lg-4 { grid-column: span 4; }
+    .symphony-grid__col--lg-6 { grid-column: span 6; }
+    .symphony-grid__col--lg-9 { grid-column: span 9; }
+  }
+  
+  /* Mobile: single column */
+  @media (max-width: 768px) {
+    .symphony-grid {
+      grid-template-columns: 1fr;
+    }
+    
+    .symphony-grid__col--md-4 { grid-column: span 1; }
+    .symphony-grid__col--md-6 { grid-column: span 1; }
+    .symphony-grid__col--md-8 { grid-column: span 1; }
+  }
+  
+  /* Legacy class support (for backward compatibility) */
+  .symphony-col-span-1  { grid-column: span 1; }
+  .symphony-col-span-2  { grid-column: span 2; }
+  .symphony-col-span-3  { grid-column: span 3; }
+  .symphony-col-span-4  { grid-column: span 4; }
+  .symphony-col-span-5  { grid-column: span 5; }
+  .symphony-col-span-6  { grid-column: span 6; }
+  .symphony-col-span-7  { grid-column: span 7; }
+  .symphony-col-span-8  { grid-column: span 8; }
+  .symphony-col-span-9  { grid-column: span 9; }
+  .symphony-col-span-10 { grid-column: span 10; }
+  .symphony-col-span-11 { grid-column: span 11; }
+  .symphony-col-span-12 { grid-column: span 12; }
+  .symphony-col-span-full { grid-column: 1 / -1; }
+}

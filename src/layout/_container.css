@@ -1,0 +1,70 @@
+/**
+ * Symphony CSS Framework v0.1
+ * Container - Responsive container system
+ * Provides centered, max-width containers with responsive padding
+ */
+
+@layer layout {
+  /* Base container with container query support */
+  .symphony-container {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: var(--symphony-container-padding);
+    padding-right: var(--symphony-container-padding);
+    container-type: inline-size;
+    container-name: symphony;
+  }
+
+  /* Fluid container - no max-width */
+  .symphony-container--fluid {
+    max-width: none;
+  }
+
+  /* Responsive max-widths */
+  @media (min-width: 640px) {
+    .symphony-container:not(.symphony-container--fluid) {
+      max-width: var(--symphony-container-sm);
+    }
+  }
+
+  @media (min-width: 768px) {
+    .symphony-container:not(.symphony-container--fluid) {
+      max-width: var(--symphony-container-md);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .symphony-container:not(.symphony-container--fluid) {
+      max-width: var(--symphony-container-lg);
+    }
+  }
+
+  @media (min-width: 1280px) {
+    .symphony-container:not(.symphony-container--fluid) {
+      max-width: var(--symphony-container-xl);
+    }
+  }
+
+  @media (min-width: 1536px) {
+    .symphony-container:not(.symphony-container--fluid) {
+      max-width: var(--symphony-container-2xl);
+    }
+  }
+
+  /* Section wrapper with vertical padding */
+  .symphony-section {
+    padding-top: var(--symphony-section-padding-y);
+    padding-bottom: var(--symphony-section-padding-y);
+  }
+
+  .symphony-section--sm {
+    padding-top: var(--symphony-spacing-8);
+    padding-bottom: var(--symphony-spacing-8);
+  }
+
+  .symphony-section--lg {
+    padding-top: var(--symphony-spacing-24);
+    padding-bottom: var(--symphony-spacing-24);
+  }
+}

@@ -1,0 +1,217 @@
+/**
+ * Symphony CSS Framework v0.1
+ * Variables - CSS Custom Properties with @property definitions
+ * Typed, animatable design tokens
+ */
+
+@layer base {
+  /* Register typed custom properties for animation support */
+  
+  @property --symphony-primary-hue {
+    syntax: '<number>';
+    inherits: true;
+    initial-value: 220;
+  }
+
+  @property --symphony-spacing-unit {
+    syntax: '<length>';
+    inherits: true;
+    initial-value: 0.25rem;
+  }
+
+  @property --symphony-border-radius {
+    syntax: '<length>';
+    inherits: true;
+    initial-value: 0.5rem;
+  }
+
+  @property --symphony-transition-duration {
+    syntax: '<time>';
+    inherits: true;
+    initial-value: 200ms;
+  }
+
+  :root {
+    /* Color System - HSL based for easy manipulation */
+    --symphony-primary-hue: 220;
+    --symphony-primary-sat: 90%;
+    --symphony-primary-light: 55%;
+    
+    --symphony-secondary-hue: 280;
+    --symphony-secondary-sat: 70%;
+    --symphony-secondary-light: 60%;
+    
+    --symphony-success-hue: 142;
+    --symphony-success-sat: 71%;
+    --symphony-success-light: 45%;
+    
+    --symphony-warning-hue: 38;
+    --symphony-warning-sat: 92%;
+    --symphony-warning-light: 50%;
+    
+    --symphony-danger-hue: 0;
+    --symphony-danger-sat: 84%;
+    --symphony-danger-light: 60%;
+    
+    --symphony-neutral-hue: 220;
+    --symphony-neutral-sat: 10%;
+
+    /* Semantic Colors */
+    --symphony-primary: hsl(var(--symphony-primary-hue), var(--symphony-primary-sat), var(--symphony-primary-light));
+    --symphony-primary-hover: hsl(var(--symphony-primary-hue), var(--symphony-primary-sat), calc(var(--symphony-primary-light) - 5%));
+    --symphony-primary-active: hsl(var(--symphony-primary-hue), var(--symphony-primary-sat), calc(var(--symphony-primary-light) - 10%));
+    
+    --symphony-secondary: hsl(var(--symphony-secondary-hue), var(--symphony-secondary-sat), var(--symphony-secondary-light));
+    --symphony-secondary-hover: hsl(var(--symphony-secondary-hue), var(--symphony-secondary-sat), calc(var(--symphony-secondary-light) - 5%));
+    
+    --symphony-success: hsl(var(--symphony-success-hue), var(--symphony-success-sat), var(--symphony-success-light));
+    --symphony-warning: hsl(var(--symphony-warning-hue), var(--symphony-warning-sat), var(--symphony-warning-light));
+    --symphony-danger: hsl(var(--symphony-danger-hue), var(--symphony-danger-sat), var(--symphony-danger-light));
+
+    /* Neutral Scale */
+    --symphony-neutral-50: hsl(var(--symphony-neutral-hue), var(--symphony-neutral-sat), 98%);
+    --symphony-neutral-100: hsl(var(--symphony-neutral-hue), var(--symphony-neutral-sat), 95%);
+    --symphony-neutral-200: hsl(var(--symphony-neutral-hue), var(--symphony-neutral-sat), 90%);
+    --symphony-neutral-300: hsl(var(--symphony-neutral-hue), var(--symphony-neutral-sat), 80%);
+    --symphony-neutral-400: hsl(var(--symphony-neutral-hue), var(--symphony-neutral-sat), 65%);
+    --symphony-neutral-500: hsl(var(--symphony-neutral-hue), var(--symphony-neutral-sat), 50%);
+    --symphony-neutral-600: hsl(var(--symphony-neutral-hue), var(--symphony-neutral-sat), 40%);
+    --symphony-neutral-700: hsl(var(--symphony-neutral-hue), var(--symphony-neutral-sat), 30%);
+    --symphony-neutral-800: hsl(var(--symphony-neutral-hue), var(--symphony-neutral-sat), 20%);
+    --symphony-neutral-900: hsl(var(--symphony-neutral-hue), var(--symphony-neutral-sat), 10%);
+
+    /* Contextual Colors */
+    --symphony-background: var(--symphony-neutral-50);
+    --symphony-surface: #ffffff;
+    --symphony-text: var(--symphony-neutral-900);
+    --symphony-text-muted: var(--symphony-neutral-600);
+    --symphony-border: var(--symphony-neutral-200);
+    --symphony-border-hover: var(--symphony-neutral-300);
+
+    /* Typography Scale - EXACT pixel values (NOT ratio-based) */
+    --symphony-font-size-h1: 4.625rem;     /* 74px */
+    --symphony-font-size-h2: 2.625rem;     /* 42px */
+    --symphony-font-size-h3: 1.875rem;     /* 30px */
+    --symphony-font-size-h4: 1.5rem;       /* 24px */
+    --symphony-font-size-h5: 1.25rem;      /* 20px */
+    --symphony-font-size-h6: 1.125rem;     /* 18px */
+    
+    /* Body text sizes */
+    --symphony-font-size-sm: 0.875rem;     /* 14px */
+    --symphony-font-size-base: 1rem;       /* 16px */
+    --symphony-font-size-lg: 1.125rem;     /* 18px */
+    --symphony-font-size-xl: 1.25rem;      /* 20px */
+    
+    /* Letter spacing */
+    --symphony-letter-spacing-h1: 0.01em;  /* 1% for H1 only */
+    --symphony-letter-spacing-default: 0;  /* 0% for everything else */
+
+    /* Font Families */
+    --symphony-font-sans: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    --symphony-font-serif: Georgia, Cambria, 'Times New Roman', Times, serif;
+    --symphony-font-mono: ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace;
+
+    /* Font Weights */
+    --symphony-font-weight-light: 300;
+    --symphony-font-weight-normal: 400;
+    --symphony-font-weight-medium: 500;
+    --symphony-font-weight-semibold: 600;
+    --symphony-font-weight-bold: 700;
+
+    /* Line Heights */
+    --symphony-line-height-tight: 1.25;
+    --symphony-line-height-normal: 1.5;
+    --symphony-line-height-relaxed: 1.75;
+    --symphony-line-height-loose: 2;
+
+    /* Spacing Scale - Based on 4px (0.25rem) unit */
+    --symphony-spacing-unit: 0.25rem;
+    --symphony-spacing-0: 0;
+    --symphony-spacing-1: calc(var(--symphony-spacing-unit) * 1);   /* 4px */
+    --symphony-spacing-2: calc(var(--symphony-spacing-unit) * 2);   /* 8px */
+    --symphony-spacing-3: calc(var(--symphony-spacing-unit) * 3);   /* 12px */
+    --symphony-spacing-4: calc(var(--symphony-spacing-unit) * 4);   /* 16px */
+    --symphony-spacing-5: calc(var(--symphony-spacing-unit) * 5);   /* 20px */
+    --symphony-spacing-6: calc(var(--symphony-spacing-unit) * 6);   /* 24px */
+    --symphony-spacing-8: calc(var(--symphony-spacing-unit) * 8);   /* 32px */
+    --symphony-spacing-10: calc(var(--symphony-spacing-unit) * 10); /* 40px */
+    --symphony-spacing-12: calc(var(--symphony-spacing-unit) * 12); /* 48px */
+    --symphony-spacing-16: calc(var(--symphony-spacing-unit) * 16); /* 64px */
+    --symphony-spacing-20: calc(var(--symphony-spacing-unit) * 20); /* 80px */
+    --symphony-spacing-24: calc(var(--symphony-spacing-unit) * 24); /* 96px */
+
+    /* Border Radius */
+    --symphony-radius-none: 0;
+    --symphony-radius-sm: 0.25rem;
+    --symphony-radius-base: 0.5rem;
+    --symphony-radius-md: 0.75rem;
+    --symphony-radius-lg: 1rem;
+    --symphony-radius-xl: 1.5rem;
+    --symphony-radius-2xl: 2rem;
+    --symphony-radius-full: 9999px;
+
+    /* Shadows */
+    --symphony-shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+    --symphony-shadow-base: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+    --symphony-shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+    --symphony-shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+    --symphony-shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+    --symphony-shadow-2xl: 0 25px 50px -12px rgb(0 0 0 / 0.25);
+    --symphony-shadow-inner: inset 0 2px 4px 0 rgb(0 0 0 / 0.05);
+
+    /* Transitions */
+    --symphony-transition-duration: 200ms;
+    --symphony-transition-timing: cubic-bezier(0.4, 0, 0.2, 1);
+    --symphony-transition-base: all var(--symphony-transition-duration) var(--symphony-transition-timing);
+
+    /* Z-Index Scale */
+    --symphony-z-dropdown: 1000;
+    --symphony-z-sticky: 1020;
+    --symphony-z-fixed: 1030;
+    --symphony-z-modal-backdrop: 1040;
+    --symphony-z-modal: 1050;
+    --symphony-z-popover: 1060;
+    --symphony-z-tooltip: 1070;
+
+    /* Breakpoints (for reference in container queries and media queries) */
+    --symphony-breakpoint-sm: 640px;
+    --symphony-breakpoint-md: 768px;
+    --symphony-breakpoint-lg: 1024px;
+    --symphony-breakpoint-xl: 1280px;
+    --symphony-breakpoint-2xl: 1536px;
+
+    /* Container Widths */
+    --symphony-container-sm: 640px;
+    --symphony-container-md: 768px;
+    --symphony-container-lg: 1024px;
+    --symphony-container-xl: 1280px;
+    --symphony-container-2xl: 1536px;
+  }
+
+  /* Dark Mode Support - EXACT Hex Colors */
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --symphony-background: #020410;        /* EXACT hex */
+      --symphony-primary: #0055FE;           /* EXACT hex */
+      --symphony-surface: #0A0F1E;           /* Cards/surfaces */
+      --symphony-text: #FFFFFF;              /* Pure white for titles */
+      --symphony-text-body: #CBD2D9;         /* Gray-300 for body */
+      --symphony-text-muted: #CBD2D9;        /* Gray-300 */
+      --symphony-border: #1A1F2E;
+      --symphony-border-hover: #2A2F3E;
+    }
+  }
+
+  /* Dark mode class override */
+  .symphony-dark,
+  [data-theme="dark"] {
+    --symphony-background: #020410;        /* EXACT hex */
+    --symphony-primary: #0055FE;           /* EXACT hex */
+    --symphony-surface: #0A0F1E;           /* Cards/surfaces */
+    --symphony-text: #FFFFFF;              /* Pure white for titles */
+    --symphony-text-body: #CBD2D9;         /* Gray-300 for body */
+    --symphony-text-muted: #CBD2D9;        /* Gray-300 */
+    --symphony-border: #1A1F2E;
+    --symphony-border-hover: #2A2F3E;
+  }
+}
