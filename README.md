@@ -19,7 +19,7 @@ A modular, semantic-first CSS framework with modern CSS features.
 ### NPM
 
 ```bash
-npm install symphony-css
+npm install symphonycss
 ```
 
 ### CDN
@@ -30,7 +30,7 @@ npm install symphony-css
 
 ### Download
 
-Download the latest release from the [releases page](https://github.com/your-repo/symphony-css/releases).
+Download the latest release from the [releases page](https://github.com/your-repo/symphonycss/releases).
 
 ## 🚀 Quick Start
 
@@ -329,16 +329,16 @@ Import only the modules you need:
 
 ```css
 /* Import specific modules */
-@import 'symphony-css/src/core/_reset.css';
-@import 'symphony-css/src/core/_variables.css';
-@import 'symphony-css/src/components/_buttons.css';
-@import 'symphony-css/src/utilities/_spacing.css';
+@import 'symphonycss/src/core/_reset.css';
+@import 'symphonycss/src/core/_variables.css';
+@import 'symphonycss/src/components/_buttons.css';
+@import 'symphonycss/src/utilities/_spacing.css';
 ```
 
 ## 🏗️ Architecture
 
 ```
-symphony-css/
+symphonycss/
 ├── src/
 │   ├── core/              # Foundation styles
 │   │   ├── _reset.css     # Modern CSS reset
@@ -395,7 +395,7 @@ Note: CSS Cascade Layers and `@property` require modern browser versions.
 ### React
 
 ```jsx
-import 'symphony-css/dist/symphony.css';
+import 'symphonycss/dist/symphony.css';
 
 function App() {
   return (
@@ -422,7 +422,7 @@ function App() {
 </template>
 
 <script>
-import 'symphony-css/dist/symphony.css';
+import 'symphonycss/dist/symphony.css';
 </script>
 ```
 
@@ -430,7 +430,7 @@ import 'symphony-css/dist/symphony.css';
 
 ```svelte
 <script>
-  import 'symphony-css/dist/symphony.css';
+  import 'symphonycss/dist/symphony.css';
 </script>
 
 <div class="symphony-container">
@@ -452,8 +452,8 @@ Contributions are welcome! Please read our contributing guidelines before submit
 ## 📮 Support
 
 - Documentation: [View Docs](./docs/index.html)
-- Issues: [GitHub Issues](https://github.com/your-repo/symphony-css/issues)
-- Discussions: [GitHub Discussions](https://github.com/your-repo/symphony-css/discussions)
+- Issues: [GitHub Issues](https://github.com/your-repo/symphonycss/issues)
+- Discussions: [GitHub Discussions](https://github.com/your-repo/symphonycss/discussions)
 
 ## 🎵 Why Symphony?
 

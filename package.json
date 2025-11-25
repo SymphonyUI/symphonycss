@@ -1,6 +1,6 @@
 {
-  "name": "symphony-css",
-  "version": "0.1.0",
+  "name": "symphonycss",
+  "version": "0.1.1",
   "description": "Symphony v0.1 Model Anthology - A modular, semantic-first CSS framework with modern CSS features",
   "main": "dist/symphony.css",
   "style": "dist/symphony.css",
@@ -30,12 +30,12 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/SymphonyUI/symphony-css.git"
+    "url": "git+https://github.com/SymphonyUI/symphonycss.git"
   },
   "bugs": {
-    "url": "https://github.com/SymphonyUI/symphony-css/issues"
+    "url": "https://github.com/SymphonyUI/symphonycss/issues"
   },
-  "homepage": "https://github.com/SymphonyUI/symphony-css#readme",
+  "homepage": "https://github.com/SymphonyUI/symphonycss#readme",
   "files": [
     "dist/",
     "src/",
