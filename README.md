@@ -19,7 +19,7 @@ A modular, semantic-first CSS framework with modern CSS features.
 ### NPM
 
 ```bash
-npm install symphonycss
+npm install npm @symphonyui/symphonycss
 ```
 
 ### CDN
