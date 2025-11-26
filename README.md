@@ -1,4 +1,4 @@
-# Symphony CSS v0.1.1 - Anthology
+# Symphony CSS v0.1.2 - Anthology
 
 A modular, semantic-first CSS framework with modern CSS features.
 
