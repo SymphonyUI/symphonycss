@@ -1,6 +1,6 @@
 {
   "name": "symphonycss",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "SymphonyCSS — A minimalist CSS framework by @symphonyui",
   "main": "dist/symphony.css",
   "keywords": [
@@ -13,7 +13,7 @@
     "symphonycss"
   ],
   "scripts": {
-    "copy-dist": "rm -rf dist && cp -R ../symphonycss/dist ./dist",
+    "copy-dist": "rm -rf dist && cp -R ../dist ./dist",
     "release": "npm run copy-dist && npm version patch && npm publish --access public"
   },
   "author": "SymphonyUI",
