@@ -1,0 +1,21 @@
+{
+  "name": "symphonycss",
+  "version": "0.1.0",
+  "description": "SymphonyCSS — A minimalist CSS framework by @symphonyui",
+  "main": "dist/symphony.css",
+  "keywords": [
+    "css",
+    "framework",
+    "design",
+    "ui",
+    "utility-first",
+    "symphony",
+    "symphonycss"
+  ],
+  "scripts": {
+    "copy-dist": "rm -rf dist && cp -R ../symphonycss/dist ./dist",
+    "release": "npm run copy-dist && npm version patch && npm publish --access public"
+  },
+  "author": "SymphonyUI",
+  "license": "MIT"
+}
