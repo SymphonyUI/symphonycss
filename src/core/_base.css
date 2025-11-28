@@ -1,272 +1,558 @@
 /**
- * Symphony CSS Framework v0.1
- * Base Layer - Semantic HTML element styles
- * Minimal classes, maximum semantics - Semantic-first approach
+ * Symphony CSS Framework v2.0
+ * Base Layer - Semantic HTML Element Styles
+ * 
+ * Philosophy:
+ * - Zero classes needed for beautiful defaults
+ * - Semantic HTML elements styled by default
+ * - Uses updated OKLCH variables from _variables.css
+ * - Native CSS nesting for cleaner code
+ * - Logical properties for i18n support
+ * 
+ * Sections styled:
+ * - Document structure (html, body)
+ * - Sectioning elements (header, main, footer, article, section, aside, nav)
+ * - Typography (headings, paragraphs, text elements)
+ * - Links and interactive elements
+ * - Lists (ul, ol, dl)
+ * - Media (img, figure, video)
+ * - Preformatted (pre, code, kbd)
+ * - Quotes (blockquote, q)
+ * - Forms (fieldset, legend, label)
+ * - Misc (hr, mark, address)
  */
 
-@layer base {
-  /* Root and Body */
-  html {
-    font-size: 16px;
+@layer symphony.base {
+  /* =============================================
+     DOCUMENT ROOT
+     ============================================= */
+
+  :where(html) {
+    font-size: 100%;
+    /* Respect user preferences */
     scroll-behavior: smooth;
+    text-size-adjust: none;
+    -webkit-text-size-adjust: none;
+
+    @media (prefers-reduced-motion: reduce) {
+      scroll-behavior: auto;
+    }
   }
 
-  body {
+  :where(body) {
     font-family: var(--symphony-font-sans);
-    font-size: var(--symphony-font-size-base);
-    font-weight: 400;
-    line-height: var(--symphony-line-height-normal);
-    color: var(--symphony-text-body);
+    font-size: var(--symphony-text-base);
+    font-weight: var(--symphony-font-normal);
+    line-height: var(--symphony-leading-normal);
+    color: var(--symphony-text);
     background-color: var(--symphony-background);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
   }
 
-  /* Typography - Semantic HTML elements */
-  h1, h2, h3, h4, h5, h6 {
-    font-family: var(--symphony-font-headings);
-    font-weight: 600; /* Inter Display Semibold */
-    line-height: var(--symphony-heading-line-height);
-    margin-bottom: var(--symphony-heading-margin-bottom);
-    color: var(--symphony-text-title);
+  /* =============================================
+     SECTIONING ELEMENTS
+     Semantic structure with sensible defaults
+     ============================================= */
+
+  :where(header) {
+    /* Header typically contains nav, logo, actions */
   }
 
-  h1 {
-    font-size: var(--symphony-font-size-h1);
-    letter-spacing: var(--symphony-letter-spacing-h1);
+  :where(main) {
+    /* Main content area - ensure it's the primary landmark */
+    display: block;
+    /* IE11 fallback */
+
+    /* First child direct margin collapse prevention */
+    &> :first-child {
+      margin-block-start: 0;
+    }
+
+    &> :last-child {
+      margin-block-end: 0;
+    }
+  }
+
+  :where(footer) {
+    /* Footer styling */
+    color: var(--symphony-text-muted);
+    font-size: var(--symphony-text-sm);
+  }
+
+  :where(article) {
+
+    /* Standalone content - blog posts, news articles */
+    &>header {
+      margin-block-end: var(--symphony-space-lg);
+    }
+
+    &>footer {
+      margin-block-start: var(--symphony-space-lg);
+      padding-block-start: var(--symphony-space-md);
+      border-block-start: 1px solid var(--symphony-border);
+    }
+  }
+
+  :where(section) {
+    /* Generic section with heading */
+    margin-block: var(--symphony-space-2xl);
+
+    &:first-child {
+      margin-block-start: 0;
+    }
+
+    &:last-child {
+      margin-block-end: 0;
+    }
+  }
+
+  :where(aside) {
+    /* Sidebar or tangentially related content */
+    font-size: var(--symphony-text-sm);
+    color: var(--symphony-text-muted);
+  }
+
+  /* =============================================
+     TYPOGRAPHY - HEADINGS
+     ============================================= */
+
+  :where(h1, h2, h3, h4, h5, h6) {
+    font-family: var(--symphony-font-heading);
+    font-weight: var(--symphony-font-bold);
+    line-height: var(--symphony-leading-tight);
+    color: var(--symphony-text);
     text-wrap: balance;
+    margin-block: 0 var(--symphony-space-sm);
+
+    /* When following a paragraph, add more space */
+    p+&,
+    ul+&,
+    ol+& {
+      margin-block-start: var(--symphony-space-xl);
+    }
   }
 
-  h2 {
-    font-size: var(--symphony-font-size-h2);
-    letter-spacing: var(--symphony-letter-spacing-default);
-    text-wrap: balance;
+  :where(h1) {
+    font-size: var(--symphony-text-4xl);
+    letter-spacing: -0.025em;
   }
 
-  h3 {
-    font-size: var(--symphony-font-size-h3);
-    text-wrap: balance;
+  :where(h2) {
+    font-size: var(--symphony-text-3xl);
+    letter-spacing: -0.02em;
   }
 
-  h4 {
-    font-size: var(--symphony-font-size-h4);
+  :where(h3) {
+    font-size: var(--symphony-text-2xl);
   }
 
-  h5 {
-    font-size: var(--symphony-font-size-h5);
+  :where(h4) {
+    font-size: var(--symphony-text-xl);
   }
 
-  h6 {
-    font-size: var(--symphony-font-size-h6);
+  :where(h5) {
+    font-size: var(--symphony-text-lg);
   }
 
-  p {
-    margin-bottom: var(--symphony-paragraph-margin-bottom);
-    line-height: var(--symphony-paragraph-line-height);
-    color: var(--symphony-text-body);
+  :where(h6) {
+    font-size: var(--symphony-text-base);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--symphony-text-muted);
   }
 
-  /* Links */
-  a {
-    color: var(--symphony-primary);
-    text-decoration: var(--symphony-link-decoration);
-    text-decoration-thickness: var(--symphony-link-decoration-thickness);
-    text-underline-offset: var(--symphony-link-underline-offset);
-    transition: var(--symphony-transition-base);
+  /* =============================================
+     TYPOGRAPHY - BODY TEXT
+     ============================================= */
+
+  :where(p) {
+    margin-block: 0 var(--symphony-space-md);
+    line-height: var(--symphony-leading-relaxed);
+    text-wrap: pretty;
+
+    &:last-child {
+      margin-block-end: 0;
+    }
   }
 
-  a:hover {
-    color: var(--symphony-secondary);
-  }
-  
-  /* Ensure Documentation Elements Have Contrast */
-  .example-box,
-  .code-preview,
-  .doc-section,
-  .feature-card {
-    color: var(--symphony-text-body);
-  }
-  
-  .example-box h3,
-  .code-preview h3,
-  .feature-card h3 {
-    color: var(--symphony-text-title);
+  :where(strong, b) {
+    font-weight: var(--symphony-font-bold);
   }
 
-  a:focus-visible {
-    outline: var(--symphony-focus-ring-width) solid var(--symphony-focus-ring-color);
-    outline-offset: var(--symphony-focus-ring-offset);
-    border-radius: var(--symphony-radius-sm);
-  }
-
-  /* Lists */
-  ul, ol {
-    margin-bottom: var(--symphony-spacing-4);
-    padding-left: var(--symphony-spacing-6);
-  }
-
-  li {
-    margin-bottom: var(--symphony-spacing-2);
-  }
-
-  /* Inline text elements */
-  strong, b {
-    font-weight: var(--symphony-font-weight-bold);
-  }
-
-  em, i {
+  :where(em, i) {
     font-style: italic;
   }
 
-  small {
-    font-size: var(--symphony-font-size-sm);
+  :where(small) {
+    font-size: var(--symphony-text-sm);
   }
 
-  mark {
-    background-color: hsl(var(--symphony-warning-hue), var(--symphony-warning-sat), 85%);
+  :where(mark) {
+    background-color: oklch(from var(--symphony-warning) 0.9 c h);
     color: var(--symphony-text);
-    padding: 0.125em 0.25em;
+    padding-inline: 0.25em;
     border-radius: var(--symphony-radius-sm);
   }
 
-  code {
+  :where(del, s) {
+    text-decoration: line-through;
+    color: var(--symphony-text-muted);
+  }
+
+  :where(ins) {
+    text-decoration: underline;
+    text-decoration-color: var(--symphony-success);
+  }
+
+  :where(abbr[title]) {
+    text-decoration: underline dotted;
+    cursor: help;
+  }
+
+  :where(address) {
+    font-style: normal;
+    line-height: var(--symphony-leading-relaxed);
+    margin-block-end: var(--symphony-space-md);
+  }
+
+  /* =============================================
+     LINKS
+     ============================================= */
+
+  :where(a) {
+    color: var(--symphony-primary);
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.15em;
+    transition: var(--symphony-transition-colors);
+
+    &:hover {
+      color: var(--symphony-primary-hover);
+      text-decoration-thickness: 2px;
+    }
+
+    &:focus-visible {
+      outline: none;
+      box-shadow: var(--symphony-focus-ring);
+      border-radius: var(--symphony-radius-sm);
+    }
+
+    /* Links without href are not clickable */
+    &:not([href]) {
+      color: inherit;
+      text-decoration: none;
+      cursor: not-allowed;
+    }
+  }
+
+  /* =============================================
+     LISTS
+     ============================================= */
+
+  :where(ul, ol) {
+    margin-block: 0 var(--symphony-space-md);
+    padding-inline-start: var(--symphony-space-lg);
+
+    & li {
+      margin-block-end: var(--symphony-space-xs);
+
+      &:last-child {
+        margin-block-end: 0;
+      }
+    }
+
+    /* Nested lists */
+    & ul,
+    & ol {
+      margin-block: var(--symphony-space-xs) 0;
+    }
+  }
+
+  :where(ul) {
+    list-style-type: disc;
+
+    & ul {
+      list-style-type: circle;
+    }
+
+    & ul ul {
+      list-style-type: square;
+    }
+  }
+
+  :where(ol) {
+    list-style-type: decimal;
+
+    & ol {
+      list-style-type: lower-alpha;
+    }
+
+    & ol ol {
+      list-style-type: lower-roman;
+    }
+  }
+
+  :where(dl) {
+    margin-block: 0 var(--symphony-space-md);
+
+    & dt {
+      font-weight: var(--symphony-font-semibold);
+      margin-block-start: var(--symphony-space-sm);
+
+      &:first-child {
+        margin-block-start: 0;
+      }
+    }
+
+    & dd {
+      margin-inline-start: var(--symphony-space-lg);
+      margin-block-end: var(--symphony-space-sm);
+    }
+  }
+
+  /* =============================================
+     CODE & PREFORMATTED
+     ============================================= */
+
+  :where(code, kbd, samp) {
     font-family: var(--symphony-font-mono);
     font-size: 0.875em;
-    background-color: var(--symphony-neutral-100);
+  }
+
+  :where(code) {
+    background-color: var(--symphony-surface-alt);
     color: var(--symphony-danger);
     padding: 0.125em 0.375em;
     border-radius: var(--symphony-radius-sm);
   }
 
-  pre {
+  :where(kbd) {
+    display: inline-block;
+    padding: 0.125em 0.5em;
+    background-color: var(--symphony-surface);
+    border: 1px solid var(--symphony-border);
+    border-radius: var(--symphony-radius-sm);
+    box-shadow: 0 2px 0 var(--symphony-border);
+    font-size: 0.75em;
+    font-weight: var(--symphony-font-medium);
+    vertical-align: middle;
+  }
+
+  :where(pre) {
     font-family: var(--symphony-font-mono);
-    font-size: var(--symphony-font-size-sm);
-    background-color: var(--symphony-neutral-100);
+    font-size: var(--symphony-text-sm);
+    line-height: var(--symphony-leading-relaxed);
+    background-color: var(--symphony-surface-alt);
     color: var(--symphony-text);
-    padding: var(--symphony-spacing-4);
-    border-radius: var(--symphony-radius-base);
+    padding: var(--symphony-space-md);
+    border-radius: var(--symphony-radius-md);
     overflow-x: auto;
-    margin-bottom: var(--symphony-spacing-4);
+    margin-block: 0 var(--symphony-space-md);
+    tab-size: 2;
+
+    /* Reset nested code styling */
+    & code {
+      background-color: transparent;
+      color: inherit;
+      padding: 0;
+      font-size: inherit;
+    }
   }
 
-  pre code {
-    background-color: transparent;
-    color: inherit;
-    padding: 0;
-  }
+  /* =============================================
+     BLOCKQUOTES
+     ============================================= */
 
-  /* Blockquote */
-  blockquote {
-    border-left: 4px solid var(--symphony-primary);
-    padding-left: var(--symphony-spacing-4);
-    margin: var(--symphony-spacing-6) 0;
+  :where(blockquote) {
+    margin-block: var(--symphony-space-lg) var(--symphony-space-lg);
+    margin-inline: 0;
+    padding-inline-start: var(--symphony-space-md);
+    border-inline-start: 4px solid var(--symphony-primary);
     font-style: italic;
     color: var(--symphony-text-muted);
+
+    & p:last-child {
+      margin-block-end: 0;
+    }
+
+    & cite {
+      display: block;
+      margin-block-start: var(--symphony-space-sm);
+      font-size: var(--symphony-text-sm);
+      font-style: normal;
+
+      &::before {
+        content: '— ';
+      }
+    }
   }
 
-  /* Horizontal Rule */
-  hr {
-    border: none;
-    border-top: 1px solid var(--symphony-border);
-    margin: var(--symphony-spacing-8) 0;
+  :where(q) {
+    quotes: '"' '"' '' ' ' '';
+
+    &::before {
+      content: open-quote;
+    }
+
+    &::after {
+      content: close-quote;
+    }
   }
 
-  /* Tables */
-  table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-bottom: var(--symphony-spacing-6);
-  }
+  /* =============================================
+     MEDIA ELEMENTS
+     ============================================= */
 
-  thead {
-    border-bottom: 2px solid var(--symphony-border);
-  }
-
-  th {
-    font-weight: var(--symphony-font-weight-semibold);
-    text-align: left;
-    padding: var(--symphony-spacing-3) var(--symphony-spacing-4);
-  }
-
-  td {
-    padding: var(--symphony-spacing-3) var(--symphony-spacing-4);
-    border-bottom: 1px solid var(--symphony-border);
-  }
-
-  tbody tr:hover {
-    background-color: var(--symphony-neutral-50);
-  }
-
-  /* Media Elements */
-  img, picture, video, canvas, svg {
+  :where(img, picture, video, canvas, svg) {
     display: block;
-    max-width: 100%;
-    height: auto;
+    max-inline-size: 100%;
+    block-size: auto;
   }
 
-  figure {
-    margin: var(--symphony-spacing-6) 0;
+  :where(img) {
+    object-fit: cover;
+
+    &[width][height] {
+      /* Aspect ratio from width/height attributes */
+    }
   }
 
-  figcaption {
-    font-size: var(--symphony-font-size-sm);
+  :where(figure) {
+    margin-block: var(--symphony-space-lg);
+    margin-inline: 0;
+
+    &>img,
+    &>picture,
+    &>video {
+      border-radius: var(--symphony-radius-md);
+    }
+  }
+
+  :where(figcaption) {
+    font-size: var(--symphony-text-sm);
     color: var(--symphony-text-muted);
-    margin-top: var(--symphony-spacing-2);
     text-align: center;
+    margin-block-start: var(--symphony-space-sm);
   }
 
-  /* Form Elements - Semantic styling */
-  fieldset {
+  :where(iframe) {
+    border: none;
+    max-inline-size: 100%;
+  }
+
+  /* =============================================
+     HORIZONTAL RULE
+     ============================================= */
+
+  :where(hr) {
+    border: none;
+    border-block-start: 1px solid var(--symphony-border);
+    margin-block: var(--symphony-space-xl);
+
+    /* Decorative HR variant */
+    &[data-variant="decorative"] {
+      border: none;
+      block-size: 1px;
+      background: linear-gradient(to right,
+          transparent,
+          var(--symphony-border),
+          transparent);
+    }
+  }
+
+  /* =============================================
+     FORM ELEMENTS (Basic - detailed in _forms.css)
+     ============================================= */
+
+  :where(fieldset) {
     border: 1px solid var(--symphony-border);
-    border-radius: var(--symphony-radius-base);
-    padding: var(--symphony-spacing-6);
-    margin-bottom: var(--symphony-spacing-6);
+    border-radius: var(--symphony-radius-md);
+    padding: var(--symphony-space-lg);
+    margin-block-end: var(--symphony-space-md);
   }
 
-  legend {
-    font-weight: var(--symphony-font-weight-semibold);
-    padding: 0 var(--symphony-spacing-2);
+  :where(legend) {
+    font-weight: var(--symphony-font-semibold);
+    padding-inline: var(--symphony-space-sm);
   }
 
-  label {
+  :where(label) {
     display: block;
-    font-weight: var(--symphony-font-weight-medium);
-    margin-bottom: var(--symphony-spacing-2);
-    color: var(--symphony-text);
+    font-weight: var(--symphony-font-medium);
+    margin-block-end: var(--symphony-space-xs);
   }
 
-  /* Focus states for interactive elements */
-  button:focus-visible,
-  input:focus-visible,
-  textarea:focus-visible,
-  select:focus-visible {
-    outline: var(--symphony-focus-ring-width) solid var(--symphony-focus-ring-color);
-    outline-offset: var(--symphony-focus-ring-offset);
+  /* =============================================
+     TIME & DATA ELEMENTS
+     ============================================= */
+
+  :where(time) {
+    /* Semantic time element */
   }
 
-  /* Selection */
+  :where(data) {
+    /* Machine-readable data */
+  }
+
+  /* =============================================
+     SELECTION & FOCUS
+     ============================================= */
+
   ::selection {
-    background-color: hsl(var(--symphony-primary-hue), var(--symphony-primary-sat), var(--symphony-primary-light), 0.3);
+    background-color: oklch(from var(--symphony-primary) l c h / 0.3);
     color: var(--symphony-text);
   }
 
-  /* Scrollbar styling (Webkit) */
+  /* Focus ring for all interactive elements */
+  :where(:focus-visible) {
+    outline: none;
+    box-shadow: var(--symphony-focus-ring);
+  }
+
+  /* =============================================
+     SCROLLBAR STYLING (WebKit)
+     ============================================= */
+
   ::-webkit-scrollbar {
-    width: 12px;
-    height: 12px;
+    inline-size: 12px;
+    block-size: 12px;
   }
 
   ::-webkit-scrollbar-track {
-    background: var(--symphony-neutral-100);
+    background: var(--symphony-surface-alt);
   }
 
   ::-webkit-scrollbar-thumb {
-    background: var(--symphony-neutral-400);
+    background: var(--symphony-border);
     border-radius: var(--symphony-radius-full);
-    border: 3px solid var(--symphony-neutral-100);
+    border: 3px solid var(--symphony-surface-alt);
+
+    &:hover {
+      background: var(--symphony-text-muted);
+    }
   }
 
-  ::-webkit-scrollbar-thumb:hover {
-    background: var(--symphony-neutral-500);
+  /* Firefox scrollbar */
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: var(--symphony-border) var(--symphony-surface-alt);
+  }
+
+  /* =============================================
+     PRINT ADJUSTMENTS
+     ============================================= */
+
+  @media print {
+    :where(a[href^="http"])::after {
+      content: ' (' attr(href) ')';
+      font-size: var(--symphony-text-sm);
+      font-weight: normal;
+    }
+
+    :where(abbr[title])::after {
+      content: ' (' attr(title) ')';
+    }
   }
 }

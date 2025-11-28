@@ -1,282 +1,448 @@
 /**
- * Symphony CSS Framework v0.1
- * Typography - Text styling utilities and components
- * BEM-based typography classes with semantic defaults
+ * Symphony CSS Framework v2.0
+ * Typography - Text Styling & Prose
+ * 
+ * Philosophy:
+ * - Semantic-first: Base styles in _base.css
+ * - This file provides optional enhancement classes
+ * - Unprefixed utility classes (no symphony- prefix)
+ * - Prose class for long-form content
+ * - Display text for hero sections
+ * 
+ * Usage:
+ *   <p class="lead">Emphasized paragraph</p>
+ *   <h1 class="display">Hero heading</h1>
+ *   <article class="prose">Long-form content...</article>
  */
 
-@layer components {
-  /* Display text - larger than headings */
-  .symphony-display {
-    font-size: var(--symphony-font-size-5xl);
-    font-weight: var(--symphony-font-weight-bold);
-    line-height: var(--symphony-line-height-tight);
-    letter-spacing: -0.02em;
+@layer symphony.components {
+  /* =============================================
+     DISPLAY TEXT
+     Large hero-style headings
+     ============================================= */
+
+  .display {
+    font-size: var(--symphony-text-5xl);
+    font-weight: var(--symphony-font-bold);
+    line-height: var(--symphony-leading-tight);
+    letter-spacing: -0.03em;
+    text-wrap: balance;
   }
 
-  .symphony-display--lg {
-    font-size: var(--symphony-font-size-5xl);
+  .display[data-size="xl"] {
+    font-size: var(--symphony-text-6xl);
   }
 
-  .symphony-display--md {
-    font-size: var(--symphony-font-size-4xl);
+  .display[data-size="lg"] {
+    font-size: var(--symphony-text-5xl);
   }
 
-  .symphony-display--sm {
-    font-size: var(--symphony-font-size-3xl);
+  .display[data-size="md"] {
+    font-size: var(--symphony-text-4xl);
   }
 
-  /* Lead text - emphasized paragraph */
-  .symphony-lead {
-    font-size: var(--symphony-font-size-xl);
-    line-height: var(--symphony-line-height-relaxed);
+  .display[data-size="sm"] {
+    font-size: var(--symphony-text-3xl);
+  }
+
+  /* =============================================
+     LEAD TEXT
+     Emphasized paragraph for introductions
+     ============================================= */
+
+  .lead {
+    font-size: var(--symphony-text-xl);
+    line-height: var(--symphony-leading-relaxed);
     color: var(--symphony-text-muted);
   }
 
-  /* Text size utilities */
-  .symphony-text--xs {
-    font-size: var(--symphony-font-size-xs);
+  /* =============================================
+     PROSE
+     Optimized long-form reading experience
+     ============================================= */
+
+  .prose {
+    max-inline-size: 65ch;
+    color: var(--symphony-text);
+
+    /* Vertical rhythm for all children */
+    &>*+* {
+      margin-block-start: var(--symphony-space-md);
+    }
+
+    /* Headings */
+    & :where(h1, h2, h3, h4, h5, h6) {
+      margin-block-start: var(--symphony-space-2xl);
+      margin-block-end: var(--symphony-space-md);
+
+      &:first-child {
+        margin-block-start: 0;
+      }
+    }
+
+    & :where(h1) {
+      font-size: var(--symphony-text-3xl);
+    }
+
+    & :where(h2) {
+      font-size: var(--symphony-text-2xl);
+    }
+
+    & :where(h3) {
+      font-size: var(--symphony-text-xl);
+    }
+
+    & :where(h4) {
+      font-size: var(--symphony-text-lg);
+    }
+
+    /* Paragraphs */
+    & :where(p) {
+      line-height: var(--symphony-leading-relaxed);
+    }
+
+    /* Links */
+    & :where(a) {
+      color: var(--symphony-primary);
+      text-decoration: underline;
+      text-decoration-thickness: 1px;
+      text-underline-offset: 0.2em;
+
+      &:hover {
+        text-decoration-thickness: 2px;
+      }
+    }
+
+    /* Lists */
+    & :where(ul, ol) {
+      padding-inline-start: var(--symphony-space-lg);
+    }
+
+    & :where(li) {
+      margin-block-start: var(--symphony-space-xs);
+    }
+
+    /* Inline code */
+    & :where(code) {
+      font-size: 0.9em;
+      background-color: var(--symphony-surface-alt);
+      padding: 0.15em 0.4em;
+      border-radius: var(--symphony-radius-sm);
+    }
+
+    /* Code blocks */
+    & :where(pre) {
+      margin-block: var(--symphony-space-lg);
+      padding: var(--symphony-space-md);
+      background-color: var(--symphony-surface-alt);
+      border-radius: var(--symphony-radius-md);
+      overflow-x: auto;
+
+      & code {
+        background: transparent;
+        padding: 0;
+        font-size: var(--symphony-text-sm);
+      }
+    }
+
+    /* Blockquotes */
+    & :where(blockquote) {
+      margin-block: var(--symphony-space-lg);
+      padding-inline-start: var(--symphony-space-md);
+      border-inline-start: 4px solid var(--symphony-primary);
+      font-style: italic;
+      color: var(--symphony-text-muted);
+
+      & p:last-child {
+        margin-block-end: 0;
+      }
+    }
+
+    /* Images and figures */
+    & :where(img, figure) {
+      margin-block: var(--symphony-space-lg);
+    }
+
+    & :where(figcaption) {
+      margin-block-start: var(--symphony-space-sm);
+    }
+
+    /* Tables in prose */
+    & :where(table) {
+      margin-block: var(--symphony-space-lg);
+    }
+
+    /* Horizontal rules */
+    & :where(hr) {
+      margin-block: var(--symphony-space-2xl);
+    }
   }
 
-  .symphony-text--sm {
-    font-size: var(--symphony-font-size-sm);
+  /* Prose sizes */
+  .prose[data-size="sm"] {
+    font-size: var(--symphony-text-sm);
+    max-inline-size: 55ch;
   }
 
-  .symphony-text--base {
-    font-size: var(--symphony-font-size-base);
+  .prose[data-size="lg"] {
+    font-size: var(--symphony-text-lg);
+    max-inline-size: 75ch;
   }
 
-  .symphony-text--lg {
-    font-size: var(--symphony-font-size-lg);
+  /* Prose width variations */
+  .prose[data-width="narrow"] {
+    max-inline-size: 50ch;
   }
 
-  .symphony-text--xl {
-    font-size: var(--symphony-font-size-xl);
+  .prose[data-width="wide"] {
+    max-inline-size: 80ch;
   }
 
-  .symphony-text--2xl {
-    font-size: var(--symphony-font-size-2xl);
+  .prose[data-width="full"] {
+    max-inline-size: none;
+  }
+}
+
+/* =============================================
+   TEXT UTILITIES
+   Short, unprefixed utility classes
+   ============================================= */
+
+@layer symphony.utilities {
+
+  /* Font sizes */
+  .text-xs {
+    font-size: var(--symphony-text-xs);
   }
 
-  /* Font weight utilities */
-  .symphony-text--light {
-    font-weight: var(--symphony-font-weight-light);
+  .text-sm {
+    font-size: var(--symphony-text-sm);
   }
 
-  .symphony-text--normal {
-    font-weight: var(--symphony-font-weight-normal);
+  .text-base {
+    font-size: var(--symphony-text-base);
   }
 
-  .symphony-text--medium {
-    font-weight: var(--symphony-font-weight-medium);
+  .text-lg {
+    font-size: var(--symphony-text-lg);
   }
 
-  .symphony-text--semibold {
-    font-weight: var(--symphony-font-weight-semibold);
+  .text-xl {
+    font-size: var(--symphony-text-xl);
   }
 
-  .symphony-text--bold {
-    font-weight: var(--symphony-font-weight-bold);
+  .text-2xl {
+    font-size: var(--symphony-text-2xl);
   }
 
-  /* Font family utilities */
-  .symphony-text--sans {
+  .text-3xl {
+    font-size: var(--symphony-text-3xl);
+  }
+
+  .text-4xl {
+    font-size: var(--symphony-text-4xl);
+  }
+
+  /* Font weights */
+  .font-light {
+    font-weight: var(--symphony-font-light);
+  }
+
+  .font-normal {
+    font-weight: var(--symphony-font-normal);
+  }
+
+  .font-medium {
+    font-weight: var(--symphony-font-medium);
+  }
+
+  .font-semibold {
+    font-weight: var(--symphony-font-semibold);
+  }
+
+  .font-bold {
+    font-weight: var(--symphony-font-bold);
+  }
+
+  /* Font families */
+  .font-sans {
     font-family: var(--symphony-font-sans);
   }
 
-  .symphony-text--serif {
+  .font-serif {
     font-family: var(--symphony-font-serif);
   }
 
-  .symphony-text--mono {
+  .font-mono {
     font-family: var(--symphony-font-mono);
   }
 
   /* Text alignment */
-  .symphony-text--left {
-    text-align: left;
+  .text-start {
+    text-align: start;
   }
 
-  .symphony-text--center {
+  .text-center {
     text-align: center;
   }
 
-  .symphony-text--right {
-    text-align: right;
+  .text-end {
+    text-align: end;
   }
 
-  .symphony-text--justify {
+  .text-justify {
     text-align: justify;
   }
 
-  /* Text color utilities */
-  .symphony-text--primary {
+  /* Text colors */
+  .text-primary {
     color: var(--symphony-primary);
   }
 
-  .symphony-text--secondary {
+  .text-secondary {
     color: var(--symphony-secondary);
   }
 
-  .symphony-text--success {
+  .text-success {
     color: var(--symphony-success);
   }
 
-  .symphony-text--warning {
+  .text-warning {
     color: var(--symphony-warning);
   }
 
-  .symphony-text--danger {
+  .text-danger {
     color: var(--symphony-danger);
   }
 
-  .symphony-text--muted {
+  .text-muted {
     color: var(--symphony-text-muted);
   }
 
   /* Text decoration */
-  .symphony-text--underline {
+  .underline {
     text-decoration: underline;
   }
 
-  .symphony-text--line-through {
+  .line-through {
     text-decoration: line-through;
   }
 
-  .symphony-text--no-underline {
+  .no-underline {
     text-decoration: none;
   }
 
   /* Text transform */
-  .symphony-text--uppercase {
+  .uppercase {
     text-transform: uppercase;
   }
 
-  .symphony-text--lowercase {
+  .lowercase {
     text-transform: lowercase;
   }
 
-  .symphony-text--capitalize {
+  .capitalize {
     text-transform: capitalize;
   }
 
-  /* Line height utilities */
-  .symphony-text--leading-tight {
-    line-height: var(--symphony-line-height-tight);
+  .normal-case {
+    text-transform: none;
   }
 
-  .symphony-text--leading-normal {
-    line-height: var(--symphony-line-height-normal);
+  /* Line height */
+  .leading-none {
+    line-height: 1;
   }
 
-  .symphony-text--leading-relaxed {
-    line-height: var(--symphony-line-height-relaxed);
+  .leading-tight {
+    line-height: var(--symphony-leading-tight);
   }
 
-  .symphony-text--leading-loose {
-    line-height: var(--symphony-line-height-loose);
+  .leading-normal {
+    line-height: var(--symphony-leading-normal);
+  }
+
+  .leading-relaxed {
+    line-height: var(--symphony-leading-relaxed);
+  }
+
+  .leading-loose {
+    line-height: var(--symphony-leading-loose);
   }
 
   /* Letter spacing */
-  .symphony-text--tracking-tight {
+  .tracking-tight {
     letter-spacing: -0.05em;
   }
 
-  .symphony-text--tracking-normal {
+  .tracking-normal {
     letter-spacing: 0;
   }
 
-  .symphony-text--tracking-wide {
+  .tracking-wide {
+    letter-spacing: 0.025em;
+  }
+
+  .tracking-wider {
     letter-spacing: 0.05em;
   }
 
+  /* Text wrapping */
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .text-pretty {
+    text-wrap: pretty;
+  }
+
+  .text-nowrap {
+    white-space: nowrap;
+  }
+
   /* Text truncation */
-  .symphony-text--truncate {
+  .truncate {
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
   }
 
-  .symphony-text--line-clamp-2 {
+  .line-clamp-1 {
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .line-clamp-2 {
     display: -webkit-box;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
     overflow: hidden;
   }
 
-  .symphony-text--line-clamp-3 {
+  .line-clamp-3 {
     display: -webkit-box;
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
     overflow: hidden;
   }
 
-  /* Prose - optimized reading experience */
-  .symphony-prose {
-    max-width: 65ch;
-    color: var(--symphony-text);
+  .line-clamp-none {
+    -webkit-line-clamp: unset;
   }
 
-  .symphony-prose > * + * {
-    margin-top: var(--symphony-spacing-4);
+  /* Word break */
+  .break-normal {
+    word-break: normal;
+    overflow-wrap: normal;
   }
 
-  .symphony-prose h1,
-  .symphony-prose h2,
-  .symphony-prose h3,
-  .symphony-prose h4,
-  .symphony-prose h5,
-  .symphony-prose h6 {
-    margin-top: var(--symphony-spacing-8);
-    margin-bottom: var(--symphony-spacing-4);
+  .break-words {
+    overflow-wrap: break-word;
   }
 
-  .symphony-prose h1:first-child,
-  .symphony-prose h2:first-child,
-  .symphony-prose h3:first-child {
-    margin-top: 0;
-  }
-
-  .symphony-prose a {
-    color: var(--symphony-primary);
-    text-decoration: underline;
-  }
-
-  .symphony-prose a:hover {
-    color: var(--symphony-primary-hover);
-  }
-
-  .symphony-prose ul,
-  .symphony-prose ol {
-    padding-left: var(--symphony-spacing-6);
-  }
-
-  .symphony-prose li {
-    margin-top: var(--symphony-spacing-2);
-  }
-
-  .symphony-prose code {
-    font-size: 0.875em;
-    background-color: var(--symphony-neutral-100);
-    padding: 0.125em 0.375em;
-    border-radius: var(--symphony-radius-sm);
-  }
-
-  .symphony-prose pre {
-    background-color: var(--symphony-neutral-100);
-    padding: var(--symphony-spacing-4);
-    border-radius: var(--symphony-radius-base);
-    overflow-x: auto;
-  }
-
-  .symphony-prose pre code {
-    background-color: transparent;
-    padding: 0;
-  }
-
-  .symphony-prose blockquote {
-    border-left: 4px solid var(--symphony-primary);
-    padding-left: var(--symphony-spacing-4);
-    font-style: italic;
-    color: var(--symphony-text-muted);
+  .break-all {
+    word-break: break-all;
   }
 }

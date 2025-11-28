@@ -1,50 +1,137 @@
 /**
- * Symphony CSS Framework v0.1
- * Container - Responsive container system
- * Provides centered, max-width containers with responsive padding
+ * Symphony CSS Framework v2.0
+ * Container - Fluid Container System with Data Attribute Variants
+ * 
+ * Philosophy:
+ * - Content-based widths (ch units for readable text)
+ * - Fluid padding with clamp()
+ * - NO fixed pixel widths
+ * - Container queries enabled by default
+ * - Data attributes for variants (not BEM modifiers)
+ * 
+ * Usage:
+ *   <div class="container">...</div>
+ *   <div class="container" data-size="narrow">...</div>
+ *   <div class="container" data-size="wide">...</div>
+ *   <div class="container" data-size="full">...</div>
  */
 
-@layer layout {
-  /* Symphony Container - 1200px Max Width */
-  .symphony-container,
+@layer symphony.layout {
+  /* =============================================
+     FLUID CONTAINER
+     Uses min() for responsive behavior without media queries
+     ============================================= */
+
   .container {
-    width: 100%;
-    max-width: 1200px;
-    margin-left: auto;
-    margin-right: auto;
-    padding-left: var(--symphony-spacing-4);
-    padding-right: var(--symphony-spacing-4);
+    /* Private custom properties (underscore prefix = internal) */
+    --_container-max-width: var(--container-max-width, 80ch);
+    --_container-padding: var(--container-padding, var(--symphony-space-lg));
+
+    /* Core layout */
+    width: min(100% - (var(--_container-padding) * 2), var(--_container-max-width));
+    margin-inline: auto;
+
+    /* Enable container queries on all containers */
     container-type: inline-size;
-    container-name: symphony;
+    container-name: container;
   }
 
-  /* Fluid container - no max-width */
+  /* =============================================
+     SIZE VARIANTS (Data Attributes)
+     More semantic than BEM: data-size="narrow"
+     ============================================= */
+
+  /* Narrow - Blog posts, articles, reading content */
+  .container[data-size="narrow"] {
+    --container-max-width: 60ch;
+  }
+
+  /* Default (80ch) - Documentation, general content */
+  /* Already set in base .container */
+
+  /* Wide - Dashboards, galleries, data-heavy pages */
+  .container[data-size="wide"] {
+    --container-max-width: 100ch;
+  }
+
+  /* Full - Edge-to-edge with padding */
+  .container[data-size="full"] {
+    --container-max-width: 100%;
+  }
+
+  /* Prose - Optimized for reading (slightly narrower) */
+  .container[data-size="prose"] {
+    --container-max-width: 65ch;
+  }
+
+  /* =============================================
+     PADDING VARIANTS
+     ============================================= */
+
+  .container[data-padding="none"] {
+    --container-padding: 0;
+  }
+
+  .container[data-padding="sm"] {
+    --container-padding: var(--symphony-space-sm);
+  }
+
+  .container[data-padding="lg"] {
+    --container-padding: var(--symphony-space-xl);
+  }
+
+  /* =============================================
+     SECTION WRAPPER
+     Vertical rhythm for page sections
+     ============================================= */
+
+  section,
+  .section {
+    padding-block: var(--section-padding, var(--symphony-space-fluid-xl));
+  }
+
+  /* Section size variants */
+  section[data-spacing="sm"],
+  .section[data-spacing="sm"] {
+    --section-padding: var(--symphony-space-lg);
+  }
+
+  section[data-spacing="lg"],
+  .section[data-spacing="lg"] {
+    --section-padding: var(--symphony-space-4xl);
+  }
+
+  section[data-spacing="none"],
+  .section[data-spacing="none"] {
+    --section-padding: 0;
+  }
+
+  /* =============================================
+     LEGACY CLASS SUPPORT (Backward Compatibility)
+     Keeping old classes working while deprecating them
+     ============================================= */
+
+  .symphony-container {
+    --_container-max-width: var(--container-max-width, 80ch);
+    --_container-padding: var(--container-padding, var(--symphony-space-lg));
+    width: min(100% - (var(--_container-padding) * 2), var(--_container-max-width));
+    margin-inline: auto;
+    container-type: inline-size;
+  }
+
   .symphony-container--fluid {
-    max-width: none;
-  }
-  
-  /* Responsive padding on smaller screens */
-  @media (max-width: 1200px) {
-    .symphony-container,
-    .container {
-      padding-left: var(--symphony-spacing-6);
-      padding-right: var(--symphony-spacing-6);
-    }
+    --container-max-width: 100%;
   }
 
-  /* Section wrapper with vertical padding */
   .symphony-section {
-    padding-top: var(--symphony-section-padding-y);
-    padding-bottom: var(--symphony-section-padding-y);
+    padding-block: var(--symphony-space-fluid-xl);
   }
 
   .symphony-section--sm {
-    padding-top: var(--symphony-spacing-8);
-    padding-bottom: var(--symphony-spacing-8);
+    padding-block: var(--symphony-space-lg);
   }
 
   .symphony-section--lg {
-    padding-top: var(--symphony-spacing-24);
-    padding-bottom: var(--symphony-spacing-24);
+    padding-block: var(--symphony-space-4xl);
   }
 }

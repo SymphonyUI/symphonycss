@@ -1,78 +1,110 @@
 /**
- * Symphony CSS Framework v0.1 - Model Anthology
- * A modular, semantic-first CSS framework with modern CSS features
+ * Symphony CSS Framework v2.0 - Semantic-First, AI-Ready
+ * A modern, semantic-first CSS framework for the AI generation era
  * 
- * Features:
- * - CSS Cascade Layers for predictable specificity
- * - CSS Custom Properties (@property) for typed, animatable variables
- * - Framework-agnostic (React, Vue, Svelte compatible)
- * - BEM naming convention for components
- * - Semantic-first approach with minimal classes
+ * ┌─────────────────────────────────────────────────────────────┐
+ * │                    KEY FEATURES                              │
+ * ├─────────────────────────────────────────────────────────────┤
+ * │ ✓ Semantic-First: Zero-class baseline styling               │
+ * │ ✓ AI-Friendly: Minimal classes, data-attributes for variants│
+ * │ ✓ Modern CSS: Container Queries, Nesting, Cascade Layers    │
+ * │ ✓ OKLCH Colors: P3 gamut, perceptually uniform              │
+ * │ ✓ Framework-Agnostic: React, Vue, Svelte, Astro, Angular    │
+ * │ ✓ Accessible: WCAG 2.2 AA compliant, keyboard navigable     │
+ * │ ✓ Lightweight: <45KB minified                               │
+ * └─────────────────────────────────────────────────────────────┘
  * 
- * Architecture:
- * @layer reset, base, layout, components, utilities;
+ * Architecture (CUBE CSS Methodology):
+ * @layer symphony.reset    → Browser normalization (:where() low specificity)
+ * @layer symphony.base     → Design tokens (--symphony-* custom properties)
+ * @layer symphony.semantic → Semantic HTML styling (zero classes needed)
+ * @layer symphony.layout   → Layout primitives (container, grid, stack)
+ * @layer symphony.components → UI components (data-* variants)
+ * @layer symphony.utilities  → Utility classes (short, unprefixed)
+ * @layer symphony.themes     → Theme overrides (dark mode, custom themes)
  * 
- * @author Symphony CSS Team
+ * Naming Conventions:
+ * - CSS Custom Properties: --symphony-* (prefixed)
+ * - Class Names: .container, .card, .button (unprefixed, short)
+ * - Variants: data-variant="primary", data-size="lg"
+ * 
+ * @author SymphonyUI Team
  * @license MIT
- * @version 0.1.0
+ * @version 2.0.0
+ * @see https://github.com/SymphonyUI/symphonycss
  */
 
-/* Define cascade layer order */
-@layer reset, base, layout, components, utilities;
+/* ============================================
+   CASCADE LAYER ORDER (Critical for specificity)
+   Lower layers can be easily overridden by higher layers
+   ============================================ */
+@layer symphony.reset, symphony.base, symphony.semantic, symphony.layout, symphony.components, symphony.utilities, symphony.themes;
 
 /* ============================================
    CORE - Foundation styles
    ============================================ */
 
-/* Fonts - Google Fonts integration (must be first) */
+/* Fonts - Google Fonts integration (must be first, outside layers) */
 @import './core/_fonts.css';
 
-/* Reset - Modern CSS reset for consistency */
+/* Reset - Modern CSS reset with :where() for low specificity */
 @import './core/_reset.css';
 
-/* Variables - CSS Custom Properties with @property */
+/* Variables - Design tokens with OKLCH colors and @property */
 @import './core/_variables.css';
 
-/* Tokens - Semantic design token mappings */
+/* Tokens - Component-specific semantic token mappings */
 @import './core/_tokens.css';
 
-/* Base - Semantic HTML element styles */
+/* Base - Semantic HTML element styles (zero classes needed) */
 @import './core/_base.css';
 
 /* ============================================
-   LAYOUT - Layout systems
+   LAYOUT - Layout primitives
    ============================================ */
 
-/* Container - Responsive container system */
+/* Container - Fluid container with data-size variants */
 @import './layout/_container.css';
 
-/* Grid - Modern CSS Grid layout */
+/* Grid - Intrinsic responsive grid (NO 12-column!) */
 @import './layout/_grid.css';
 
-/* Flexbox - Flexible box layout utilities */
+/* Flexbox - Composition utilities (stack, cluster, sidebar) */
 @import './layout/_flexbox.css';
 
 /* ============================================
-   COMPONENTS - UI components
+   COMPONENTS - UI components with data-* variants
    ============================================ */
 
-/* Typography - Text styling and utilities */
+/* Typography - Text styling and prose */
 @import './components/_typography.css';
 
-/* Buttons - Button component styles */
+/* Buttons - Semantic button with data-variant */
 @import './components/_buttons.css';
 
-/* Forms - Form input and control styles */
+/* Forms - Fully styled form elements (minimal classes) */
 @import './components/_forms.css';
 
-/* Cards - Card component styles */
+/* Cards - Article/section-based cards */
 @import './components/_cards.css';
 
+/* Dialog - Native dialog element support */
+@import './components/_dialog.css';
+
+/* Navigation - Semantic nav with nested lists */
+@import './components/_navigation.css';
+
+/* Accordion - Details/summary native elements */
+@import './components/_accordion.css';
+
+/* Tables - Responsive semantic tables */
+@import './components/_tables.css';
+
 /* ============================================
-   UTILITIES - Utility classes
+   UTILITIES - Short, unprefixed utility classes
    ============================================ */
 
-/* Spacing - Margin and padding utilities */
+/* Spacing - Logical property spacing (margin-inline, padding-block) */
 @import './utilities/_spacing.css';
 
 /* Helpers - Common utility classes */

@@ -1,30 +1,52 @@
 {
   "name": "@symphonyui/symphonycss",
-  "version": "0.1.4",
-  "description": "Symphony v0.1 Model Anthology - A modular, semantic-first CSS framework with modern CSS features",
+  "version": "0.2.1",
+  "description": "Symphony CSS 2.0 - A semantic-first, AI-ready CSS framework with OKLCH colors, container queries, cascade layers, and zero-class baseline styling",
   "main": "dist/symphony.css",
   "style": "dist/symphony.css",
+  "exports": {
+    ".": "./dist/symphony.css",
+    "./symphony.css": "./dist/symphony.css",
+    "./symphony.min.css": "./dist/symphony.min.css",
+    "./core/*": "./src/core/*",
+    "./components/*": "./src/components/*",
+    "./layout/*": "./src/layout/*",
+    "./utilities/*": "./src/utilities/*"
+  },
   "scripts": {
-    "build": "npm run build:bundle",
-    "build:bundle": "cat src/core/_fonts.css src/core/_reset.css src/core/_variables.css src/core/_tokens.css src/core/_base.css src/layout/_container.css src/layout/_grid.css src/layout/_flexbox.css src/components/_typography.css src/components/_buttons.css src/components/_forms.css src/components/_cards.css src/utilities/_spacing.css src/utilities/_helpers.css > dist/symphony.css",
-    "build:minify": "npx lightningcss --minify --targets '>= 0.25%' dist/symphony.css -o dist/symphony.min.css 2>&1 | grep -v 'webkit' || true",
-    "build:prod": "npm run build:bundle && npm run build:minify",
+    "build": "npm run build:bundle && npm run build:minify",
+    "build:bundle": "cat src/symphony.css src/core/_fonts.css src/core/_reset.css src/core/_variables.css src/core/_tokens.css src/core/_base.css src/layout/_container.css src/layout/_grid.css src/layout/_flexbox.css src/components/_typography.css src/components/_buttons.css src/components/_forms.css src/components/_cards.css src/components/_dialog.css src/components/_navigation.css src/components/_accordion.css src/components/_tables.css src/utilities/_spacing.css src/utilities/_helpers.css > dist/symphony.css",
+    "build:minify": "npx lightningcss --minify dist/symphony.css -o dist/symphony.min.css",
+    "size": "echo 'Minified:' && wc -c < dist/symphony.min.css && echo 'Gzipped:' && gzip -9 -c dist/symphony.min.css | wc -c",
     "watch": "npm run build:bundle",
-    "dev": "npm run watch"
+    "dev": "npm run watch",
+    "lint": "npx stylelint 'src/**/*.css'",
+    "format": "npx prettier --write 'src/**/*.css'"
   },
   "keywords": [
     "css",
-    "framework",
-    "semantic",
-    "lightweight",
-    "modular",
-    "dark-theme",
-    "grid-system",
-    "typography",
+    "css-framework",
+    "semantic-html",
+    "semantic-first",
+    "ai-ready",
+    "ai-friendly",
+    "oklch",
+    "container-queries",
     "cascade-layers",
+    "css-nesting",
     "custom-properties",
-    "bem",
-    "responsive"
+    "design-system",
+    "lightweight",
+    "responsive",
+    "dark-mode",
+    "wcag",
+    "accessibility",
+    "cube-css",
+    "intrinsic-design",
+    "classless",
+    "pico",
+    "tailwind-alternative",
+    "bootstrap-alternative"
   ],
   "author": "SymphonyUI",
   "license": "MIT",
@@ -35,14 +57,29 @@
   "bugs": {
     "url": "https://github.com/SymphonyUI/symphonycss/issues"
   },
-  "homepage": "https://github.com/SymphonyUI/symphonycss#readme",
+  "homepage": "https://symphonycss.com",
   "files": [
     "dist/",
     "src/",
+    "docs/AI_INTEGRATION.md",
+    "docs/symphony-schema.json",
     "README.md",
-    "LICENSE"
+    "LICENSE",
+    "CHANGELOG.md"
   ],
   "devDependencies": {
     "lightningcss-cli": "^1.24.0"
-  }
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "sideEffects": [
+    "**/*.css"
+  ],
+  "browserslist": [
+    "> 0.5%",
+    "last 2 versions",
+    "not dead",
+    "not op_mini all"
+  ]
 }

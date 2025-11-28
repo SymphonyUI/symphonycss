@@ -1,11 +1,438 @@
 /**
- * Symphony CSS Framework v0.1
- * Flexbox - Flexible box layout utilities
- * Modern flexbox utilities with BEM naming
+ * Symphony CSS Framework v2.0
+ * Flexbox Compositions - CUBE CSS Layout Primitives
+ * 
+ * Philosophy:
+ * - Composition over utility (CUBE CSS)
+ * - Semantic layout patterns: Stack, Cluster, Sidebar, Switcher
+ * - Short, unprefixed class names
+ * - Data attributes for variants
+ * - Intrinsic sizing where possible
+ * 
+ * Layout Primitives:
+ * - .stack    → Vertical flow with consistent spacing
+ * - .cluster  → Horizontal flow that wraps, with consistent gaps
+ * - .sidebar  → Content with fixed-width sidebar
+ * - .switcher → Horizontal until too narrow, then stacks
+ * - .center   → Centered content with max-width
+ * - .cover    → Full-height centered content
+ * - .flex     → Generic flexbox with data-attributes
  */
 
-@layer layout {
-  /* Base flex container */
+@layer symphony.layout {
+  /* =============================================
+     STACK (Vertical Flow)
+     Consistent vertical spacing between children
+     Every Layout: https://every-layout.dev/layouts/stack/
+     ============================================= */
+
+  .stack {
+    display: flex;
+    flex-direction: column;
+    gap: var(--stack-gap, var(--symphony-space-md));
+
+    /* Remove default margins from children for predictable spacing */
+    &>* {
+      margin-block: 0;
+    }
+  }
+
+  /* Stack gap variants */
+  .stack[data-gap="xs"] {
+    --stack-gap: var(--symphony-space-xs);
+  }
+
+  .stack[data-gap="sm"] {
+    --stack-gap: var(--symphony-space-sm);
+  }
+
+  .stack[data-gap="lg"] {
+    --stack-gap: var(--symphony-space-lg);
+  }
+
+  .stack[data-gap="xl"] {
+    --stack-gap: var(--symphony-space-xl);
+  }
+
+  .stack[data-gap="none"] {
+    --stack-gap: 0;
+  }
+
+  /* Recursive stack - applies to all descendants */
+  .stack[data-recursive]>* {
+    display: flex;
+    flex-direction: column;
+    gap: inherit;
+  }
+
+  /* =============================================
+     CLUSTER (Horizontal Wrap)
+     Horizontal list that wraps with consistent gaps
+     ============================================= */
+
+  .cluster {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--cluster-gap, var(--symphony-space-md));
+    align-items: var(--cluster-align, center);
+  }
+
+  /* Cluster alignment */
+  .cluster[data-align="start"] {
+    --cluster-align: flex-start;
+  }
+
+  .cluster[data-align="end"] {
+    --cluster-align: flex-end;
+  }
+
+  .cluster[data-align="stretch"] {
+    --cluster-align: stretch;
+  }
+
+  .cluster[data-align="baseline"] {
+    --cluster-align: baseline;
+  }
+
+  /* Cluster justify */
+  .cluster[data-justify="start"] {
+    justify-content: flex-start;
+  }
+
+  .cluster[data-justify="end"] {
+    justify-content: flex-end;
+  }
+
+  .cluster[data-justify="center"] {
+    justify-content: center;
+  }
+
+  .cluster[data-justify="between"] {
+    justify-content: space-between;
+  }
+
+  .cluster[data-justify="around"] {
+    justify-content: space-around;
+  }
+
+  .cluster[data-justify="evenly"] {
+    justify-content: space-evenly;
+  }
+
+  /* Cluster gap variants */
+  .cluster[data-gap="xs"] {
+    --cluster-gap: var(--symphony-space-xs);
+  }
+
+  .cluster[data-gap="sm"] {
+    --cluster-gap: var(--symphony-space-sm);
+  }
+
+  .cluster[data-gap="lg"] {
+    --cluster-gap: var(--symphony-space-lg);
+  }
+
+  .cluster[data-gap="xl"] {
+    --cluster-gap: var(--symphony-space-xl);
+  }
+
+  .cluster[data-gap="none"] {
+    --cluster-gap: 0;
+  }
+
+  /* =============================================
+     SIDEBAR (Side Element + Main Content)
+     Fixed-width sidebar with flexible main content
+     ============================================= */
+
+  .sidebar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--sidebar-gap, var(--symphony-space-lg));
+
+    /* Sidebar is first child */
+    &> :first-child {
+      flex-basis: var(--sidebar-width, 20rem);
+      flex-grow: 1;
+    }
+
+    /* Content takes remaining space */
+    &> :last-child {
+      flex-basis: 0;
+      flex-grow: 999;
+      min-inline-size: var(--sidebar-content-min, 50%);
+    }
+  }
+
+  /* Sidebar on right */
+  .sidebar[data-side="right"] {
+    &> :first-child {
+      flex-basis: 0;
+      flex-grow: 999;
+      min-inline-size: var(--sidebar-content-min, 50%);
+    }
+
+    &> :last-child {
+      flex-basis: var(--sidebar-width, 20rem);
+      flex-grow: 1;
+    }
+  }
+
+  /* Sidebar width variants */
+  .sidebar[data-width="narrow"] {
+    --sidebar-width: 15rem;
+  }
+
+  .sidebar[data-width="wide"] {
+    --sidebar-width: 25rem;
+  }
+
+  /* =============================================
+     SWITCHER (Horizontal → Vertical)
+     Side-by-side until threshold, then stacks
+     ============================================= */
+
+  .switcher {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--switcher-gap, var(--symphony-space-lg));
+
+    /* All children try to be equal width */
+    &>* {
+      flex-grow: 1;
+      flex-basis: calc((var(--switcher-threshold, 30rem) - 100%) * 999);
+    }
+  }
+
+  /* When container is narrower than threshold, items stack */
+  .switcher[data-threshold="narrow"] {
+    --switcher-threshold: 20rem;
+  }
+
+  .switcher[data-threshold="wide"] {
+    --switcher-threshold: 40rem;
+  }
+
+  /* Limit number of items per row */
+  .switcher[data-limit="2"]> :nth-child(n+3) {
+    flex-basis: 100%;
+  }
+
+  .switcher[data-limit="3"]> :nth-child(n+4) {
+    flex-basis: 100%;
+  }
+
+  .switcher[data-limit="4"]> :nth-child(n+5) {
+    flex-basis: 100%;
+  }
+
+  /* =============================================
+     CENTER (Centered Content)
+     Horizontally centered with max-width
+     ============================================= */
+
+  .center {
+    box-sizing: content-box;
+    max-inline-size: var(--center-max-width, var(--symphony-width-prose));
+    margin-inline: auto;
+    padding-inline: var(--center-padding, var(--symphony-space-md));
+  }
+
+  /* Center text alignment */
+  .center[data-text] {
+    text-align: center;
+  }
+
+  /* Intrinsic centering (shrink-wraps content) */
+  .center[data-intrinsic] {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  /* =============================================
+     COVER (Full Height Centered)
+     Vertically centered content with optional header/footer
+     ============================================= */
+
+  .cover {
+    display: flex;
+    flex-direction: column;
+    min-block-size: var(--cover-height, 100vh);
+    padding: var(--cover-padding, var(--symphony-space-md));
+
+    /* Header and footer stay at edges */
+    &> :first-child:not(.cover-center) {
+      margin-block-end: auto;
+    }
+
+    &> :last-child:not(.cover-center) {
+      margin-block-start: auto;
+    }
+
+    /* Center element is vertically centered */
+    &>.cover-center {
+      margin-block: auto;
+    }
+  }
+
+  /* =============================================
+     GENERIC FLEX (With Data Attributes)
+     When you need more control
+     ============================================= */
+
+  .flex {
+    display: flex;
+    gap: var(--flex-gap, var(--symphony-space-md));
+  }
+
+  /* Direction */
+  .flex[data-direction="column"] {
+    flex-direction: column;
+  }
+
+  .flex[data-direction="row-reverse"] {
+    flex-direction: row-reverse;
+  }
+
+  .flex[data-direction="column-reverse"] {
+    flex-direction: column-reverse;
+  }
+
+  /* Wrap */
+  .flex[data-wrap] {
+    flex-wrap: wrap;
+  }
+
+  .flex[data-wrap="reverse"] {
+    flex-wrap: wrap-reverse;
+  }
+
+  .flex[data-nowrap] {
+    flex-wrap: nowrap;
+  }
+
+  /* Justify */
+  .flex[data-justify="start"] {
+    justify-content: flex-start;
+  }
+
+  .flex[data-justify="end"] {
+    justify-content: flex-end;
+  }
+
+  .flex[data-justify="center"] {
+    justify-content: center;
+  }
+
+  .flex[data-justify="between"] {
+    justify-content: space-between;
+  }
+
+  .flex[data-justify="around"] {
+    justify-content: space-around;
+  }
+
+  .flex[data-justify="evenly"] {
+    justify-content: space-evenly;
+  }
+
+  /* Align */
+  .flex[data-align="start"] {
+    align-items: flex-start;
+  }
+
+  .flex[data-align="end"] {
+    align-items: flex-end;
+  }
+
+  .flex[data-align="center"] {
+    align-items: center;
+  }
+
+  .flex[data-align="stretch"] {
+    align-items: stretch;
+  }
+
+  .flex[data-align="baseline"] {
+    align-items: baseline;
+  }
+
+  /* Gap variants */
+  .flex[data-gap="none"] {
+    --flex-gap: 0;
+  }
+
+  .flex[data-gap="xs"] {
+    --flex-gap: var(--symphony-space-xs);
+  }
+
+  .flex[data-gap="sm"] {
+    --flex-gap: var(--symphony-space-sm);
+  }
+
+  .flex[data-gap="lg"] {
+    --flex-gap: var(--symphony-space-lg);
+  }
+
+  .flex[data-gap="xl"] {
+    --flex-gap: var(--symphony-space-xl);
+  }
+
+  /* =============================================
+     FLEX ITEM UTILITIES
+     ============================================= */
+
+  [data-grow] {
+    flex-grow: 1;
+  }
+
+  [data-grow="0"] {
+    flex-grow: 0;
+  }
+
+  [data-shrink] {
+    flex-shrink: 1;
+  }
+
+  [data-shrink="0"] {
+    flex-shrink: 0;
+  }
+
+  [data-basis="auto"] {
+    flex-basis: auto;
+  }
+
+  [data-basis="0"] {
+    flex-basis: 0;
+  }
+
+  [data-basis="full"] {
+    flex-basis: 100%;
+  }
+
+  /* Self alignment */
+  [data-self="start"] {
+    align-self: flex-start;
+  }
+
+  [data-self="end"] {
+    align-self: flex-end;
+  }
+
+  [data-self="center"] {
+    align-self: center;
+  }
+
+  [data-self="stretch"] {
+    align-self: stretch;
+  }
+
+  /* =============================================
+     LEGACY SUPPORT (Backward Compatibility)
+     These classes still work but are deprecated
+     ============================================= */
+
   .symphony-flex {
     display: flex;
   }
@@ -14,43 +441,16 @@
     display: inline-flex;
   }
 
-  /* Flex direction */
   .symphony-flex--row {
     flex-direction: row;
-  }
-
-  .symphony-flex--row-reverse {
-    flex-direction: row-reverse;
   }
 
   .symphony-flex--col {
     flex-direction: column;
   }
 
-  .symphony-flex--col-reverse {
-    flex-direction: column-reverse;
-  }
-
-  /* Flex wrap */
   .symphony-flex--wrap {
     flex-wrap: wrap;
-  }
-
-  .symphony-flex--wrap-reverse {
-    flex-wrap: wrap-reverse;
-  }
-
-  .symphony-flex--nowrap {
-    flex-wrap: nowrap;
-  }
-
-  /* Justify content (main axis) */
-  .symphony-flex--justify-start {
-    justify-content: flex-start;
-  }
-
-  .symphony-flex--justify-end {
-    justify-content: flex-end;
   }
 
   .symphony-flex--justify-center {
@@ -61,197 +461,11 @@
     justify-content: space-between;
   }
 
-  .symphony-flex--justify-around {
-    justify-content: space-around;
-  }
-
-  .symphony-flex--justify-evenly {
-    justify-content: space-evenly;
-  }
-
-  /* Align items (cross axis) */
-  .symphony-flex--align-start {
-    align-items: flex-start;
-  }
-
-  .symphony-flex--align-end {
-    align-items: flex-end;
-  }
-
   .symphony-flex--align-center {
     align-items: center;
   }
 
-  .symphony-flex--align-baseline {
-    align-items: baseline;
-  }
-
-  .symphony-flex--align-stretch {
-    align-items: stretch;
-  }
-
-  /* Align content (multi-line) */
-  .symphony-flex--content-start {
-    align-content: flex-start;
-  }
-
-  .symphony-flex--content-end {
-    align-content: flex-end;
-  }
-
-  .symphony-flex--content-center {
-    align-content: center;
-  }
-
-  .symphony-flex--content-between {
-    align-content: space-between;
-  }
-
-  .symphony-flex--content-around {
-    align-content: space-around;
-  }
-
-  .symphony-flex--content-stretch {
-    align-content: stretch;
-  }
-
-  /* Gap utilities */
-  .symphony-flex--gap-0 {
-    gap: 0;
-  }
-
-  .symphony-flex--gap-1 {
-    gap: var(--symphony-spacing-1);
-  }
-
-  .symphony-flex--gap-2 {
-    gap: var(--symphony-spacing-2);
-  }
-
-  .symphony-flex--gap-3 {
-    gap: var(--symphony-spacing-3);
-  }
-
   .symphony-flex--gap-4 {
-    gap: var(--symphony-spacing-4);
-  }
-
-  .symphony-flex--gap-6 {
-    gap: var(--symphony-spacing-6);
-  }
-
-  .symphony-flex--gap-8 {
-    gap: var(--symphony-spacing-8);
-  }
-
-  /* Flex item utilities */
-  .symphony-flex__item--grow-0 {
-    flex-grow: 0;
-  }
-
-  .symphony-flex__item--grow-1 {
-    flex-grow: 1;
-  }
-
-  .symphony-flex__item--shrink-0 {
-    flex-shrink: 0;
-  }
-
-  .symphony-flex__item--shrink-1 {
-    flex-shrink: 1;
-  }
-
-  .symphony-flex__item--basis-auto {
-    flex-basis: auto;
-  }
-
-  .symphony-flex__item--basis-0 {
-    flex-basis: 0;
-  }
-
-  .symphony-flex__item--basis-full {
-    flex-basis: 100%;
-  }
-
-  /* Flex shorthand */
-  .symphony-flex__item--1 {
-    flex: 1 1 0%;
-  }
-
-  .symphony-flex__item--auto {
-    flex: 1 1 auto;
-  }
-
-  .symphony-flex__item--initial {
-    flex: 0 1 auto;
-  }
-
-  .symphony-flex__item--none {
-    flex: none;
-  }
-
-  /* Align self */
-  .symphony-flex__item--self-auto {
-    align-self: auto;
-  }
-
-  .symphony-flex__item--self-start {
-    align-self: flex-start;
-  }
-
-  .symphony-flex__item--self-end {
-    align-self: flex-end;
-  }
-
-  .symphony-flex__item--self-center {
-    align-self: center;
-  }
-
-  .symphony-flex__item--self-stretch {
-    align-self: stretch;
-  }
-
-  /* Order utilities */
-  .symphony-flex__item--order-first {
-    order: -9999;
-  }
-
-  .symphony-flex__item--order-last {
-    order: 9999;
-  }
-
-  .symphony-flex__item--order-none {
-    order: 0;
-  }
-
-  /* Responsive flex direction */
-  @media (min-width: 640px) {
-    .symphony-flex--sm-row {
-      flex-direction: row;
-    }
-
-    .symphony-flex--sm-col {
-      flex-direction: column;
-    }
-  }
-
-  @media (min-width: 768px) {
-    .symphony-flex--md-row {
-      flex-direction: row;
-    }
-
-    .symphony-flex--md-col {
-      flex-direction: column;
-    }
-  }
-
-  @media (min-width: 1024px) {
-    .symphony-flex--lg-row {
-      flex-direction: row;
-    }
-
-    .symphony-flex--lg-col {
-      flex-direction: column;
-    }
+    gap: var(--symphony-space-md);
   }
 }
