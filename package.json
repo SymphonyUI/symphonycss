@@ -1,6 +1,6 @@
 {
   "name": "@symphonyui/symphonycss",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "Symphony v0.1 Model Anthology - A modular, semantic-first CSS framework with modern CSS features",
   "main": "dist/symphony.css",
   "style": "dist/symphony.css",
