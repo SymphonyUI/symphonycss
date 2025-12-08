@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Symphony AI-First Demo - E-commerce Page</title>
+  
+  <!-- Symphony CSS Core -->
+  <link rel="stylesheet" href="../dist/symphony.core.min.css">
+  
+  <!-- Symphony Elements (Future v2.0) -->
+  <!-- <script type="module" src="../dist/symphony-elements.min.js"></script> -->
+  
+  <style>
+    /* Placeholder styles for custom elements until v2.0 */
+    product-card, price-display, purchase-action, hero-section,
+    feature-grid, testimonial-card, nav-menu, cta-button {
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  
+  <!-- 
+    ╔══════════════════════════════════════════════════════════════════╗
+    ║  SYMPHONY AI-FIRST DEMO                                          ║
+    ║  This demonstrates the vision for v2.0 with Custom Elements      ║
+    ║                                                                   ║
+    ║  Notice how each element is:                                     ║
+    ║  1. Self-descriptive (AI can parse without docs)                 ║
+    ║  2. Schema.org ready (schema-type attribute)                     ║
+    ║  3. NLWeb indexable (nlweb-* attributes)                         ║
+    ║  4. AI-optimizable (ai-* attributes)                             ║
+    ╚══════════════════════════════════════════════════════════════════╝
+  -->
+
+  <!-- ============================================
+       COMPARISON: Tailwind vs Symphony AI-First
+       ============================================ -->
+
+  <section class="container p-lg" data-example="comparison">
+    <h2>Paradigm Comparison</h2>
+    
+    <div class="grid" data-columns="2" data-gap="lg">
+      
+      <!-- Tailwind Approach -->
+      <article class="card" data-elevation="raised">
+        <header>
+          <h3>❌ Tailwind (Utility-First)</h3>
+          <p class="text-muted">AI sees: "blue box with white text"</p>
+        </header>
+        <pre><code class="language-html">&lt;div class="flex items-center justify-between p-4 bg-blue-500"&gt;
+  &lt;span class="text-white font-bold"&gt;$199&lt;/span&gt;
+  &lt;button class="bg-white text-blue-500 px-4 py-2"&gt;
+    Buy
+  &lt;/button&gt;
+&lt;/div&gt;</code></pre>
+        <footer>
+          <p><strong>Problems:</strong></p>
+          <ul>
+            <li>No semantic meaning</li>
+            <li>AI can't infer intent</li>
+            <li>Not Schema.org compatible</li>
+            <li>Not NLWeb indexable</li>
+          </ul>
+        </footer>
+      </article>
+
+      <!-- Symphony AI-First Approach -->
+      <article class="card" data-elevation="raised" data-variant="outlined">
+        <header>
+          <h3>✅ Symphony (AI-First)</h3>
+          <p class="text-muted">AI sees: "Product with price $199 and purchase action"</p>
+        </header>
+        <pre><code class="language-html">&lt;product-card 
+  schema-type="Product" 
+  nlweb-indexable
+  ai-context="e-commerce"&gt;
+  &lt;price-display currency="USD" value="199" /&gt;
+  &lt;purchase-action variant="primary" /&gt;
+&lt;/product-card&gt;</code></pre>
+        <footer>
+          <p><strong>Benefits:</strong></p>
+          <ul>
+            <li>Self-descriptive components</li>
+            <li>AI understands intent</li>
+            <li>Auto Schema.org injection</li>
+            <li>NLWeb ready</li>
+          </ul>
+        </footer>
+      </article>
+      
+    </div>
+  </section>
+
+  <!-- ============================================
+       LIVE EXAMPLES: AI-First Components
+       ============================================ -->
+
+  <main class="container">
+    
+    <!-- HERO SECTION -->
+    <hero-section 
+      schema-type="WPHeader"
+      nlweb-indexable
+      nlweb-category="layout/hero"
+      ai-context="marketing"
+      ai-personalize="headline,cta"
+      ai-segment="new-visitor">
+      
+      <div class="cover" data-min-height="60vh">
+        <div class="center stack" data-gap="lg">
+          <h1 ai-variant="default">Build AI-Ready Websites with Symphony</h1>
+          <h1 ai-variant="returning" hidden>Welcome Back! Check What's New</h1>
+          
+          <p class="text-lg">
+            The first CSS framework designed for the AI era. 
+            Semantic, accessible, and machine-readable by default.
+          </p>
+          
+          <div class="cluster" data-gap="md">
+            <cta-button 
+              variant="primary" 
+              size="lg"
+              ai-track="hero-cta-primary"
+              ai-intent="conversion"
+              nlweb-action="start-trial">
+              Start Free Trial
+            </cta-button>
+            
+            <cta-button 
+              variant="secondary" 
+              size="lg"
+              ai-track="hero-cta-secondary"
+              ai-intent="education">
+              View Documentation
+            </cta-button>
+          </div>
+        </div>
+      </div>
+    </hero-section>
+
+    <!-- PRODUCTS SECTION -->
+    <section 
+      class="stack" 
+      data-gap="xl"
+      nlweb-indexable
+      nlweb-category="commerce/catalog"
+      ai-context="e-commerce-listing">
+      
+      <header class="center">
+        <h2>Featured Products</h2>
+        <p>AI can query: "Show me products under $300"</p>
+      </header>
+
+      <div class="grid" data-columns="3" data-gap="lg">
+        
+        <!-- Product 1 -->
+        <product-card 
+          schema-type="Product"
+          nlweb-indexable
+          nlweb-category="electronics/gadgets"
+          nlweb-queries="best widget, premium gadget, smart device"
+          ai-context="e-commerce"
+          ai-track="product-view-widget">
+          
+          <article class="card" data-elevation="raised">
+            <img 
+              src="https://placehold.co/400x300/0066ff/white?text=Widget" 
+              alt="Premium Widget"
+              product-image />
+            
+            <div class="stack p-md" data-gap="sm">
+              <h3 product-name>Premium Widget</h3>
+              <p product-description>
+                The ultimate smart widget for your connected home.
+              </p>
+              
+              <price-display 
+                currency="USD" 
+                value="199"
+                nlweb-comparable="true"
+                ai-track="price-view">
+                <data value="199" itemprop="price">$199</data>
+              </price-display>
+              
+              <rating-display 
+                value="4.8" 
+                count="1,234"
+                schema-type="AggregateRating">
+                <span>⭐ 4.8 (1,234 reviews)</span>
+              </rating-display>
+              
+              <purchase-action 
+                variant="primary"
+                product-id="widget-001"
+                nlweb-action="purchase"
+                ai-intent="conversion"
+                ai-track="add-to-cart">
+                <button data-variant="primary">Add to Cart</button>
+              </purchase-action>
+            </div>
+          </article>
+        </product-card>
+
+        <!-- Product 2 -->
+        <product-card 
+          schema-type="Product"
+          nlweb-indexable
+          nlweb-category="electronics/gadgets"
+          nlweb-queries="gadget pro, professional widget"
+          ai-context="e-commerce">
+          
+          <article class="card" data-elevation="raised">
+            <img 
+              src="https://placehold.co/400x300/00aa55/white?text=Gadget+Pro" 
+              alt="Gadget Pro"
+              product-image />
+            
+            <div class="stack p-md" data-gap="sm">
+              <h3 product-name>Gadget Pro</h3>
+              <p product-description>
+                Professional-grade gadget for power users.
+              </p>
+              
+              <price-display currency="USD" value="299">
+                <data value="299">$299</data>
+              </price-display>
+              
+              <rating-display value="4.9" count="856">
+                <span>⭐ 4.9 (856 reviews)</span>
+              </rating-display>
+              
+              <purchase-action variant="primary">
+                <button data-variant="primary">Add to Cart</button>
+              </purchase-action>
+            </div>
+          </article>
+        </product-card>
+
+        <!-- Product 3 -->
+        <product-card 
+          schema-type="Product"
+          nlweb-indexable
+          nlweb-category="electronics/gadgets"
+          ai-context="e-commerce">
+          
+          <article class="card" data-elevation="raised">
+            <img 
+              src="https://placehold.co/400x300/ff6600/white?text=Mini+Device" 
+              alt="Mini Device"
+              product-image />
+            
+            <div class="stack p-md" data-gap="sm">
+              <h3 product-name>Mini Device</h3>
+              <p product-description>
+                Compact and portable smart device.
+              </p>
+              
+              <price-display currency="USD" value="99">
+                <data value="99">$99</data>
+              </price-display>
+              
+              <rating-display value="4.5" count="2,100">
+                <span>⭐ 4.5 (2,100 reviews)</span>
+              </rating-display>
+              
+              <purchase-action variant="primary">
+                <button data-variant="primary">Add to Cart</button>
+              </purchase-action>
+            </div>
+          </article>
+        </product-card>
+
+      </div>
+    </section>
+
+    <!-- FEATURES SECTION -->
+    <feature-grid
+      schema-type="ItemList"
+      nlweb-indexable
+      nlweb-category="marketing/features"
+      nlweb-queries="Symphony features, what can Symphony do"
+      ai-context="product-features">
+      
+      <section class="stack" data-gap="xl">
+        <header class="center">
+          <h2>Why Symphony AI-First?</h2>
+        </header>
+        
+        <div class="grid" data-columns="3" data-gap="lg">
+          
+          <feature-item 
+            name="AI-Parseable"
+            icon="🤖"
+            schema-type="ListItem">
+            <article class="card p-lg">
+              <span class="text-2xl">🤖</span>
+              <h3>AI-Parseable</h3>
+              <p>Components are self-descriptive. AI understands your page without documentation.</p>
+            </article>
+          </feature-item>
+          
+          <feature-item 
+            name="Schema.org Native"
+            icon="📊"
+            schema-type="ListItem">
+            <article class="card p-lg">
+              <span class="text-2xl">📊</span>
+              <h3>Schema.org Native</h3>
+              <p>Automatic microdata injection. Rich snippets for search engines out of the box.</p>
+            </article>
+          </feature-item>
+          
+          <feature-item 
+            name="NLWeb Ready"
+            icon="🔍"
+            schema-type="ListItem">
+            <article class="card p-lg">
+              <span class="text-2xl">🔍</span>
+              <h3>NLWeb Ready</h3>
+              <p>Compatible with Microsoft NLWeb. Your pages are queryable by natural language.</p>
+            </article>
+          </feature-item>
+          
+          <feature-item 
+            name="14KB Gzipped"
+            icon="⚡"
+            schema-type="ListItem">
+            <article class="card p-lg">
+              <span class="text-2xl">⚡</span>
+              <h3>14KB Gzipped</h3>
+              <p>Core build under 15KB. Smaller than most hero images.</p>
+            </article>
+          </feature-item>
+          
+          <feature-item 
+            name="Zero-Class Baseline"
+            icon="✨"
+            schema-type="ListItem">
+            <article class="card p-lg">
+              <span class="text-2xl">✨</span>
+              <h3>Zero-Class Baseline</h3>
+              <p>Beautiful pages with just semantic HTML. No utility class soup.</p>
+            </article>
+          </feature-item>
+          
+          <feature-item 
+            name="Predictive AI Ready"
+            icon="🎯"
+            schema-type="ListItem">
+            <article class="card p-lg">
+              <span class="text-2xl">🎯</span>
+              <h3>Predictive AI Ready</h3>
+              <p>Built-in hooks for personalization, A/B testing, and recommendation engines.</p>
+            </article>
+          </feature-item>
+          
+        </div>
+      </section>
+    </feature-grid>
+
+    <!-- TESTIMONIALS -->
+    <section 
+      class="stack" 
+      data-gap="xl"
+      nlweb-indexable
+      nlweb-category="social-proof/testimonials"
+      ai-context="social-proof">
+      
+      <header class="center">
+        <h2>What Developers Say</h2>
+      </header>
+      
+      <div class="grid" data-columns="2" data-gap="lg">
+        
+        <testimonial-card
+          schema-type="Review"
+          nlweb-indexable
+          ai-context="social-proof">
+          
+          <blockquote class="card p-lg">
+            <p>"Symphony changed how I think about CSS. The AI-first approach means my pages are automatically optimized for the future of search."</p>
+            
+            <author-bio schema-type="Person">
+              <footer class="cluster" data-gap="sm">
+                <img 
+                  src="https://placehold.co/48x48" 
+                  alt="Jane Developer" 
+                  class="rounded-full" />
+                <cite>
+                  <strong>Jane Developer</strong>
+                  <span class="text-muted">Senior Engineer at TechCorp</span>
+                </cite>
+              </footer>
+            </author-bio>
+          </blockquote>
+        </testimonial-card>
+        
+        <testimonial-card
+          schema-type="Review"
+          nlweb-indexable>
+          
+          <blockquote class="card p-lg">
+            <p>"Finally, a framework that AI code generators can use correctly. No more 'add Tailwind classes' - just semantic components."</p>
+            
+            <author-bio schema-type="Person">
+              <footer class="cluster" data-gap="sm">
+                <img 
+                  src="https://placehold.co/48x48" 
+                  alt="Alex AI" 
+                  class="rounded-full" />
+                <cite>
+                  <strong>Alex AI</strong>
+                  <span class="text-muted">AI Product Lead at StartupXYZ</span>
+                </cite>
+              </footer>
+            </author-bio>
+          </blockquote>
+        </testimonial-card>
+        
+      </div>
+    </section>
+
+    <!-- PRICING -->
+    <pricing-table
+      schema-type="Offer"
+      nlweb-indexable
+      nlweb-category="commerce/pricing"
+      nlweb-queries="Symphony pricing, how much does Symphony cost"
+      ai-context="pricing"
+      ai-comparable="true">
+      
+      <section class="stack" data-gap="xl">
+        <header class="center">
+          <h2>Simple Pricing</h2>
+          <p>AI can query: "What's included in the Pro plan?"</p>
+        </header>
+        
+        <div class="grid" data-columns="3" data-gap="lg">
+          
+          <pricing-tier 
+            name="Free" 
+            price="0"
+            schema-type="Offer"
+            nlweb-tier="free">
+            <article class="card p-lg stack" data-gap="md">
+              <h3>Free</h3>
+              <price-display currency="USD" value="0">
+                <p class="text-3xl font-bold">$0</p>
+              </price-display>
+              <ul>
+                <li>Symphony CSS Core</li>
+                <li>All components</li>
+                <li>Community support</li>
+              </ul>
+              <purchase-action variant="secondary">
+                <button data-variant="secondary">Get Started</button>
+              </purchase-action>
+            </article>
+          </pricing-tier>
+          
+          <pricing-tier 
+            name="Pro" 
+            price="29"
+            featured="true"
+            schema-type="Offer"
+            nlweb-tier="pro">
+            <article class="card p-lg stack" data-gap="md" data-variant="outlined">
+              <span class="badge" data-variant="primary">Most Popular</span>
+              <h3>Pro</h3>
+              <price-display currency="USD" value="29">
+                <p class="text-3xl font-bold">$29<span class="text-sm">/mo</span></p>
+              </price-display>
+              <ul>
+                <li>Everything in Free</li>
+                <li>Symphony Elements</li>
+                <li>VS Code Extension</li>
+                <li>Priority support</li>
+              </ul>
+              <purchase-action variant="primary">
+                <button data-variant="primary">Start Pro Trial</button>
+              </purchase-action>
+            </article>
+          </pricing-tier>
+          
+          <pricing-tier 
+            name="Enterprise" 
+            price="custom"
+            schema-type="Offer"
+            nlweb-tier="enterprise">
+            <article class="card p-lg stack" data-gap="md">
+              <h3>Enterprise</h3>
+              <price-display currency="USD" value="custom">
+                <p class="text-3xl font-bold">Custom</p>
+              </price-display>
+              <ul>
+                <li>Everything in Pro</li>
+                <li>NLWeb integration</li>
+                <li>AI personalization</li>
+                <li>Dedicated support</li>
+              </ul>
+              <purchase-action variant="secondary">
+                <button data-variant="secondary">Contact Sales</button>
+              </purchase-action>
+            </article>
+          </pricing-tier>
+          
+        </div>
+      </section>
+    </pricing-table>
+
+    <!-- FAQ -->
+    <faq-section
+      schema-type="FAQPage"
+      nlweb-indexable
+      nlweb-category="support/faq"
+      nlweb-queries="Symphony FAQ, Symphony questions"
+      ai-context="support">
+      
+      <section class="stack" data-gap="xl">
+        <header class="center">
+          <h2>Frequently Asked Questions</h2>
+        </header>
+        
+        <div class="stack" data-gap="md">
+          
+          <faq-item 
+            question="What is AI-First CSS?"
+            schema-type="Question">
+            <details class="card">
+              <summary>What is AI-First CSS?</summary>
+              <div class="p-md" schema-type="Answer">
+                <p>AI-First CSS means designing components that are self-descriptive to AI systems. Instead of utility classes that describe appearance, Symphony uses semantic elements and attributes that describe meaning and intent.</p>
+              </div>
+            </details>
+          </faq-item>
+          
+          <faq-item 
+            question="Is Symphony compatible with React/Vue?"
+            schema-type="Question">
+            <details class="card">
+              <summary>Is Symphony compatible with React/Vue?</summary>
+              <div class="p-md" schema-type="Answer">
+                <p>Yes! Symphony CSS works with any framework. Symphony Elements (Web Components) have adapters for React, Vue, Svelte, and vanilla JS. They use standard Web Components that work everywhere.</p>
+              </div>
+            </details>
+          </faq-item>
+          
+          <faq-item 
+            question="What is NLWeb?"
+            schema-type="Question">
+            <details class="card">
+              <summary>What is NLWeb?</summary>
+              <div class="p-md" schema-type="Answer">
+                <p>NLWeb (Natural Language Web) is a Microsoft initiative to make web pages queryable by natural language. Symphony components include nlweb-* attributes that make your pages compatible with this emerging standard.</p>
+              </div>
+            </details>
+          </faq-item>
+          
+        </div>
+      </section>
+    </faq-section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="container p-lg mbs-xl">
+    <div class="center">
+      <p class="text-muted">
+        Symphony Anthology v1.0 - AI-First CSS Framework
+      </p>
+      <p class="text-sm text-muted">
+        <a href="https://github.com/symphonyui/symphonycss">GitHub</a> · 
+        <a href="/docs">Documentation</a> · 
+        <a href="/docs/AI_FIRST_ROADMAP.md">AI-First Roadmap</a>
+      </p>
+    </div>
+  </footer>
+
+  <!-- 
+    ╔══════════════════════════════════════════════════════════════════╗
+    ║  NLWEB MANIFEST (Would be auto-generated in v2.0)                ║
+    ╚══════════════════════════════════════════════════════════════════╝
+  -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "Symphony AI-First Demo",
+    "description": "Demonstration of Symphony AI-First architecture with custom elements",
+    "mainEntity": [
+      {
+        "@type": "Product",
+        "name": "Premium Widget",
+        "offers": {
+          "@type": "Offer",
+          "price": "199",
+          "priceCurrency": "USD"
+        },
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": "4.8",
+          "reviewCount": "1234"
+        }
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "What is AI-First CSS?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "AI-First CSS means designing components that are self-descriptive to AI systems."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+
+</body>
+</html>

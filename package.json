@@ -1,27 +1,38 @@
 {
   "name": "@symphonyui/symphonycss",
-  "version": "0.2.1",
-  "description": "Symphony CSS 2.0 - A semantic-first, AI-ready CSS framework with OKLCH colors, container queries, cascade layers, and zero-class baseline styling",
+  "version": "1.0.0",
+  "description": "Symphony Anthology v1.0 - Semantic-first, framework-agnostic, AI-ready CSS framework with OKLCH colors, container queries, cascade layers, and zero-class baseline styling",
   "main": "dist/symphony.css",
   "style": "dist/symphony.css",
   "exports": {
     ".": "./dist/symphony.css",
     "./symphony.css": "./dist/symphony.css",
     "./symphony.min.css": "./dist/symphony.min.css",
+    "./core": "./dist/symphony.core.min.css",
+    "./symphony.core.css": "./dist/symphony.core.css",
+    "./symphony.core.min.css": "./dist/symphony.core.min.css",
     "./core/*": "./src/core/*",
     "./components/*": "./src/components/*",
     "./layout/*": "./src/layout/*",
-    "./utilities/*": "./src/utilities/*"
+    "./utilities/*": "./src/utilities/*",
+    "./themes/anthology": "./src/themes/anthology/theme.css"
   },
   "scripts": {
-    "build": "npm run build:bundle && npm run build:minify",
+    "build": "npm run build:bundle && npm run build:minify && npm run build:themes",
     "build:bundle": "cat src/symphony.css src/core/_fonts.css src/core/_reset.css src/core/_variables.css src/core/_tokens.css src/core/_base.css src/layout/_container.css src/layout/_grid.css src/layout/_flexbox.css src/components/_typography.css src/components/_buttons.css src/components/_forms.css src/components/_cards.css src/components/_dialog.css src/components/_navigation.css src/components/_accordion.css src/components/_tables.css src/utilities/_spacing.css src/utilities/_helpers.css > dist/symphony.css",
     "build:minify": "npx lightningcss --minify dist/symphony.css -o dist/symphony.min.css",
-    "size": "echo 'Minified:' && wc -c < dist/symphony.min.css && echo 'Gzipped:' && gzip -9 -c dist/symphony.min.css | wc -c",
+    "build:core": "npm run build:core:bundle && npm run build:core:minify",
+    "build:core:bundle": "cat src/symphony.css src/core/_fonts.css src/core/_reset.css src/core/_variables.css src/core/_tokens.css src/core/_base.css src/layout/_container.css src/layout/_grid.css src/layout/_flexbox.css src/components/_typography.css src/components/_buttons.css src/components/_forms.css src/components/_cards.css src/components/_dialog.css src/components/_navigation.css src/components/_accordion.css src/components/_tables.css src/utilities/_spacing.core.css src/utilities/_helpers.core.css > dist/symphony.core.css",
+    "build:core:minify": "npx lightningcss --minify dist/symphony.core.css -o dist/symphony.core.min.css",
+    "build:themes": "mkdir -p dist/themes/anthology && cat src/themes/anthology/_tokens.css src/themes/anthology/_components.css > dist/themes/anthology/anthology.css",
+    "size": "echo 'Full Build:' && echo 'Minified:' && wc -c < dist/symphony.min.css && echo 'Gzipped:' && gzip -9 -c dist/symphony.min.css | wc -c",
+    "size:core": "echo 'Core Build:' && echo 'Minified:' && wc -c < dist/symphony.core.min.css && echo 'Gzipped:' && gzip -9 -c dist/symphony.core.min.css | wc -c",
+    "size:compare": "npm run size && echo '' && npm run size:core",
     "watch": "npm run build:bundle",
     "dev": "npm run watch",
     "lint": "npx stylelint 'src/**/*.css'",
-    "format": "npx prettier --write 'src/**/*.css'"
+    "format": "npx prettier --write 'src/**/*.css'",
+    "test": "open testing/index.html"
   },
   "keywords": [
     "css",
@@ -68,7 +79,7 @@
     "CHANGELOG.md"
   ],
   "devDependencies": {
-    "lightningcss-cli": "^1.24.0"
+    "lightningcss-cli": "^1.30.2"
   },
   "engines": {
     "node": ">=18.0.0"

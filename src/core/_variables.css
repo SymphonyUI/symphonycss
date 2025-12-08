@@ -120,6 +120,7 @@
     --symphony-surface: oklch(100% 0 0);
     --symphony-surface-elevated: oklch(100% 0 0);
     --symphony-surface-hover: oklch(97% 0.01 var(--symphony-hue-neutral));
+    --symphony-surface-alt: oklch(96% 0.01 var(--symphony-hue-neutral));
 
     --symphony-text: oklch(20% 0.02 var(--symphony-hue-neutral));
     --symphony-text-secondary: oklch(40% 0.02 var(--symphony-hue-neutral));
@@ -140,6 +141,8 @@
     --symphony-font-serif: 'Georgia', Cambria, 'Times New Roman', serif;
     --symphony-font-mono: 'JetBrains Mono', 'Fira Code', 'SF Mono', Consolas, monospace;
     --symphony-font-display: var(--symphony-font-sans);
+    --symphony-font-heading: var(--symphony-font-display);
+    --symphony-font-normal: var(--symphony-font-regular);
 
     /* Type Scale (1.25 Major Third) */
     --symphony-text-xs: clamp(0.64rem, 0.6rem + 0.2vw, 0.75rem);
@@ -406,6 +409,7 @@
       --symphony-surface: oklch(18% 0.02 var(--symphony-hue-neutral));
       --symphony-surface-elevated: oklch(22% 0.025 var(--symphony-hue-neutral));
       --symphony-surface-hover: oklch(25% 0.03 var(--symphony-hue-neutral));
+      --symphony-surface-alt: oklch(15% 0.02 var(--symphony-hue-neutral));
 
       /* Text colors inverted */
       --symphony-text: oklch(95% 0.01 var(--symphony-hue-neutral));
@@ -438,6 +442,7 @@
     --symphony-surface: oklch(18% 0.02 var(--symphony-hue-neutral));
     --symphony-surface-elevated: oklch(22% 0.025 var(--symphony-hue-neutral));
     --symphony-surface-hover: oklch(25% 0.03 var(--symphony-hue-neutral));
+    --symphony-surface-alt: oklch(15% 0.02 var(--symphony-hue-neutral));
 
     --symphony-text: oklch(95% 0.01 var(--symphony-hue-neutral));
     --symphony-text-secondary: oklch(80% 0.015 var(--symphony-hue-neutral));

@@ -10,39 +10,54 @@
        DARK THEME COLOR SYSTEM
        Exact hex values as specified
        ============================================ */
-    
+
     /* Background & Surfaces */
-    --symphony-background: #020410;       /* Main page background */
-    --symphony-surface: #0A0F1E;          /* Cards, boxes, elevated elements */
-    --symphony-surface-hover: #131824;    /* Hover state for interactive surfaces */
-    
+    --symphony-background: #020410;
+    /* Main page background */
+    --symphony-surface: #0A0F1E;
+    /* Cards, boxes, elevated elements */
+    --symphony-surface-hover: #131824;
+    /* Hover state for interactive surfaces */
+
     /* Text Colors - High Contrast */
-    --symphony-text-title: #FFFFFF;       /* Headings - pure white */
-    --symphony-text-body: #CBD2D9;        /* Body text - gray-300 */
-    --symphony-text-muted: #8B92A0;       /* Muted/secondary text */
-    
+    --symphony-text-title: #FFFFFF;
+    /* Headings - pure white */
+    --symphony-text-body: #CBD2D9;
+    /* Body text - gray-300 */
+    --symphony-text-muted: #8B92A0;
+    /* Muted/secondary text */
+
     /* Primary Brand Color */
-    --symphony-primary: #0055FE;          /* Primary blue */
-    --symphony-secondary: #0066FF;        /* Secondary/gradient blue */
-    
+    --symphony-primary: #0055FE;
+    /* Primary blue */
+    --symphony-secondary: #0066FF;
+    /* Secondary/gradient blue */
+
     /* Borders & Dividers */
     --symphony-border: rgba(255, 255, 255, 0.1);
     --symphony-border-focus: rgba(0, 85, 254, 0.5);
-    
+
     /* Neutral Palette for UI Elements */
     --symphony-neutral-50: rgba(255, 255, 255, 0.02);
     --symphony-neutral-100: rgba(255, 255, 255, 0.05);
     --symphony-neutral-200: rgba(255, 255, 255, 0.1);
     --symphony-neutral-300: rgba(255, 255, 255, 0.15);
-    
+
     /* Button Tokens - EXACT specifications */
-    --symphony-button-padding-y: 0.75rem;          /* 12px */
-    --symphony-button-padding-x: 2rem;             /* 32px */
-    --symphony-button-font-size: 0.875rem;         /* 14px */
-    --symphony-button-font-weight: 400;            /* Regular */
-    --symphony-button-letter-spacing: 0;           /* 0% */
-    --symphony-button-radius-rounded: 0.625rem;    /* 10px */
-    --symphony-button-radius-pill: 3.125rem;       /* 50px */
+    --symphony-button-padding-y: 0.75rem;
+    /* 12px */
+    --symphony-button-padding-x: 2rem;
+    /* 32px */
+    --symphony-button-font-size: 0.875rem;
+    /* 14px */
+    --symphony-button-font-weight: 400;
+    /* Regular */
+    --symphony-button-letter-spacing: 0;
+    /* 0% */
+    --symphony-button-radius-rounded: 0.625rem;
+    /* 10px */
+    --symphony-button-radius-pill: 3.125rem;
+    /* 50px */
     --symphony-button-transition: var(--symphony-transition-base);
 
     --symphony-button-sm-padding-y: var(--symphony-spacing-2);
@@ -54,30 +69,30 @@
     --symphony-button-lg-font-size: var(--symphony-font-size-lg);
 
     /* Form Tokens */
-    --symphony-input-padding-y: var(--symphony-spacing-3);
-    --symphony-input-padding-x: var(--symphony-spacing-4);
-    --symphony-input-font-size: var(--symphony-font-size-base);
+    --symphony-input-padding-y: var(--symphony-space-sm);
+    --symphony-input-padding-x: var(--symphony-space-md);
+    --symphony-input-font-size: var(--symphony-text-base);
     --symphony-input-border-width: 1px;
     --symphony-input-border-color: var(--symphony-border);
-    --symphony-input-border-radius: var(--symphony-radius-base);
+    --symphony-input-border-radius: var(--symphony-radius-md);
     --symphony-input-background: var(--symphony-surface);
     --symphony-input-focus-border: var(--symphony-primary);
-    --symphony-input-focus-ring: 0 0 0 3px hsl(var(--symphony-primary-hue), var(--symphony-primary-sat), var(--symphony-primary-light), 0.1);
+    --symphony-input-focus-ring: 0 0 0 3px oklch(from var(--symphony-primary) l c h / 0.15);
 
     /* Card Tokens */
-    --symphony-card-padding: var(--symphony-spacing-6);
+    --symphony-card-padding: var(--symphony-space-lg);
     --symphony-card-background: var(--symphony-surface);
     --symphony-card-border: 1px solid var(--symphony-border);
     --symphony-card-border-radius: var(--symphony-radius-lg);
-    --symphony-card-shadow: var(--symphony-shadow-base);
+    --symphony-card-shadow: var(--symphony-shadow-sm);
 
     /* Typography Tokens */
-    --symphony-heading-font-weight: var(--symphony-font-weight-bold);
-    --symphony-heading-line-height: var(--symphony-line-height-tight);
-    --symphony-heading-margin-bottom: var(--symphony-spacing-4);
+    --symphony-heading-font-weight: var(--symphony-font-bold);
+    --symphony-heading-line-height: var(--symphony-leading-tight);
+    --symphony-heading-margin-bottom: var(--symphony-space-md);
 
-    --symphony-paragraph-margin-bottom: var(--symphony-spacing-4);
-    --symphony-paragraph-line-height: var(--symphony-line-height-normal);
+    --symphony-paragraph-margin-bottom: var(--symphony-space-md);
+    --symphony-paragraph-line-height: var(--symphony-leading-normal);
 
     /* Link Tokens */
     --symphony-link-color: var(--symphony-primary);
@@ -87,17 +102,17 @@
     --symphony-link-underline-offset: 2px;
 
     /* Layout Tokens */
-    --symphony-container-padding: var(--symphony-spacing-4);
-    --symphony-section-padding-y: var(--symphony-spacing-16);
-    --symphony-section-padding-x: var(--symphony-spacing-4);
+    --symphony-container-padding: var(--symphony-space-md);
+    --symphony-section-padding-y: var(--symphony-space-3xl);
+    --symphony-section-padding-x: var(--symphony-space-md);
 
     /* Grid Tokens */
-    --symphony-grid-gap: var(--symphony-spacing-6);
+    --symphony-grid-gap: var(--symphony-space-lg);
     --symphony-grid-columns: 12;
 
     /* Focus Tokens */
     --symphony-focus-ring-width: 3px;
-    --symphony-focus-ring-color: hsl(var(--symphony-primary-hue), var(--symphony-primary-sat), var(--symphony-primary-light), 0.5);
+    --symphony-focus-ring-color: oklch(from var(--symphony-primary) l c h / 0.5);
     --symphony-focus-ring-offset: 2px;
   }
 }

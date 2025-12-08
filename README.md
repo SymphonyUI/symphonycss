@@ -1,4 +1,4 @@
-# Symphony CSS v0.2.1
+# Symphony CSS v1.0.0
 
 **The semantic-first CSS framework for AI-powered web development.**
 
@@ -8,7 +8,7 @@ Symphony CSS is a zero-class baseline framework that makes beautiful, accessible
 
 - **🎯 Zero-Class Baseline** - Beautiful pages with just semantic HTML
 - **🎨 OKLCH Color System** - Perceptually uniform, mathematically perfect colors
-- **📦 <45KB Minified** - Lightweight yet comprehensive
+- **📦 15KB Gzipped (Core)** - Lightweight yet comprehensive
 - **🤖 AI-Generator Friendly** - Designed for Claude, GPT, and other AI systems
 - **📐 Container Queries** - Component-level responsive design
 - **🔀 CSS Nesting** - Native browser nesting for maintainable code
@@ -28,8 +28,14 @@ npm install @symphonyui/symphonycss
 ### CDN
 
 ```html
+<!-- Core Build (14.99KB gzipped - Recommended for production) -->
+<link rel="stylesheet" href="https://unpkg.com/@symphonyui/symphonycss/dist/symphony.core.min.css">
+
+<!-- Full Build (16.25KB gzipped - All utilities) -->
 <link rel="stylesheet" href="https://unpkg.com/@symphonyui/symphonycss/dist/symphony.min.css">
 ```
+
+> **Core vs Full**: Core build removes rarely-used utilities (responsive visibility, aspect-ratio, object-fit, etc.) to hit the <15KB target. [See full comparison →](docs/CORE_BUILD.md)
 
 ### Download
 

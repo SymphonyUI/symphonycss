@@ -1,0 +1,883 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Symphony Anthology v1.0 - Component Testing Suite</title>
+  <link rel="stylesheet" href="../dist/symphony.css">
+  <style>
+    /* Testing Harness Styles - Not part of Symphony */
+    .test-harness {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+    
+    .test-section {
+      margin: 3rem 0;
+      padding: 2rem;
+      border: 1px solid var(--symphony-border, #e5e7eb);
+      border-radius: var(--symphony-radius-lg, 0.75rem);
+      background: var(--symphony-surface, #fff);
+    }
+    
+    .test-section h2 {
+      margin-top: 0;
+      color: var(--symphony-text, #111827);
+      font-size: 1.5rem;
+      border-bottom: 2px solid var(--symphony-primary, #3b82f6);
+      padding-bottom: 0.5rem;
+    }
+    
+    .test-grid {
+      display: grid;
+      gap: 1.5rem;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      margin-top: 1.5rem;
+    }
+    
+    .component-demo {
+      padding: 1.5rem;
+      background: var(--symphony-surface-hover, #f9fafb);
+      border: 1px solid var(--symphony-border, #e5e7eb);
+      border-radius: var(--symphony-radius-md, 0.5rem);
+    }
+    
+    .component-label {
+      font-size: 0.75rem;
+      color: var(--symphony-text-muted, #6b7280);
+      margin-bottom: 1rem;
+      font-family: var(--symphony-font-mono, monospace);
+      background: var(--symphony-surface, #fff);
+      padding: 0.25rem 0.5rem;
+      border-radius: var(--symphony-radius-sm, 0.25rem);
+      display: inline-block;
+    }
+    
+    .theme-controls {
+      position: fixed;
+      top: 1rem;
+      right: 1rem;
+      z-index: 1000;
+      display: flex;
+      gap: 0.5rem;
+      background: var(--symphony-surface, #fff);
+      padding: 0.5rem;
+      border-radius: var(--symphony-radius-md, 0.5rem);
+      box-shadow: var(--symphony-shadow-lg, 0 10px 15px -3px rgba(0,0,0,0.1));
+    }
+    
+    .status-badge {
+      display: inline-block;
+      padding: 0.25rem 0.75rem;
+      font-size: 0.75rem;
+      font-weight: 500;
+      border-radius: var(--symphony-radius-full, 9999px);
+    }
+    
+    .status-badge--pass {
+      background: oklch(0.9 0.1 142);
+      color: oklch(0.3 0.15 142);
+    }
+    
+    .status-badge--fail {
+      background: oklch(0.9 0.1 25);
+      color: oklch(0.3 0.15 25);
+    }
+    
+    .status-badge--warn {
+      background: oklch(0.9 0.1 85);
+      color: oklch(0.3 0.15 85);
+    }
+    
+    .test-note {
+      font-size: 0.875rem;
+      color: var(--symphony-text-muted);
+      margin-top: 0.5rem;
+      font-style: italic;
+    }
+    
+    .color-swatch {
+      display: inline-block;
+      width: 2rem;
+      height: 2rem;
+      border-radius: var(--symphony-radius-sm);
+      border: 1px solid var(--symphony-border);
+      vertical-align: middle;
+      margin-right: 0.5rem;
+    }
+    
+    /* Skip link test */
+    .skip-link {
+      position: absolute;
+      top: -40px;
+      left: 0;
+      background: var(--symphony-primary);
+      color: var(--symphony-text-inverted, #fff);
+      padding: 0.5rem 1rem;
+      z-index: 10000;
+      text-decoration: none;
+      border-radius: 0 0 var(--symphony-radius-md) 0;
+    }
+    
+    .skip-link:focus {
+      top: 0;
+    }
+  </style>
+</head>
+<body>
+  <!-- Skip Link for Accessibility Testing -->
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+  
+  <!-- Theme Controls -->
+  <div class="theme-controls">
+    <button onclick="setTheme('light')" data-variant="ghost">☀️ Light</button>
+    <button onclick="setTheme('dark')" data-variant="ghost">🌙 Dark</button>
+    <button onclick="setTheme('auto')" data-variant="ghost">🔄 Auto</button>
+  </div>
+
+  <div class="test-harness">
+    <header style="text-align: center; margin-bottom: 3rem;">
+      <h1>🎼 Symphony Anthology v1.0</h1>
+      <p>Semantic-First CSS Framework - Component Testing Suite</p>
+      <p style="font-size: 0.875rem; color: var(--symphony-text-muted);">
+        Current theme: <strong id="current-theme">light</strong> | 
+        Viewport: <span id="viewport-size"></span>
+      </p>
+    </header>
+
+    <main id="main-content">
+      <!-- ==========================================
+           TYPOGRAPHY TESTS
+           ========================================== -->
+      <section class="test-section">
+        <h2>📝 Typography System</h2>
+        <p class="test-note">Testing semantic HTML typography with zero classes</p>
+        
+        <article>
+          <h1>Heading 1 - Main Title (text-4xl)</h1>
+          <h2>Heading 2 - Section Title (text-3xl)</h2>
+          <h3>Heading 3 - Subsection (text-2xl)</h3>
+          <h4>Heading 4 - Sub-subsection (text-xl)</h4>
+          <h5>Heading 5 - Minor heading (text-lg)</h5>
+          <h6>HEADING 6 - SMALLEST (text-base, uppercase)</h6>
+          
+          <p>Body text paragraph with <strong>bold text</strong>, <em>italic text</em>, 
+             <code>inline code</code>, <mark>highlighted text</mark>, 
+             <small>small text</small>, and <a href="#">links</a>.
+             This paragraph uses <abbr title="Cascading Style Sheets">CSS</abbr> for styling.</p>
+          
+          <p>Second paragraph to test margin handling. Lorem ipsum dolor sit amet, 
+             consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore 
+             et dolore magna aliqua.</p>
+          
+          <blockquote>
+            <p>This is a blockquote. It should have distinct styling with a left border.</p>
+            <cite>— Author Name</cite>
+          </blockquote>
+          
+          <pre><code>// Code block
+function symphony() {
+  return "Semantic-first CSS";
+}</code></pre>
+        </article>
+        
+        <h3>Lists</h3>
+        <div class="test-grid">
+          <div>
+            <h4>Unordered List</h4>
+            <ul>
+              <li>First item</li>
+              <li>Second item
+                <ul>
+                  <li>Nested item 1</li>
+                  <li>Nested item 2</li>
+                </ul>
+              </li>
+              <li>Third item</li>
+            </ul>
+          </div>
+          <div>
+            <h4>Ordered List</h4>
+            <ol>
+              <li>Step one</li>
+              <li>Step two
+                <ol>
+                  <li>Sub-step a</li>
+                  <li>Sub-step b</li>
+                </ol>
+              </li>
+              <li>Step three</li>
+            </ol>
+          </div>
+          <div>
+            <h4>Definition List</h4>
+            <dl>
+              <dt>Symphony</dt>
+              <dd>A semantic-first CSS framework</dd>
+              <dt>OKLCH</dt>
+              <dd>Perceptually uniform color space</dd>
+            </dl>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==========================================
+           BUTTONS TESTS
+           ========================================== -->
+      <section class="test-section">
+        <h2>🔘 Buttons & Interactive Elements</h2>
+        <p class="test-note">Using data-variant and data-size attributes (semantic approach)</p>
+        
+        <h3>Button Variants</h3>
+        <div class="test-grid">
+          <div class="component-demo">
+            <div class="component-label">&lt;button&gt; (default)</div>
+            <button>Default Button</button>
+          </div>
+          <div class="component-demo">
+            <div class="component-label">data-variant="primary"</div>
+            <button data-variant="primary">Primary Button</button>
+          </div>
+          <div class="component-demo">
+            <div class="component-label">data-variant="secondary"</div>
+            <button data-variant="secondary">Secondary Button</button>
+          </div>
+          <div class="component-demo">
+            <div class="component-label">data-variant="outline"</div>
+            <button data-variant="outline">Outline Button</button>
+          </div>
+          <div class="component-demo">
+            <div class="component-label">data-variant="ghost"</div>
+            <button data-variant="ghost">Ghost Button</button>
+          </div>
+          <div class="component-demo">
+            <div class="component-label">data-variant="link"</div>
+            <button data-variant="link">Link Button</button>
+          </div>
+          <div class="component-demo">
+            <div class="component-label">data-variant="success"</div>
+            <button data-variant="success">Success Button</button>
+          </div>
+          <div class="component-demo">
+            <div class="component-label">data-variant="warning"</div>
+            <button data-variant="warning">Warning Button</button>
+          </div>
+          <div class="component-demo">
+            <div class="component-label">data-variant="danger"</div>
+            <button data-variant="danger">Danger Button</button>
+          </div>
+          <div class="component-demo">
+            <div class="component-label">disabled</div>
+            <button data-variant="primary" disabled>Disabled</button>
+          </div>
+        </div>
+        
+        <h3>Button Sizes</h3>
+        <div class="component-demo">
+          <div class="component-label">data-size="xs|sm|default|lg|xl"</div>
+          <div style="display: flex; align-items: center; gap: 1rem; flex-wrap: wrap;">
+            <button data-variant="primary" data-size="xs">Extra Small</button>
+            <button data-variant="primary" data-size="sm">Small</button>
+            <button data-variant="primary">Default</button>
+            <button data-variant="primary" data-size="lg">Large</button>
+            <button data-variant="primary" data-size="xl">Extra Large</button>
+          </div>
+        </div>
+        
+        <h3>Button with Icons</h3>
+        <div class="component-demo">
+          <button data-variant="primary">
+            <span aria-hidden="true">→</span>
+            <span>Continue</span>
+          </button>
+          <button data-variant="outline">
+            <span>Download</span>
+            <span aria-hidden="true">↓</span>
+          </button>
+        </div>
+      </section>
+
+      <!-- ==========================================
+           FORMS TESTS
+           ========================================== -->
+      <section class="test-section">
+        <h2>📋 Form Elements</h2>
+        <p class="test-note">Semantic form elements with native HTML5 validation</p>
+        
+        <form onsubmit="event.preventDefault(); alert('Form submitted!');">
+          <div class="test-grid">
+            <div class="component-demo">
+              <label for="input-text">Text Input</label>
+              <input type="text" id="input-text" placeholder="Enter text...">
+            </div>
+            
+            <div class="component-demo">
+              <label for="input-email">Email Input (required)</label>
+              <input type="email" id="input-email" placeholder="email@example.com" required>
+            </div>
+            
+            <div class="component-demo">
+              <label for="input-password">Password Input</label>
+              <input type="password" id="input-password" placeholder="••••••••">
+            </div>
+            
+            <div class="component-demo">
+              <label for="input-number">Number Input</label>
+              <input type="number" id="input-number" placeholder="0" min="0" max="100">
+            </div>
+            
+            <div class="component-demo">
+              <label for="input-date">Date Input</label>
+              <input type="date" id="input-date">
+            </div>
+            
+            <div class="component-demo">
+              <label for="input-search">Search Input</label>
+              <input type="search" id="input-search" placeholder="Search...">
+            </div>
+            
+            <div class="component-demo">
+              <label for="input-disabled">Disabled Input</label>
+              <input type="text" id="input-disabled" value="Cannot edit" disabled>
+            </div>
+            
+            <div class="component-demo">
+              <label for="input-readonly">Read-only Input</label>
+              <input type="text" id="input-readonly" value="Read only" readonly>
+            </div>
+          </div>
+          
+          <div class="test-grid" style="margin-top: 1.5rem;">
+            <div class="component-demo">
+              <label for="textarea">Textarea</label>
+              <textarea id="textarea" rows="4" placeholder="Enter message..."></textarea>
+            </div>
+            
+            <div class="component-demo">
+              <label for="select">Select Dropdown</label>
+              <select id="select">
+                <option value="">Choose an option...</option>
+                <option value="1">Option 1</option>
+                <option value="2">Option 2</option>
+                <option value="3">Option 3</option>
+              </select>
+            </div>
+          </div>
+          
+          <h3>Checkboxes & Radios</h3>
+          <div class="test-grid">
+            <div class="component-demo">
+              <fieldset>
+                <legend>Checkboxes</legend>
+                <label>
+                  <input type="checkbox" name="checkbox1"> Option 1
+                </label>
+                <label>
+                  <input type="checkbox" name="checkbox2" checked> Option 2 (checked)
+                </label>
+                <label>
+                  <input type="checkbox" name="checkbox3" disabled> Option 3 (disabled)
+                </label>
+              </fieldset>
+            </div>
+            
+            <div class="component-demo">
+              <fieldset>
+                <legend>Radio Buttons</legend>
+                <label>
+                  <input type="radio" name="radio" value="1"> Option A
+                </label>
+                <label>
+                  <input type="radio" name="radio" value="2" checked> Option B (selected)
+                </label>
+                <label>
+                  <input type="radio" name="radio" value="3"> Option C
+                </label>
+              </fieldset>
+            </div>
+          </div>
+          
+          <h3>Validation States</h3>
+          <div class="test-grid">
+            <div class="component-demo">
+              <label for="input-error">Error State</label>
+              <input type="text" id="input-error" data-state="error" value="Invalid input">
+              <small style="color: var(--symphony-danger);">This field has an error</small>
+            </div>
+            
+            <div class="component-demo">
+              <label for="input-success">Success State</label>
+              <input type="text" id="input-success" data-state="success" value="Valid input">
+              <small style="color: var(--symphony-success);">Looks good!</small>
+            </div>
+          </div>
+          
+          <div style="margin-top: 1.5rem;">
+            <button type="submit" data-variant="primary">Submit Form</button>
+            <button type="reset" data-variant="ghost">Reset</button>
+          </div>
+        </form>
+      </section>
+
+      <!-- ==========================================
+           LAYOUT TESTS
+           ========================================== -->
+      <section class="test-section">
+        <h2>📐 Layout Patterns</h2>
+        
+        <h3>Container (Fluid with max-width)</h3>
+        <div class="container" style="background: var(--symphony-surface-hover); padding: 1rem; margin-bottom: 1rem;">
+          <code>.container</code> - Default (80ch max-width)
+        </div>
+        <div class="container" data-size="narrow" style="background: var(--symphony-surface-hover); padding: 1rem; margin-bottom: 1rem;">
+          <code>.container[data-size="narrow"]</code> - 60ch max-width
+        </div>
+        <div class="container" data-size="wide" style="background: var(--symphony-surface-hover); padding: 1rem;">
+          <code>.container[data-size="wide"]</code> - 100ch max-width
+        </div>
+        
+        <h3>Grid System (Intrinsic, no 12-column!)</h3>
+        <div class="grid" style="border: 1px dashed var(--symphony-border); padding: 1rem; margin-bottom: 1rem;">
+          <div style="background: var(--symphony-primary); color: var(--symphony-text-inverted); padding: 1rem; border-radius: var(--symphony-radius-md);">Grid Item 1</div>
+          <div style="background: var(--symphony-secondary); color: var(--symphony-text-inverted); padding: 1rem; border-radius: var(--symphony-radius-md);">Grid Item 2</div>
+          <div style="background: var(--symphony-primary); color: var(--symphony-text-inverted); padding: 1rem; border-radius: var(--symphony-radius-md);">Grid Item 3</div>
+          <div style="background: var(--symphony-secondary); color: var(--symphony-text-inverted); padding: 1rem; border-radius: var(--symphony-radius-md);">Grid Item 4</div>
+        </div>
+        
+        <h4>Grid with Column Hints</h4>
+        <div class="grid" data-columns="3" style="border: 1px dashed var(--symphony-border); padding: 1rem;">
+          <div style="background: var(--symphony-accent); padding: 1rem; border-radius: var(--symphony-radius-md);">Col 1</div>
+          <div style="background: var(--symphony-accent); padding: 1rem; border-radius: var(--symphony-radius-md);">Col 2</div>
+          <div style="background: var(--symphony-accent); padding: 1rem; border-radius: var(--symphony-radius-md);">Col 3</div>
+        </div>
+        
+        <h3>Flexbox Utilities</h3>
+        <div class="flex" style="gap: var(--symphony-space-md); border: 1px dashed var(--symphony-border); padding: 1rem;">
+          <div style="background: var(--symphony-surface-hover); padding: 1rem; border-radius: var(--symphony-radius-md);">Flex Item 1</div>
+          <div style="background: var(--symphony-surface-hover); padding: 1rem; border-radius: var(--symphony-radius-md);">Flex Item 2</div>
+          <div style="background: var(--symphony-surface-hover); padding: 1rem; border-radius: var(--symphony-radius-md);">Flex Item 3</div>
+        </div>
+      </section>
+
+      <!-- ==========================================
+           CARDS TESTS
+           ========================================== -->
+      <section class="test-section">
+        <h2>🃏 Cards & Content Blocks</h2>
+        
+        <div class="test-grid">
+          <article class="card">
+            <header>
+              <h3>Basic Card</h3>
+              <p>Using semantic article element</p>
+            </header>
+            <p>Card body content with text and elements. This card uses container queries for responsive behavior.</p>
+            <footer>
+              <button data-variant="primary">Action</button>
+            </footer>
+          </article>
+
+          <article class="card" data-elevation="raised">
+            <header>
+              <h3>Raised Card</h3>
+            </header>
+            <p>Card with elevated shadow using data-elevation="raised".</p>
+            <footer>
+              <button data-variant="outline">Learn More</button>
+            </footer>
+          </article>
+
+          <article class="card" data-elevation="floating">
+            <header>
+              <h3>Floating Card</h3>
+            </header>
+            <p>Prominent shadow with data-elevation="floating".</p>
+            <footer>
+              <button data-variant="ghost">Dismiss</button>
+            </footer>
+          </article>
+
+          <article class="card" data-interactive>
+            <header>
+              <h3>Interactive Card</h3>
+            </header>
+            <p>Hover me! Uses data-interactive for hover effects.</p>
+            <footer>
+              <span class="status-badge status-badge--pass">Active</span>
+            </footer>
+          </article>
+        </div>
+        
+        <h3>Card with Image</h3>
+        <div class="grid" data-columns="2">
+          <article class="card">
+            <img src="https://placehold.co/600x300/264/fff?text=Card+Image" alt="Card image">
+            <p style="padding: var(--symphony-space-lg);">Card with image at top.</p>
+          </article>
+          
+          <article class="card" data-layout="horizontal">
+            <img src="https://placehold.co/300x200/264/fff?text=Side" alt="Side image">
+            <div class="card-body">
+              <h3>Horizontal Layout</h3>
+              <p>Card with horizontal layout using data-layout="horizontal".</p>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- ==========================================
+           NAVIGATION TESTS
+           ========================================== -->
+      <section class="test-section">
+        <h2>🧭 Navigation</h2>
+        
+        <h3>Horizontal Nav (Default)</h3>
+        <nav aria-label="Main navigation example">
+          <ul>
+            <li><a href="#" aria-current="page">Home</a></li>
+            <li><a href="#">About</a></li>
+            <li>
+              <a href="#">Products</a>
+              <ul>
+                <li><a href="#">Product A</a></li>
+                <li><a href="#">Product B</a></li>
+                <li><a href="#">Product C</a></li>
+              </ul>
+            </li>
+            <li><a href="#">Contact</a></li>
+          </ul>
+        </nav>
+        
+        <h3>Pills Style</h3>
+        <nav data-style="pills" aria-label="Pills navigation example">
+          <ul>
+            <li><a href="#" aria-current="page">Dashboard</a></li>
+            <li><a href="#">Analytics</a></li>
+            <li><a href="#">Reports</a></li>
+            <li><a href="#">Settings</a></li>
+          </ul>
+        </nav>
+        
+        <h3>Underline Style</h3>
+        <nav data-style="underline" aria-label="Underline navigation example">
+          <ul>
+            <li><a href="#" aria-current="page">Overview</a></li>
+            <li><a href="#">Details</a></li>
+            <li><a href="#">History</a></li>
+            <li><a href="#">Settings</a></li>
+          </ul>
+        </nav>
+      </section>
+
+      <!-- ==========================================
+           UTILITIES TESTS
+           ========================================== -->
+      <section class="test-section">
+        <h2>🛠️ Utility Classes</h2>
+        
+        <h3>Spacing (Logical Properties)</h3>
+        <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+          <div class="p-xs" style="background: var(--symphony-surface-hover);">
+            <code>.p-xs</code> - Padding extra small
+          </div>
+          <div class="p-sm" style="background: var(--symphony-surface-hover);">
+            <code>.p-sm</code> - Padding small
+          </div>
+          <div class="p-md" style="background: var(--symphony-surface-hover);">
+            <code>.p-md</code> - Padding medium
+          </div>
+          <div class="p-lg" style="background: var(--symphony-surface-hover);">
+            <code>.p-lg</code> - Padding large
+          </div>
+          <div class="p-xl" style="background: var(--symphony-surface-hover);">
+            <code>.p-xl</code> - Padding extra large
+          </div>
+        </div>
+        
+        <h3>Text Utilities</h3>
+        <div class="test-grid">
+          <div>
+            <p class="text-center" style="background: var(--symphony-surface-hover); padding: 0.5rem;">.text-center</p>
+            <p class="text-start" style="background: var(--symphony-surface-hover); padding: 0.5rem;">.text-start</p>
+            <p class="text-end" style="background: var(--symphony-surface-hover); padding: 0.5rem;">.text-end</p>
+          </div>
+          <div>
+            <p class="font-bold">.font-bold</p>
+            <p class="font-medium">.font-medium</p>
+            <p class="font-light">.font-light</p>
+          </div>
+          <div>
+            <p class="text-xs">.text-xs - Extra small</p>
+            <p class="text-sm">.text-sm - Small</p>
+            <p class="text-base">.text-base - Base</p>
+            <p class="text-lg">.text-lg - Large</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==========================================
+           ACCESSIBILITY TESTS
+           ========================================== -->
+      <section class="test-section">
+        <h2>♿ Accessibility Features</h2>
+        
+        <h3>Focus States (Tab through these)</h3>
+        <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+          <button data-variant="primary">Tab to test focus</button>
+          <a href="#" class="button" data-variant="secondary">Link as button</a>
+          <input type="text" placeholder="Focus this input">
+          <select><option>Focus dropdown</option></select>
+        </div>
+        
+        <h3>Screen Reader Utilities</h3>
+        <div class="component-demo">
+          <p>This button has visually hidden text for screen readers:</p>
+          <button data-variant="outline" aria-label="Close dialog">
+            <span class="sr-only">Close dialog</span>
+            <span aria-hidden="true">×</span>
+          </button>
+          <p class="test-note">The "Close dialog" text is only read by screen readers (sr-only class)</p>
+        </div>
+        
+        <h3>Reduced Motion</h3>
+        <div class="component-demo">
+          <p>Animations are disabled when <code>prefers-reduced-motion: reduce</code> is set.</p>
+          <button data-variant="primary" data-interactive>Hover for animation</button>
+        </div>
+        
+        <h3>Color Contrast Check</h3>
+        <div class="test-grid">
+          <div style="background: var(--symphony-primary); color: var(--symphony-text-inverted); padding: 1rem; border-radius: var(--symphony-radius-md);">
+            Primary on inverted text
+            <span class="status-badge status-badge--pass">WCAG AA</span>
+          </div>
+          <div style="background: var(--symphony-surface); color: var(--symphony-text); padding: 1rem; border: 1px solid var(--symphony-border); border-radius: var(--symphony-radius-md);">
+            Surface with text color
+            <span class="status-badge status-badge--pass">WCAG AA</span>
+          </div>
+          <div style="background: var(--symphony-background); color: var(--symphony-text-muted); padding: 1rem; border-radius: var(--symphony-radius-md);">
+            Muted text (check contrast)
+            <span class="status-badge status-badge--warn">Check</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==========================================
+           RESPONSIVE TESTS
+           ========================================== -->
+      <section class="test-section">
+        <h2>📱 Responsive Behavior</h2>
+        
+        <h3>Container Queries</h3>
+        <p class="test-note">These cards adapt to their container width, not viewport</p>
+        <div style="container-type: inline-size; border: 2px dashed var(--symphony-primary); padding: 1rem; resize: horizontal; overflow: auto; min-width: 200px;">
+          <p style="font-size: 0.75rem; color: var(--symphony-text-muted);">↔ Resize this container</p>
+          <article class="card">
+            <header>
+              <h3>Responsive Card</h3>
+            </header>
+            <p>This card uses container queries to adjust its padding based on available space.</p>
+          </article>
+        </div>
+        
+        <h3>Fluid Typography</h3>
+        <div class="component-demo">
+          <p style="font-size: var(--symphony-text-5xl);">Heading scales with viewport</p>
+          <p class="test-note">Uses clamp() for fluid sizing: clamp(min, preferred, max)</p>
+        </div>
+      </section>
+
+      <!-- ==========================================
+           THEME TESTS
+           ========================================== -->
+      <section class="test-section">
+        <h2>🎨 Theme System</h2>
+        
+        <h3>CSS Custom Properties (API)</h3>
+        <div class="test-grid">
+          <div>
+            <h4>Colors</h4>
+            <p><span class="color-swatch" style="background: var(--symphony-primary);"></span> --symphony-primary</p>
+            <p><span class="color-swatch" style="background: var(--symphony-secondary);"></span> --symphony-secondary</p>
+            <p><span class="color-swatch" style="background: var(--symphony-accent);"></span> --symphony-accent</p>
+            <p><span class="color-swatch" style="background: var(--symphony-success);"></span> --symphony-success</p>
+            <p><span class="color-swatch" style="background: var(--symphony-warning);"></span> --symphony-warning</p>
+            <p><span class="color-swatch" style="background: var(--symphony-danger);"></span> --symphony-danger</p>
+          </div>
+          <div>
+            <h4>Surfaces</h4>
+            <p><span class="color-swatch" style="background: var(--symphony-background);"></span> --symphony-background</p>
+            <p><span class="color-swatch" style="background: var(--symphony-surface);"></span> --symphony-surface</p>
+            <p><span class="color-swatch" style="background: var(--symphony-surface-hover);"></span> --symphony-surface-hover</p>
+            <p><span class="color-swatch" style="background: var(--symphony-border);"></span> --symphony-border</p>
+          </div>
+          <div>
+            <h4>Text</h4>
+            <p style="color: var(--symphony-text);">--symphony-text</p>
+            <p style="color: var(--symphony-text-secondary);">--symphony-text-secondary</p>
+            <p style="color: var(--symphony-text-muted);">--symphony-text-muted</p>
+          </div>
+        </div>
+        
+        <h3>OKLCH Color Space</h3>
+        <p class="test-note">Symphony uses OKLCH for perceptually uniform colors. P3 gamut supported where available.</p>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(80px, 1fr)); gap: 0.5rem;">
+          <div style="background: oklch(60% 0.15 264); height: 3rem; border-radius: var(--symphony-radius-sm);" title="Primary"></div>
+          <div style="background: oklch(65% 0.12 210); height: 3rem; border-radius: var(--symphony-radius-sm);" title="Secondary"></div>
+          <div style="background: oklch(70% 0.18 30); height: 3rem; border-radius: var(--symphony-radius-sm);" title="Accent"></div>
+          <div style="background: oklch(55% 0.16 142); height: 3rem; border-radius: var(--symphony-radius-sm);" title="Success"></div>
+          <div style="background: oklch(75% 0.15 45); height: 3rem; border-radius: var(--symphony-radius-sm);" title="Warning"></div>
+          <div style="background: oklch(55% 0.20 25); height: 3rem; border-radius: var(--symphony-radius-sm);" title="Danger"></div>
+        </div>
+      </section>
+
+      <!-- ==========================================
+           TABLES TESTS
+           ========================================== -->
+      <section class="test-section">
+        <h2>📊 Tables</h2>
+        
+        <table>
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Status</th>
+              <th>Role</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>John Doe</td>
+              <td><span class="status-badge status-badge--pass">Active</span></td>
+              <td>Admin</td>
+              <td><button data-variant="ghost" data-size="xs">Edit</button></td>
+            </tr>
+            <tr>
+              <td>Jane Smith</td>
+              <td><span class="status-badge status-badge--warn">Pending</span></td>
+              <td>User</td>
+              <td><button data-variant="ghost" data-size="xs">Edit</button></td>
+            </tr>
+            <tr>
+              <td>Bob Wilson</td>
+              <td><span class="status-badge status-badge--fail">Inactive</span></td>
+              <td>Guest</td>
+              <td><button data-variant="ghost" data-size="xs">Edit</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <!-- ==========================================
+           ACCORDION TESTS
+           ========================================== -->
+      <section class="test-section">
+        <h2>🪗 Accordion (Details/Summary)</h2>
+        
+        <details>
+          <summary>What is Symphony Anthology?</summary>
+          <p>Symphony Anthology is a semantic-first, framework-agnostic CSS framework designed for the AI era. It prioritizes semantic HTML and uses modern CSS features like container queries, cascade layers, and OKLCH colors.</p>
+        </details>
+        
+        <details>
+          <summary>How do I customize the theme?</summary>
+          <p>Override CSS custom properties in your stylesheet. All design tokens use the --symphony-* prefix and can be easily customized.</p>
+          <pre><code>:root {
+  --symphony-primary: oklch(50% 0.2 280);
+  --symphony-radius-md: 0.75rem;
+}</code></pre>
+        </details>
+        
+        <details open>
+          <summary>Is it accessible?</summary>
+          <p>Yes! Symphony is built with accessibility in mind, following WCAG 2.1 AA guidelines. It includes proper focus states, keyboard navigation, and screen reader support.</p>
+        </details>
+      </section>
+
+      <!-- ==========================================
+           DIALOG TESTS
+           ========================================== -->
+      <section class="test-section">
+        <h2>💬 Dialog (Native Modal)</h2>
+        
+        <button data-variant="primary" onclick="document.getElementById('demo-dialog').showModal()">
+          Open Dialog
+        </button>
+        
+        <dialog id="demo-dialog">
+          <header>
+            <h2>Dialog Title</h2>
+          </header>
+          <p>This is a native HTML dialog element. It's accessible and doesn't require JavaScript for basic functionality.</p>
+          <footer>
+            <button data-variant="ghost" onclick="document.getElementById('demo-dialog').close()">Cancel</button>
+            <button data-variant="primary" onclick="document.getElementById('demo-dialog').close()">Confirm</button>
+          </footer>
+        </dialog>
+      </section>
+
+    </main>
+
+    <footer style="text-align: center; margin-top: 4rem; padding: 2rem; border-top: 1px solid var(--symphony-border);">
+      <p>🎼 Symphony Anthology v1.0 - Testing Suite</p>
+      <p style="font-size: 0.875rem; color: var(--symphony-text-muted);">
+        Semantic-First • Framework-Agnostic • AI-Ready
+      </p>
+    </footer>
+  </div>
+
+  <script>
+    // Theme management
+    function setTheme(theme) {
+      const html = document.documentElement;
+      if (theme === 'auto') {
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        html.dataset.theme = prefersDark ? 'dark' : 'light';
+        localStorage.removeItem('symphony-theme');
+      } else {
+        html.dataset.theme = theme;
+        localStorage.setItem('symphony-theme', theme);
+      }
+      updateThemeDisplay();
+    }
+    
+    function updateThemeDisplay() {
+      document.getElementById('current-theme').textContent = document.documentElement.dataset.theme;
+    }
+    
+    // Update viewport size display
+    function updateViewportSize() {
+      document.getElementById('viewport-size').textContent = `${window.innerWidth}×${window.innerHeight}`;
+    }
+    
+    // Initialize
+    document.addEventListener('DOMContentLoaded', () => {
+      // Check for saved theme
+      const savedTheme = localStorage.getItem('symphony-theme');
+      if (savedTheme) {
+        document.documentElement.dataset.theme = savedTheme;
+      }
+      
+      updateThemeDisplay();
+      updateViewportSize();
+      
+      // Listen for resize
+      window.addEventListener('resize', updateViewportSize);
+      
+      // Listen for system theme changes
+      window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+        if (!localStorage.getItem('symphony-theme')) {
+          document.documentElement.dataset.theme = e.matches ? 'dark' : 'light';
+          updateThemeDisplay();
+        }
+      });
+      
+      console.log('🎼 Symphony Anthology v1.0 - Testing Suite Loaded');
+      console.log('Current theme:', document.documentElement.dataset.theme);
+      console.log('CSS Custom Properties available:', getComputedStyle(document.documentElement).getPropertyValue('--symphony-primary'));
+    });
+  </script>
+</body>
+</html>

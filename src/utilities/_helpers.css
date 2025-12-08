@@ -221,10 +221,8 @@
 
   .h-screen {
     block-size: 100vh;
-  }
-
-  .h-screen {
     block-size: 100dvh;
+    /* Modern dynamic viewport with fallback */
   }
 
   /* Dynamic viewport height */
@@ -277,10 +275,8 @@
 
   .min-h-screen {
     min-block-size: 100vh;
-  }
-
-  .min-h-screen {
     min-block-size: 100dvh;
+    /* Modern dynamic viewport with fallback */
   }
 
   /* Max height */
@@ -290,10 +286,8 @@
 
   .max-h-screen {
     max-block-size: 100vh;
-  }
-
-  .max-h-screen {
     max-block-size: 100dvh;
+    /* Modern dynamic viewport with fallback */
   }
 
   /* Size (both dimensions) */
